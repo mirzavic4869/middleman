@@ -1,13 +1,12 @@
 import React from "react";
+import Navbar from "../../components/Navbar";
 
-function cart() {
+function Cart() {
 	return (
-		<div>
-			<div className="navbar bg-neutral text-neutral-content">
-				<a className="btn btn-ghost normal-case text-xl">MiddleMan</a>
-			</div>
+		<div className="bg-[#F8F9FD] h-full">
+			<Navbar />
 			<div>
-				<h1 className="font-Roboto font-semibold text-[30px] p-5 text-center md:text-[50px] lg:text-left lg:ml-20">
+				<h1 className="font-Roboto font-semibold text-[30px] p-5 text-center md:text-[50px] lg:text-left lg:ml-20 text-black">
 					My Cart
 				</h1>
 			</div>
@@ -20,25 +19,25 @@ function cart() {
 					/>
 					<div className="flex flex-col  font-Poppins font-medium text-md md:text-lg lg:text-xl ">
 						<div className="flex flex-row">
-							<p className="py-2 pr-8">Beras Wangi</p>
+							<p className="py-2 pr-8 text-black">Beras Wangi</p>
 							<button className="p-2 bg-[#FF0000] text-white rounded-[10px]">
 								Delete
 							</button>
 						</div>
-						<p className="pb-4">5 Kg</p>
-						<p className="pb-4">Rp 40.000</p>
+						<p className="pb-4 text-black">5 Kg</p>
+						<p className="pb-4 text-black">Rp 40.000</p>
 
 						<div className="flex flex-row">
-							<p className="pb-4">Ammount</p>{" "}
-							<button className="bg-white border-[#1DB468] border-2 rounded-[5px] w-[33px] h-[33px] ml-3">
+							<p className="pb-4 text-black">Ammount</p>{" "}
+							<button className="bg-white border-[#1DB468] border-2 rounded-[5px] w-[33px] h-[33px] ml-3 text-black">
 								-
 							</button>
-							<p className="ml-3">3</p>
+							<p className="ml-3 text-black">3</p>
 							<button className="bg-[#1DB468] rounded-[5px] w-[33px] h-[33px] text-white ml-3">
 								+
 							</button>
 						</div>
-						<p>Total Rp 120.000</p>
+						<p className="text-black">Total Rp 120.000</p>
 					</div>
 				</div>
 				<div className="w-auto h-auto bg-white rounded-[20px] shadow-md flex m-2 justify-center">
@@ -49,25 +48,25 @@ function cart() {
 					/>
 					<div className="flex flex-col  font-Poppins font-medium text-md md:text-lg lg:text-xl ">
 						<div className="flex flex-row">
-							<p className="py-2 pr-8">Beras Wangi</p>
+							<p className="py-2 pr-8 text-black">Beras Wangi</p>
 							<button className="p-2 bg-[#FF0000] text-white rounded-[10px]">
 								Delete
 							</button>
 						</div>
-						<p className="pb-4">5 Kg</p>
-						<p className="pb-4">Rp 40.000</p>
+						<p className="pb-4 text-black">5 Kg</p>
+						<p className="pb-4 text-black">Rp 40.000</p>
 
 						<div className="flex flex-row">
-							<p className="pb-4">Ammount</p>{" "}
-							<button className="bg-white border-[#1DB468] border-2 rounded-[5px] w-[33px] h-[33px] ml-3">
+							<p className="pb-4 text-black">Ammount</p>{" "}
+							<button className="bg-white border-[#1DB468] border-2 rounded-[5px] w-[33px] h-[33px] ml-3 text-black">
 								-
 							</button>
-							<p className="ml-3">3</p>
+							<p className="ml-3 text-black">3</p>
 							<button className="bg-[#1DB468] rounded-[5px] w-[33px] h-[33px] text-white ml-3">
 								+
 							</button>
 						</div>
-						<p>Total Rp 120.000</p>
+						<p className="text-black">Total Rp 120.000</p>
 					</div>
 				</div>
 				<div className="w-auto h-auto bg-white rounded-[20px] shadow-md flex m-2 justify-center">
@@ -78,33 +77,33 @@ function cart() {
 					/>
 					<div className="flex flex-col  font-Poppins font-medium text-md md:text-lg lg:text-xl ">
 						<div className="flex flex-row">
-							<p className="py-2 pr-8">Beras Wangi</p>
+							<p className="py-2 pr-8 text-black">Beras Wangi</p>
 							<button className="p-2 bg-[#FF0000] text-white rounded-[10px]">
 								Delete
 							</button>
 						</div>
-						<p className="pb-4">5 Kg</p>
-						<p className="pb-4">Rp 40.000</p>
+						<p className="pb-4 text-black">5 Kg</p>
+						<p className="pb-4 text-black">Rp 40.000</p>
 
 						<div className="flex flex-row">
-							<p className="pb-4">Ammount</p>{" "}
-							<button className="bg-white border-[#1DB468] border-2 rounded-[5px] w-[33px] h-[33px] ml-3">
+							<p className="pb-4 text-black">Ammount</p>{" "}
+							<button className="bg-white border-[#1DB468] border-2 rounded-[5px] w-[33px] h-[33px] ml-3 text-black">
 								-
 							</button>
-							<p className="ml-3">3</p>
+							<p className="ml-3 text-black">3</p>
 							<button className="bg-[#1DB468] rounded-[5px] w-[33px] h-[33px] text-white ml-3">
 								+
 							</button>
 						</div>
-						<p>Total Rp 120.000</p>
+						<p className="text-black">Total Rp 120.000</p>
 					</div>
 				</div>
 			</div>
-			<div className="w-auto h-auto bg-white rounded-[20px] shadow-md flex m-2 justify-between font-Poppins font-semibold p-3">
+			<div className="w-auto h-auto bg-white rounded-[20px] shadow-md flex m-2 justify-between font-Poppins font-semibold p-3 text-black">
 				Total Price
 			</div>
 		</div>
 	);
 }
 
-export default cart;
+export default Cart;
