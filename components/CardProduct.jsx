@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import { MdOutlineAddShoppingCart, MdAdd } from "react-icons/md";
+import { MdAdd } from "react-icons/md";
 import Modal from "./Modal";
 
 function CardProduct() {
