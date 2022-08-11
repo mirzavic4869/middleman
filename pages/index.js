@@ -3,8 +3,8 @@ import Head from "next/head";
 export default function Home() {
 	return (
 		<div className="bg-[#F8F9FD] h-screen">
-			<div class="navbar bg-neutral text-neutral-content">
-				<a class="btn btn-ghost normal-case text-xl">MiddleMan</a>
+			<div className="navbar bg-neutral text-neutral-content">
+				<a className="btn btn-ghost normal-case text-xl">MiddleMan</a>
 			</div>
 			<div>
 				<h1 className="font-Roboto font-semibold text-[30px] p-5 text-center md:text-[50px] lg:text-left lg:ml-20">
