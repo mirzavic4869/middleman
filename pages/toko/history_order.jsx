@@ -17,7 +17,7 @@ function History_order() {
 						<p className="pb-3">Terkirim</p>
 						<p className="pb-3">Rp 399.000</p>
 						<div className="flex justify-end">
-							<Link href="/detail_order">
+							<Link href="/toko/detail_order">
 								<button className="p-3 bg-[#1DB468] text-white rounded-[10px]">
 									Detail
 								</button>
@@ -30,7 +30,7 @@ function History_order() {
 						<p className="pb-3">Terkirim</p>
 						<p className="pb-3">Rp 399.000</p>
 						<div className="flex justify-end">
-							<Link href="/detail_order">
+							<Link href="/toko/detail_order">
 								<button className="p-3 bg-[#1DB468] text-white rounded-[10px]">
 									Detail
 								</button>
@@ -43,7 +43,7 @@ function History_order() {
 						<p className="pb-3">Terkirim</p>
 						<p className="pb-3">Rp 399.000</p>
 						<div className="flex justify-end">
-							<Link href="/detail_order">
+							<Link href="/toko/detail_order">
 								<button className="p-3 bg-[#1DB468] text-white rounded-[10px]">
 									Detail
 								</button>
