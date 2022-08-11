@@ -10,6 +10,7 @@ function Navbar() {
       {/* <div className="drawer">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col"> */}
+
       <div className="w-full navbar bg-white shadow-md text-black flex justify-around">
         <div>
           <div className="flex lg:hidden items-center">
@@ -75,23 +76,23 @@ function Navbar() {
         </div>
       </div>
       {/* </div>
-        <div className="drawer-side">
-          <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
-          <ul className="menu p-4 overflow-y-auto w-80 bg-base-100">
-            <li>
-              <a>My Product</a>
-            </li>
-            <li>
-              <a>My Cart</a>
-            </li>
-            <li>
-              <a>History Order</a>
-            </li>
-            <li>
-              <a>Product Out</a>
-            </li>
-          </ul>
-        </div>
+      </div>
+      <div className="drawer-side">
+        <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
+        <ul className="menu p-4 overflow-y-auto w-80 bg-base-100">
+          <li>
+            <a>My Product</a>
+          </li>
+          <li>
+            <a>My Cart</a>
+          </li>
+          <li>
+            <a>History Order</a>
+          </li>
+          <li>
+            <a>Product Out</a>
+          </li>
+        </ul>
       </div> */}
     </>
   );

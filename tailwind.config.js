@@ -6,15 +6,12 @@ module.exports = {
         mytheme: {
           primary: "#1DB468",
           neutral: "#FFFFFF",
-          error: "#FF0000",
+          secondary: "#FF0000",
         },
       },
     ],
   },
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       fontFamily: {
