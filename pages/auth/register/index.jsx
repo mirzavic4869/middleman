@@ -1,22 +1,13 @@
-import { AddButton } from "../../../components/customButton";
-import InputCustom from "../../../components/inputCustom";
+import { AddButton } from "../../../components/CustomButton";
+import InputCustom from "../../../components/InputCustom";
 
 import Link from "next/link";
-import Image from "next/image";
-
-import logo from "../../../assets/logo.png";
 
 export default function Register() {
   return (
     <>
       <div className="min-h-screen flex justify-center flex-col items-center">
-        <div className="hidden md:block my-10">
-          <Link href="/auth/welcome">
-            <a>
-              <Image src={logo} />
-            </a>
-          </Link>
-        </div>
+        <div className="hidden md:block my-10"></div>
         <div className="h-1/2 ">
           <div className="mb-10">
             <h1 className="text-black font-Roboto font-extrabold text-5xl md:text-6xl">
@@ -26,11 +17,13 @@ export default function Register() {
               Create a new account
             </h4>
           </div>
-          <InputCustom type="text" placeholder="Name shop" />
-          <InputCustom type="email" placeholder="Email" />
-          <InputCustom type="number" placeholder="Phone Number" />
-          <InputCustom type="password" placeholder="Password" />
-          <InputCustom type="text" placeholder="Addres" />
+          <div className="lg:min-w-full">
+            <InputCustom type="text" placeholder="Name shop" />
+            <InputCustom type="email" placeholder="Email" />
+            <InputCustom type="number" placeholder="Phone Number" />
+            <InputCustom type="password" placeholder="Password" />
+            <InputCustom type="text" placeholder="Addres" />
+          </div>
           <div className="mt-2">
             <AddButton title="sign in" />
           </div>

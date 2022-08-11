@@ -1,6 +1,5 @@
-import { AddButton, AddButton2 } from "../../../components/customButton";
+import { AddButton, AddButton2 } from "../../../components/CustomButton";
 import Image from "next/image";
-import Link from "next/link";
 
 import { useRouter } from "next/router";
 
@@ -27,14 +26,16 @@ export default function Welcome() {
           </div>
         </div>
         <div className="flex flex-col items-center">
-          <AddButton
-            onClick={() => router.push("/auth/login")}
-            title="sign in"
-          />
-          <AddButton2
-            onClick={() => router.push("/auth/register")}
-            title="sign up"
-          />
+          <div className="w-full md:w-96 lg:w-[432px]">
+            <AddButton
+              onClick={() => router.push("/auth/login")}
+              title="sign in"
+            />
+            <AddButton2
+              onClick={() => router.push("/auth/register")}
+              title="sign up"
+            />
+          </div>
         </div>
       </div>
     </div>
