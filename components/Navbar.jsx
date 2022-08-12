@@ -1,15 +1,28 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import Image from "next/dist/client/image";
-import { IoPersonCircle } from "react-icons/io5";
 import Link from "next/link";
+import { getCookie, deleteCookie } from "cookies-next";
+import { useRouter } from "next/dist/client/router";
+
+import Modal from "./Modal";
+
+import { IoPersonCircle } from "react-icons/io5";
 
 import logo from "../assets/logo.png";
 
 function Navbar() {
+  const token = getCookie("token");
+  const router = useRouter();
+
+  const handlelogout = () => {
+    deleteCookie("token");
+    router.push("/auth/welcome");
+  };
+
   return (
     <>
-      <div className="sticky top-0 w-full navbar bg-white shadow-md text-black flex justify-between lg:px-10">
+      <div className="sticky z-10 top-0 w-full navbar bg-white shadow-md text-black flex justify-between lg:px-10">
         <div>
           <div className="flex lg:hidden items-center">
             <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
@@ -80,10 +93,45 @@ function Navbar() {
                 </Link>
               </li>
               <li>
-                <button>Sign Out</button>
+                <label
+                  id="btn-delete"
+                  title="Delete Product"
+                  htmlFor="modal-delete"
+                >
+                  Logout
+                </label>
               </li>
             </ul>
           </div>
+        </div>
+      </div>
+
+      {/* modal */}
+      <input type="checkbox" id="modal-delete" className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box">
+          <h3 className="text-3xl text-primary my-3 font-Roboto font-medium">
+            logout
+          </h3>
+          <section>
+            <p className="text-black font-Roboto font-medium">
+              Are you sure you want to logout ?
+            </p>
+            <div className="modal-action font-Roboto">
+              <label
+                htmlFor="modal-delete"
+                className="btn btn-primary btn-sm w-20 text-white"
+              >
+                <button onClick={() => handlelogout()}>Yes</button>
+              </label>
+              <label
+                htmlFor="modal-delete"
+                className="btn btn-secondary btn-sm w-20 text-white"
+              >
+                No
+              </label>
+            </div>
+          </section>
         </div>
       </div>
     </>

@@ -1,12 +1,12 @@
 import Navbar from "../../components/Navbar";
 import { AddButton, DeleteButton } from "../../components/CustomButton";
-import InputCustom from "../../components/InputCustom";
+import InputCustom from "../../components/inputCustom";
 
 const Profile = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen flex justify-center items-center">
+      <div className="min-h-screen flex justify-center items-center bg-base-100">
         <div className="h-1/2 ">
           {/* judul */}
           <h1 className="text-left mb-6 text-black font-Roboto font-semibold text-[30px] md:text-[50px]">
