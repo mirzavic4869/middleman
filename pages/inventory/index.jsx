@@ -14,15 +14,15 @@ function Inventory() {
       <div className="flex justify-between gap-2 m-4">
         <div className="flex gap-2 w-96">
           <input type="text" placeholder="Search..." className="input input-sm input-bordered input-primary w-full max-w-xs text-black font-Poppins" />
-          <button title="Search" className="btn btn-sm btn-primary text-2xl text-white">
+          <button id="btn-search" title="Search" className="btn btn-sm btn-primary text-2xl text-white">
             <MdSearch />
           </button>
         </div>
-        <label htmlFor="modal-add" className="btn btn-sm btn-primary modal-button text-white font-Roboto">
+        <label id="btn-add" htmlFor="modal-add" className="btn btn-sm btn-primary modal-button text-white font-Roboto">
           Add Product
         </label>
       </div>
-      <div className="grid grid-cols-1 gap-2 m-2 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-2 m-2 md:grid-cols-2 lg:grid-cols-3">
         <CardProduct />
         <CardProduct />
         <CardProduct />
