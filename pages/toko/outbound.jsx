@@ -2,13 +2,13 @@ import React from "react";
 import Navbar from "../../components/Navbar";
 import Link from "next/link";
 
-function Cart() {
+function Outbound() {
 	return (
 		<div className="bg-base-100 min-h-screen">
 			<Navbar />
 			<div>
 				<h1 className="font-Roboto font-semibold text-[30px] p-9 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20 text-black">
-					My Cart
+					Out Bound Product
 				</h1>
 			</div>
 			<div className="grid grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center">
@@ -107,7 +107,7 @@ function Cart() {
 						id="to-payment"
 						className="p-3 bg-[#1DB468] text-white rounded-[10px]"
 					>
-						Next
+						Back
 					</button>
 				</Link>
 			</div>
@@ -115,4 +115,4 @@ function Cart() {
 	);
 }
 
-export default Cart;
+export default Outbound;

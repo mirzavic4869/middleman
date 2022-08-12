@@ -4,7 +4,7 @@ import Link from "next/link";
 
 function Incoming_product() {
 	return (
-		<div className="bg-[#F8F9FD] h-full">
+		<div className="bg-base-100 min-h-screen">
 			<Navbar />
 			<div>
 				<h1 className="text-black font-Roboto font-semibold text-[30px] p-9 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20">
