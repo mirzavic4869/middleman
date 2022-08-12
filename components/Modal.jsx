@@ -24,7 +24,7 @@ export default function Modal(props) {
             <section>
               <label className="label">
                 <span className="label-text text-primary text-base font-Poppins">
-                  Choose Image<span className="text-secondary">*</span>
+                  Product Image<span className="text-secondary">*</span>
                 </span>
               </label>
               <input type="file" className="w-full text-black font-Poppins mb-2" required />

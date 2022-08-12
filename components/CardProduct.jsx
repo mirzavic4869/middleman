@@ -18,18 +18,18 @@ function CardProduct() {
             <p>Price: Rp. 10.000</p>
           </div>
           <div className="card-actions justify-start font-Roboto">
-            <label title="Edit Product" htmlFor="modal-edit" className="btn btn-primary btn-sm modal-button w-20 text-white">
+            <label id="btn-edit" title="Edit Product" htmlFor="modal-edit" className="btn btn-primary btn-sm modal-button text-white">
               Edit
             </label>
-            <label title="Delete Product" htmlFor="modal-delete" className="btn btn-secondary btn-sm modal-button w-20 text-white">
+            <label id="btn-delete" title="Delete Product" htmlFor="modal-delete" className="btn btn-secondary btn-sm modal-button text-white">
               Delete
             </label>
           </div>
         </div>
         <div className="relative">
           <div className="absolute top-0 right-0">
-            <button title="Add to Product Out" className="p-2 modal-button text-white text-2xl bg-primary hover:bg-green-700">
-              <MdAdd />
+            <button id="btn-add" title="Add to Product Out" className="p-2 modal-button text-white bg-primary rounded-md hover:bg-green-700">
+              <MdAdd size={20} />
             </button>
           </div>
         </div>
