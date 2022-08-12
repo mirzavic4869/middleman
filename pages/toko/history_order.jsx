@@ -4,10 +4,10 @@ import Link from "next/link";
 
 function History_order() {
 	return (
-		<div className="bg-[#F8F9FD] h-full">
+		<div className="bg-base-100 min-h-screen">
 			<Navbar />
 			<div>
-				<h1 className="text-black font-Roboto font-semibold text-[30px] p-5 text-center md:text-[50px] lg:text-left lg:ml-20">
+				<h1 className="text-black font-Roboto font-semibold text-[30px] p-9 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20">
 					History Order Product
 				</h1>
 				<div className="p-5 gap-4 grid grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -18,7 +18,10 @@ function History_order() {
 						<p className="pb-3">Rp 399.000</p>
 						<div className="flex justify-end">
 							<Link href="/toko/detail_order">
-								<button className="p-3 bg-[#1DB468] text-white rounded-[10px]">
+								<button
+									id="to-detail_order"
+									className="p-3 bg-[#1DB468] text-white rounded-[10px]"
+								>
 									Detail
 								</button>
 							</Link>
@@ -31,7 +34,10 @@ function History_order() {
 						<p className="pb-3">Rp 399.000</p>
 						<div className="flex justify-end">
 							<Link href="/toko/detail_order">
-								<button className="p-3 bg-[#1DB468] text-white rounded-[10px]">
+								<button
+									id="to-detail_order"
+									className="p-3 bg-[#1DB468] text-white rounded-[10px]"
+								>
 									Detail
 								</button>
 							</Link>
@@ -44,7 +50,10 @@ function History_order() {
 						<p className="pb-3">Rp 399.000</p>
 						<div className="flex justify-end">
 							<Link href="/toko/detail_order">
-								<button className="p-3 bg-[#1DB468] text-white rounded-[10px]">
+								<button
+									id="to-detail_order"
+									className="p-3 bg-[#1DB468] text-white rounded-[10px]"
+								>
 									Detail
 								</button>
 							</Link>
