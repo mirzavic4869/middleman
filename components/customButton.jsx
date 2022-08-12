@@ -2,13 +2,23 @@ import React from "react";
 
 const AddButton = (props) => {
   return (
-    <button
-      id={props.id}
-      onClick={props.onClick}
-      className="btn btn-sm btn-primary w-full text-white font-Roboto mt-2 rounded-[20px] md:h-10 "
-    >
-      {props.title}
-    </button>
+    <div>
+      {props.loading ? (
+        <button
+          id={props.id}
+          onClick={props.onClick}
+          className="btn btn-sm btn-square loading btn-primary w-full text-white font-Roboto mt-2 rounded-[20px] md:h-10"
+        ></button>
+      ) : (
+        <button
+          id={props.id}
+          onClick={props.onClick}
+          className="btn btn-sm btn-primary w-full text-white font-Roboto mt-2 rounded-[20px] md:h-10 "
+        >
+          {props.title}
+        </button>
+      )}
+    </div>
   );
 };
 
@@ -27,7 +37,8 @@ const DeleteButton = (props) => {
   return (
     <button
       onClick={props.onClick}
-      className="btn btn-sm w-full btn-error text-white font-Roboto mt-2 rounded-[20px] md:h-10"
+      disabled={props.loading}
+      className="btn btn-sm w-full btn-secondary text-white font-Roboto mt-2 rounded-[20px] md:h-10"
     >
       {props.title}
     </button>
