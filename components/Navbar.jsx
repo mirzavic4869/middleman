@@ -13,7 +13,6 @@ import logo from "../assets/logo.png";
 function Navbar() {
   const router = useRouter();
   const role = getCookie("role");
-  console.log(role);
 
   const handlelogout = () => {
     deleteCookie("token");
@@ -87,13 +86,9 @@ function Navbar() {
               tabIndex={0}
               className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52 font-Roboto font-medium"
             >
-              {role === "admin" ? null : (
-                <li>
-                  <Link href="/profile">
-                    <a id="to-profile">My Profile</a>
-                  </Link>
-                </li>
-              )}
+              <li>
+                <a id="to-profile">My Profile</a>
+              </li>
               <li>
                 <label id="btn-logout" title="logout" htmlFor="modal-logout">
                   Logout
