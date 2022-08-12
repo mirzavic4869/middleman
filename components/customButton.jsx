@@ -25,6 +25,7 @@ const AddButton = (props) => {
 const AddButton2 = (props) => {
   return (
     <button
+      id={props.id}
       onClick={props.onClick}
       className="btn btn-sm btn-outline w-full text-primary shadow-lg font-Roboto mt-2 rounded-[20px] md:h-10"
     >

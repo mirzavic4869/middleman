@@ -36,10 +36,12 @@ export default function Login() {
       .then((result) => {
         const { code, data, message } = result;
         if (code === 200) {
-          const { token } = data;
+          const { token, role } = data;
           setCookie("token", token);
+          setCookie("role", role);
           router.push("/");
         }
+        alert(message);
       })
       .catch((err) => alert(err.toString()))
       .finally(() => setLoading(false));

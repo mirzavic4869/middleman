@@ -2,7 +2,21 @@ import Navbar from "../../components/Navbar";
 import { AddButton, DeleteButton } from "../../components/CustomButton";
 import InputCustom from "../../components/inputCustom";
 
+import { useEffect, useState } from "react";
+import { useRouter } from "next/dist/client/router";
+import { getCookie } from "cookies-next";
+
 const Profile = () => {
+  const token = getCookie("token");
+  const router = useRouter();
+  const [loading] = useState(false);
+
+  useEffect(() => {
+    if (!token) {
+      router.push("/auth/welcome");
+    }
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -58,8 +72,8 @@ const Profile = () => {
           </div>
 
           {/* button */}
-          <div className="flex flex-col items-center mt-6">
-            <AddButton title="Edit" />
+          <div className="flex flex-col mt-6">
+            <AddButton loading={loading} title="Edit" />
             <DeleteButton title="delete" />
           </div>
         </div>
