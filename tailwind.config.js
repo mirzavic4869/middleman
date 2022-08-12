@@ -7,11 +7,15 @@ module.exports = {
           primary: "#1DB468",
           neutral: "#FFFFFF",
           secondary: "#FF0000",
+          "base-100": "#F8F9FD",
         },
       },
     ],
   },
-  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       fontFamily: {
