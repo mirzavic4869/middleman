@@ -28,8 +28,14 @@ function Detail_order() {
 			<div className="p-5 flex justify-center">
 				<div className="w-auto h-auto  bg-white rounded-[10px] shadow-md font-Poppins font-semibold p-3 text-black flex">
 					<p>Total Price</p>
-					<p className="ml-28">Rp 168.000</p>
+					<p className="md:ml-28">Rp 168.000</p>
 				</div>
+				<button className="mx-3 py-2 px-8 bg-[#1DB468] text-white rounded-[10px]">
+					Accept
+				</button>
+				<button className="py-2 px-8 bg-[#1DB468] text-white rounded-[10px]">
+					Done
+				</button>
 			</div>
 		</div>
 	);
