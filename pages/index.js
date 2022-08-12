@@ -1,11 +1,12 @@
 import Navbar from "../components/Navbar";
+import Link from "next/link";
 
 export default function Home() {
 	return (
-		<div className="bg-[#F8F9FD] h-full">
+		<div className="bg-base-100 min-h-screen">
 			<Navbar />
 			<div>
-				<h1 className="text-black font-Roboto font-semibold text-[30px] p-5 text-center md:text-[50px] lg:text-left lg:ml-20">
+				<h1 className="text-black font-Roboto font-semibold text-[30px] p-9 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20">
 					Dashboard
 				</h1>
 				<div className="grid grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -19,9 +20,14 @@ export default function Home() {
 							<p className="pb-5 text-black">Beras Wangi</p>
 							<p className="pb-5 text-black">5 Kg</p>
 							<p className="pb-8 text-black">Rp 40.000</p>
-							<button className="p-3 bg-[#1DB468] text-white rounded-[20px]">
-								Add
-							</button>
+							<Link href="/toko/cart">
+								<button
+									id="to-cart"
+									className="p-3 bg-[#1DB468] text-white rounded-[20px]"
+								>
+									Add
+								</button>
+							</Link>
 						</div>
 					</div>
 					<div className="w-auto h-auto bg-white rounded-[20px] shadow-md flex flex-row m-2 justify-center">
@@ -34,9 +40,14 @@ export default function Home() {
 							<p className="pb-5 text-black">Beras Wangi</p>
 							<p className="pb-5 text-black">5 Kg</p>
 							<p className="pb-8 text-black">Rp 40.000</p>
-							<button className="p-3 bg-[#1DB468] text-white rounded-[20px]">
-								Add
-							</button>
+							<Link href="/toko/cart">
+								<button
+									id="to-cart"
+									className="p-3 bg-[#1DB468] text-white rounded-[20px]"
+								>
+									Add
+								</button>
+							</Link>
 						</div>
 					</div>
 					<div className="w-auto h-auto bg-white rounded-[20px] shadow-md flex flex-row m-2 justify-center">
@@ -49,9 +60,14 @@ export default function Home() {
 							<p className="pb-5 text-black">Beras Wangi</p>
 							<p className="pb-5 text-black">5 Kg</p>
 							<p className="pb-8 text-black">Rp 40.000</p>
-							<button className="p-3 bg-[#1DB468] text-white rounded-[20px]">
-								Add
-							</button>
+							<Link href="/toko/cart">
+								<button
+									id="to-cart"
+									className="p-3 bg-[#1DB468] text-white rounded-[20px]"
+								>
+									Add
+								</button>
+							</Link>
 						</div>
 					</div>
 				</div>
