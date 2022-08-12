@@ -1,12 +1,13 @@
 import React from "react";
 import Navbar from "../../components/Navbar";
+import Link from "next/link";
 
 function Cart() {
 	return (
-		<div className="bg-[#F8F9FD] h-full">
+		<div className="bg-base-100 min-h-screen">
 			<Navbar />
 			<div>
-				<h1 className="font-Roboto font-semibold text-[30px] p-5 text-center md:text-[50px] lg:text-left lg:ml-20 text-black">
+				<h1 className="font-Roboto font-semibold text-[30px] p-9 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20 text-black">
 					My Cart
 				</h1>
 			</div>
@@ -100,7 +101,15 @@ function Cart() {
 				</div>
 			</div>
 			<div className="w-auto h-auto bg-white rounded-[20px] shadow-md flex m-2 justify-between font-Poppins font-semibold p-3 text-black">
-				Total Price
+				<p>Total Price</p>
+				<Link href="/toko/history_order">
+					<button
+						id="to-payment"
+						className="p-3 bg-[#1DB468] text-white rounded-[10px]"
+					>
+						Next
+					</button>
+				</Link>
 			</div>
 		</div>
 	);
