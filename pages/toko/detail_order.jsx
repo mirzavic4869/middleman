@@ -26,15 +26,9 @@ function Detail_order() {
 				</div>
 			</div>
 			<div className="p-5 flex justify-center">
-				<div className="w-auto h-auto  bg-white rounded-[20px] shadow-md font-Poppins font-semibold p-5 text-black flex">
+				<div className="w-auto h-auto  bg-white rounded-[10px] shadow-md font-Poppins font-semibold p-3 text-black flex">
 					<p>Total Price</p>
 					<p className="ml-28">Rp 168.000</p>
-					{/* <button className="mx-3 p-3 bg-[#1DB468] text-white rounded-[10px]">
-						Accept
-					</button>
-					<button className="p-3 bg-[#1DB468] text-white rounded-[10px]">
-						Done
-					</button> */}
 				</div>
 			</div>
 		</div>
