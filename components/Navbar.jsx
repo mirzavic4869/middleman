@@ -5,15 +5,15 @@ import Link from "next/link";
 import { getCookie, deleteCookie } from "cookies-next";
 import { useRouter } from "next/dist/client/router";
 
-import Modal from "./Modal";
-
 import { IoPersonCircle } from "react-icons/io5";
+import Modal from "./Modal";
 
 import logo from "../assets/logo.png";
 
 function Navbar() {
-  const token = getCookie("token");
   const router = useRouter();
+  const role = getCookie("role");
+  console.log(role);
 
   const handlelogout = () => {
     deleteCookie("token");
@@ -44,7 +44,7 @@ function Navbar() {
           <div className="w-20 md:w-40">
             <Link href="/">
               <a id="to-dasboard">
-                <Image src={logo} />
+                <Image src={logo} alt="logo" />
               </a>
             </Link>
           </div>
@@ -87,17 +87,15 @@ function Navbar() {
               tabIndex={0}
               className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52 font-Roboto font-medium"
             >
+              {role === "admin" ? null : (
+                <li>
+                  <Link href="/profile">
+                    <a id="to-profile">My Profile</a>
+                  </Link>
+                </li>
+              )}
               <li>
-                <Link href="/profile">
-                  <a id="to-profile">My Profile</a>
-                </Link>
-              </li>
-              <li>
-                <label
-                  id="btn-delete"
-                  title="Delete Product"
-                  htmlFor="modal-delete"
-                >
+                <label id="btn-logout" title="logout" htmlFor="modal-logout">
                   Logout
                 </label>
               </li>
@@ -107,33 +105,7 @@ function Navbar() {
       </div>
 
       {/* modal */}
-      <input type="checkbox" id="modal-delete" className="modal-toggle" />
-      <div className="modal">
-        <div className="modal-box">
-          <h3 className="text-3xl text-primary my-3 font-Roboto font-medium">
-            logout
-          </h3>
-          <section>
-            <p className="text-black font-Roboto font-medium">
-              Are you sure you want to logout ?
-            </p>
-            <div className="modal-action font-Roboto">
-              <label
-                htmlFor="modal-delete"
-                className="btn btn-primary btn-sm w-20 text-white"
-              >
-                <button onClick={() => handlelogout()}>Yes</button>
-              </label>
-              <label
-                htmlFor="modal-delete"
-                className="btn btn-secondary btn-sm w-20 text-white"
-              >
-                No
-              </label>
-            </div>
-          </section>
-        </div>
-      </div>
+      <Modal id="modal-logout" title="logout" onClick={() => handlelogout()} />
     </>
   );
 }

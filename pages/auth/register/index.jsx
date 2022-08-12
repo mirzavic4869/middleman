@@ -98,7 +98,7 @@ export default function Register() {
               />
             </div>
             <div className="mt-2">
-              <AddButton loading={loading} id="to-register" title="sign up" />
+              <AddButton id="to-register" loading={loading} title="sign up" />
             </div>
           </form>
           <div className="flex mt-4 lg:pb-10 font-Poppins font-normal md:text-lg lg:justify-center lg:text-xl">
