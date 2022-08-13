@@ -1,9 +1,8 @@
 import React from "react";
 import Navbar from "../../components/Navbar";
 import Link from "next/link";
-import Modal from "../../components/Modal";
 
-function Outbound() {
+function Inbound() {
 	return (
 		<div className="bg-base-100 min-h-screen">
 			<Navbar />
@@ -142,4 +141,4 @@ function Outbound() {
 	);
 }
 
-export default Outbound;
+export default Inbound;
