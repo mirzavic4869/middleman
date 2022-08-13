@@ -20,7 +20,7 @@ function History_order() {
 							<Link href="/toko/detail_order">
 								<button
 									id="to-detail_order"
-									className="p-3 bg-[#1DB468] text-white rounded-[10px]"
+									className="p-3 btn btn-primary text-white rounded-[10px]"
 								>
 									Detail
 								</button>
@@ -36,7 +36,7 @@ function History_order() {
 							<Link href="/toko/detail_order">
 								<button
 									id="to-detail_order"
-									className="p-3 bg-[#1DB468] text-white rounded-[10px]"
+									className="p-3 btn btn-primary text-white rounded-[10px]"
 								>
 									Detail
 								</button>
@@ -52,7 +52,7 @@ function History_order() {
 							<Link href="/toko/detail_order">
 								<button
 									id="to-detail_order"
-									className="p-3 bg-[#1DB468] text-white rounded-[10px]"
+									className="p-3 btn btn-primary text-white rounded-[10px]"
 								>
 									Detail
 								</button>
