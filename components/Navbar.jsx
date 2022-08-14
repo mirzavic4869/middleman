@@ -126,10 +126,7 @@ function Navbar() {
                 <IoPersonCircle size={40} />
               </div>
             </label>
-            <ul
-              tabIndex={0}
-              className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52 font-Roboto font-medium"
-            >
+            <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52 font-Roboto font-medium">
               <li>
                 <Link href="/profile">
                   <a id="to-profile">My Profile</a>
@@ -150,7 +147,7 @@ function Navbar() {
         </div>
       </div>
       {/* modal */}
-      <Modal id="modal-logout" title="logout" onClick={() => handlelogout()} />
+      <Modal id="modal-logout" title="Logout" handleSubmit={handlelogout} />
     </>
   );
 }
