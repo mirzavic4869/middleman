@@ -25,18 +25,8 @@ function Navbar() {
         <div>
           <div className="flex lg:hidden items-center">
             <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                className="inline-block w-6 h-6 stroke-current"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                ></path>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16"></path>
               </svg>
             </label>
           </div>
@@ -82,10 +72,7 @@ function Navbar() {
                 <IoPersonCircle size={40} />
               </div>
             </label>
-            <ul
-              tabIndex={0}
-              className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52 font-Roboto font-medium"
-            >
+            <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52 font-Roboto font-medium">
               <li>
                 <a id="to-profile">My Profile</a>
               </li>
@@ -100,7 +87,7 @@ function Navbar() {
       </div>
 
       {/* modal */}
-      <Modal id="modal-logout" title="logout" onClick={() => handlelogout()} />
+      <Modal id="modal-logout" title="Logout" handleSubmit={handlelogout} />
     </>
   );
 }
