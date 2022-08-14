@@ -1,5 +1,5 @@
 import { AddButton } from "../../../components/CustomButton";
-import InputCustom from "../../../components/inputCustom";
+import InputCustom from "../../../components/InputCustom";
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/dist/client/router";

@@ -34,15 +34,4 @@ const AddButton2 = (props) => {
   );
 };
 
-const DeleteButton = (props) => {
-  return (
-    <button
-      onClick={props.onClick}
-      disabled={props.loading}
-      className="btn btn-sm w-full btn-secondary text-white font-Roboto mt-2 rounded-[20px] md:h-10"
-    >
-      {props.title}
-    </button>
-  );
-};
-export { AddButton2, AddButton, DeleteButton };
+export { AddButton2, AddButton };
