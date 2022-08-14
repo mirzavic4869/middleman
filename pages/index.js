@@ -1,12 +1,19 @@
 import Navbar from "../components/Navbar";
 import { useState, useEffect } from "react";
 import DashboardCard from "../components/DashboardCard";
+import { useRouter } from "next/dist/client/router";
+import { getCookie } from "cookies-next";
 
 export default function Home() {
 	const [datas, setDatas] = useState([]);
 	const [loading, setLoading] = useState([]);
+	const token = getCookie("token");
+	const router = useRouter();
 
 	useEffect(() => {
+		if (!token) {
+			router.push("/auth/welcome");
+		}
 		fetchData();
 	}, []);
 
@@ -15,15 +22,11 @@ export default function Home() {
 			method: "GET",
 		};
 
-		fetch(
-			"https://virtserver.swaggerhub.com/vaniliacahya/capstone/1.0.0/users/products",
-			requestOptions
-		)
+		fetch("https://postme.site/users/products", requestOptions)
 			.then((response) => response.json())
 			.then((result) => {
-				console.log(result);
-				if (result) {
-					const { data } = result;
+				const { code, data } = result;
+				if (code === 200) {
 					setDatas(data);
 				}
 			})
