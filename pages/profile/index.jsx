@@ -66,9 +66,7 @@ const Profile = ({ data }) => {
     fetch(`https://postme.site/users`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         const { message } = result;
-        location.reload();
         alert(message);
       })
       .catch((error) => {
@@ -144,7 +142,7 @@ const Profile = ({ data }) => {
 
           {/* button */}
           <div className="flex flex-col mt-6">
-            {/* <AddButton id="btn-edit" loading={loading} title="Edit" /> */}
+            {/* edit button */}
             <label
               id="open-modal"
               htmlFor="modal-edit"
@@ -152,6 +150,7 @@ const Profile = ({ data }) => {
             >
               Edit
             </label>
+            {/* delete button */}
             <label
               id="open-modal"
               htmlFor="modal-delete"
@@ -175,6 +174,7 @@ const Profile = ({ data }) => {
             </p>
             <div className="modal-action font-Roboto">
               <label
+                id="btn-delete"
                 htmlFor="modal-delete"
                 className="btn btn-primary btn-sm w-20 text-white"
                 onClick={() => handleDelete()}
@@ -202,32 +202,43 @@ const Profile = ({ data }) => {
           <section className="w-full">
             <form onSubmit={(e) => handleSubmit(e)}>
               <InputCustom
+                id="input-name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 type="text"
               />
               <InputCustom
+                id="input-email"
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 value={email}
               />
               <InputCustom
+                id="input-phone"
                 onChange={(e) => setPhone(e.target.value)}
                 type="number"
                 value={phone}
               />
               {/* <InputCustom
+              id="input-password"
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               value={password}
             /> */}
               <InputCustom
+                id="input-address"
                 onChange={(e) => setAddress(e.target.value)}
                 type="text"
                 value={address}
               />
-              <AddButton title="edit" loading={loading} />
+              <AddButton id="btn-edit" title="edit" loading={loading} />
             </form>
+            <label
+              htmlFor="modal-edit"
+              className="btn btn-sm btn-secondary w-full text-white shadow-lg font-Roboto mt-2 rounded-[20px] md:h-10"
+            >
+              Cancel
+            </label>
           </section>
         </div>
       </div>

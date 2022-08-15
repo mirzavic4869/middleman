@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/dist/client/router";
 import { getCookie } from "cookies-next";
 
+import Head from "next/head";
 import Link from "next/link";
 
 export default function Register() {
@@ -56,6 +57,11 @@ export default function Register() {
 
   return (
     <>
+      <Head>
+        <title>MIDDLEMAN</title>
+        <meta name="description" content="Middleman website" />
+        <link rel="icon" href="/favicon.png" />
+      </Head>
       <div className="min-h-screen bg-base-100 flex justify-center flex-col items-center">
         <div className="hidden md:block my-10"></div>
         <div className="h-1/2 ">
@@ -72,29 +78,34 @@ export default function Register() {
           <form onSubmit={(e) => handleSubmit(e)}>
             <div className="lg:min-w-full">
               <InputCustom
+                id="input-name"
                 onChange={(e) => setName(e.target.value)}
                 type="text"
                 placeholder="Name shop"
               />
               <InputCustom
+                id="input-email"
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 placeholder="Email"
               />
               <InputCustom
+                id="input-phone"
                 onChange={(e) => setPhone(e.target.value)}
                 type="number"
                 placeholder="Phone Number"
               />
               <InputCustom
+                id="input-password"
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 placeholder="Password"
               />
               <InputCustom
+                id="input-address"
                 onChange={(e) => setAddress(e.target.value)}
                 type="text"
-                placeholder="Addres"
+                placeholder="Address"
               />
             </div>
             <div className="mt-2">

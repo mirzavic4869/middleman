@@ -4,6 +4,7 @@ export default function InputCustom(props) {
   return (
     <div>
       <input
+        id={props.id}
         required="required"
         type={props.type}
         value={props.value}
