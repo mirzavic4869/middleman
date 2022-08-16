@@ -60,42 +60,18 @@ export default function Register() {
         <div className="hidden md:block my-10"></div>
         <div className="h-1/2 ">
           <div className="mb-10">
-            <h1 className="text-black font-Roboto font-extrabold text-5xl md:text-6xl">
-              Hi!
-            </h1>
-            <h4 className="text-black/50 font-Roboto text-2xl italic md:text-3xl">
-              Create a new account
-            </h4>
+            <h1 className="text-black font-Roboto font-extrabold text-5xl md:text-6xl">Hi!</h1>
+            <h4 className="text-black/50 font-Roboto text-2xl italic md:text-3xl">Create a new account</h4>
           </div>
 
           {/* form */}
           <form onSubmit={(e) => handleSubmit(e)}>
             <div className="lg:min-w-full">
-              <InputCustom
-                onChange={(e) => setName(e.target.value)}
-                type="text"
-                placeholder="Name shop"
-              />
-              <InputCustom
-                onChange={(e) => setEmail(e.target.value)}
-                type="email"
-                placeholder="Email"
-              />
-              <InputCustom
-                onChange={(e) => setPhone(e.target.value)}
-                type="number"
-                placeholder="Phone Number"
-              />
-              <InputCustom
-                onChange={(e) => setPassword(e.target.value)}
-                type="password"
-                placeholder="Password"
-              />
-              <InputCustom
-                onChange={(e) => setAddress(e.target.value)}
-                type="text"
-                placeholder="Addres"
-              />
+              <InputCustom onChange={(e) => setName(e.target.value)} type="text" placeholder="Name shop" />
+              <InputCustom onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
+              <InputCustom onChange={(e) => setPhone(e.target.value)} type="number" placeholder="Phone Number" />
+              <InputCustom onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />
+              <InputCustom onChange={(e) => setAddress(e.target.value)} type="text" placeholder="Address" />
             </div>
             <div className="mt-2">
               <AddButton id="to-register" loading={loading} title="sign up" />

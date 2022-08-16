@@ -5,10 +5,10 @@ import { MdSearch } from "react-icons/md";
 import { useRouter } from "next/dist/client/router";
 import { getCookie } from "cookies-next";
 
-function Inventory() {
+function MyProduct({ data }) {
   const token = getCookie("token");
   const router = useRouter();
-  const [datas, setDatas] = useState([]);
+  const [datas, setDatas] = useState([data]);
   const [loading, setLoading] = useState([]);
   const [objSubmit, setObjSubmit] = useState({});
   const [showModal, setShowModal] = useState(false);
@@ -28,15 +28,13 @@ function Inventory() {
       },
     };
 
-    fetch("https://postme.site/users/products", requestOptions)
+    fetch("https://postme.site/admins/products", requestOptions)
       .then((response) => response.json())
       .then((result) => {
         const { code, data } = result;
         console.log(data);
         if (code === 200) {
           setDatas(data);
-        } else {
-          setDatas(null);
         }
       })
       .catch((error) => alert(error.toString))
@@ -57,7 +55,7 @@ function Inventory() {
       body: formData,
     };
 
-    fetch("https://postme.site/users/products", requestOptions)
+    fetch("https://postme.site/admins/products", requestOptions)
       .then((response) => response.json())
       .then((result) => {
         const { message } = result;
@@ -94,20 +92,9 @@ function Inventory() {
           Add Product
         </button>
       </div>
-      {datas ? (
-        loading ? (
-          <div className="text-center">Loading...</div>
-        ) : (
-          <div className="grid grid-cols-1 gap-2 m-2 md:grid-cols-2 lg:grid-cols-3">
-            {datas.map((value) => (
-              <CardProduct key={value.id} data={value} fnFetchData={fetchData} />
-            ))}
-          </div>
-        )
-      ) : (
-        <div className="text-center">Please add your products</div>
-      )}
-
+      <div className="grid grid-cols-1 gap-2 m-2 md:grid-cols-2 lg:grid-cols-3">
+        {loading ? <div>Loading...</div> : datas ? datas.map((value) => <CardProduct key={value.id} data={value} fnFetchData={fetchData} />) : <div className="place-content-center">Kosong</div>}
+      </div>
       <input type="checkbox" className="modal-toggle" checked={showModal} />
       <div className="modal">
         <div className="modal-box">
@@ -118,55 +105,29 @@ function Inventory() {
             </span>
           </label>
           <form onSubmit={(e) => addData(e)}>
-            <input type="file" id="input-image" onChange={(e) => handleChange(e.target.files[0], "product_image")} className="w-full text-black font-Poppins mb-2" required />
+            <input type="file" id="input-image" onChange={(e) => handleChange(e.target.files[0], "product_image")} className="w-full text-black font-Poppins mb-2" />
             <input
               type="text"
               id="input-name"
-              defaultValue={objSubmit.product_name}
               onChange={(e) => handleChange(e.target.value, "product_name")}
               placeholder="Product Name*"
               className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
               required
             />
-            <input
-              type="text"
-              id="input-unit"
-              defaultValue={objSubmit.unit}
-              onChange={(e) => handleChange(e.target.value, "unit")}
-              placeholder="Unit*"
-              className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
-              required
-            />
+            <input type="text" id="input-unit" onChange={(e) => handleChange(e.target.value, "unit")} placeholder="Unit*" className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2" required />
             <div className="flex gap-2">
-              <input
-                type="number"
-                id="input-stock"
-                defaultValue={objSubmit.stock}
-                onChange={(e) => handleChange(e.target.value, "stock")}
-                placeholder="Stock*"
-                className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
-                required
-              />
-              <input
-                type="number"
-                id="input-price"
-                defaultValue={objSubmit.price}
-                onChange={(e) => handleChange(e.target.value, "price")}
-                placeholder="Price*"
-                className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
-                required
-              />
+              <input type="number" id="input-stock" onChange={(e) => handleChange(e.target.value, "stock")} placeholder="Stock*" className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2" required />
+              <input type="number" id="input-price" onChange={(e) => handleChange(e.target.value, "price")} placeholder="Price*" className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2" required />
             </div>
             <div className="modal-action font-Roboto">
-              <button id="btn-add" type="submit" className="btn btn-primary btn-sm w-20 text-white">
+              <button id="btn-add" className="btn btn-primary btn-sm w-20 text-white">
                 Add
               </button>
               <button
                 id="btn-cancel"
-                type="button"
                 onClick={() => {
-                  setObjSubmit({});
                   setShowModal(false);
+                  setObjSubmit({});
                 }}
                 className="btn btn-secondary btn-sm w-20 text-white"
               >
@@ -180,4 +141,4 @@ function Inventory() {
   );
 }
 
-export default Inventory;
+export default MyProduct;

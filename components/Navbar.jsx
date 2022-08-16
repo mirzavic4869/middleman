@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/dist/client/image";
 import Link from "next/link";
 import Head from "next/head";
@@ -8,13 +8,13 @@ import { useRouter } from "next/dist/client/router";
 
 import { IoPersonCircle } from "react-icons/io5";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
-import Modal from "./Modal";
 
 import logo from "../assets/logo.png";
 
 function Navbar() {
   const router = useRouter();
   const role = getCookie("role");
+  const [showModal, setShowModal] = useState(false);
 
   const handlelogout = () => {
     deleteCookie("token");
@@ -38,10 +38,7 @@ function Navbar() {
                   <HiOutlineMenuAlt2 size={25} />
                 </div>
               </label>
-              <ul
-                tabIndex="0"
-                className="menu menu-compact dropdown-content mt-3 p-3 shadow bg-white rounded-box w-52 md:w-60 font-Roboto font-medium"
-              >
+              <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-3 shadow bg-white rounded-box w-52 md:w-60 font-Roboto font-medium">
                 <li>
                   <Link href="/inventory">
                     <a id="to-inventory">My Product</a>
@@ -68,12 +65,7 @@ function Navbar() {
                   </Link>
                 </li>
                 <li>
-                  <label
-                    className="btn btn-sm btn-secondary text-white mt-3 p-1"
-                    id="btn-logout"
-                    title="logout"
-                    htmlFor="modal-logout"
-                  >
+                  <label className="btn btn-sm btn-secondary text-white mt-3 p-1" id="btn-logout" title="logout" htmlFor="modal-logout">
                     Logout
                   </label>
                 </li>
@@ -133,21 +125,42 @@ function Navbar() {
                 </Link>
               </li>
               <li>
-                <label
-                  className="btn btn-sm btn-secondary text-white mt-2 p-1"
-                  id="btn-logout"
-                  title="logout"
-                  htmlFor="modal-logout"
-                >
+                <button onClick={() => setShowModal(true)} className="btn btn-sm btn-secondary text-white mt-2 p-1" id="btn-logout" title="logout">
                   Logout
-                </label>
+                </button>
               </li>
             </ul>
           </div>
         </div>
       </div>
       {/* modal */}
-      <Modal id="modal-logout" title="Logout" handleSubmit={handlelogout} />
+      <input type="checkbox" className="modal-toggle" checked={showModal} />
+      <div className="modal">
+        <div className="modal-box">
+          <h3 className="text-3xl text-primary my-3 font-Roboto font-medium">Logout</h3>
+          <p className="text-black font-Roboto font-medium">Are you sure you want to logout ?</p>
+          <div className="modal-action font-Roboto">
+            <button
+              id="btn-yes"
+              onClick={(e) => {
+                handlelogout();
+              }}
+              className="btn btn-primary btn-sm w-20 text-white"
+            >
+              Yes
+            </button>
+            <button
+              id="btn-no"
+              onClick={() => {
+                setShowModal(false);
+              }}
+              className="btn btn-secondary btn-sm w-20 text-white"
+            >
+              No
+            </button>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

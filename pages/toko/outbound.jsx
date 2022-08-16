@@ -7,63 +7,53 @@ import { useRouter } from "next/dist/client/router";
 import { getCookie } from "cookies-next";
 
 function Outbound() {
-	const [datas, setDatas] = useState([]);
-	const [loading, setLoading] = useState([]);
-	const token = getCookie("token");
-	const router = useRouter();
+  const [datas, setDatas] = useState([]);
+  const [loading, setLoading] = useState([]);
+  const token = getCookie("token");
+  const router = useRouter();
 
-	useEffect(() => {
-		if (!token) {
-			router.push("/auth/welcome");
-		}
-		fetchData();
-	}, []);
+  useEffect(() => {
+    if (!token) {
+      router.push("/auth/welcome");
+    }
+    fetchData();
+  }, []);
 
-	const fetchData = async () => {
-		const requestOptions = {
-			method: "GET",
-		};
+  const fetchData = async () => {
+    const requestOptions = {
+      method: "GET",
+    };
 
-		fetch(
-			"https://virtserver.swaggerhub.com/vaniliacahya/capstone/1.0.0/inoutbounds",
-			requestOptions
-		)
-			.then((response) => response.json())
-			.then((result) => {
-				const { code, data } = result;
-				if (code === 200) {
-					setDatas(data.items);
-				}
-				if (code === 200) {
-					setTotal(data);
-				}
-			})
-			.catch((error) => alert(error.toString))
-			.finally(() => setLoading(false));
-	};
-	if (loading) {
-		return <div>Please wait...</div>;
-	} else {
-		return (
-			<div className="bg-base-100 min-h-screen">
-				<Navbar />
-				<div>
-					<h1 className="font-Roboto font-semibold text-[30px] p-9 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20 text-black">
-						Out Bound Product
-					</h1>
-				</div>
-				<div className="grid grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center">
-					{datas.map((data) => (
-						<OutBound
-							key={data.id}
-							id={data.product_id}
-							name={data.product_name}
-							unit={data.unit}
-							qty={data.qty}
-						/>
-					))}
+    fetch("https://postme.site/inoutbounds", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        const { code, data } = result;
+        if (code === 200) {
+          console.log(data);
+          setDatas(data.items);
+        }
+        if (code === 200) {
+          setTotal(data);
+        }
+      })
+      .catch((error) => alert(error.toString))
+      .finally(() => setLoading(false));
+  };
+  if (loading) {
+    return <div>Please wait...</div>;
+  } else {
+    return (
+      <div className="bg-base-100 min-h-screen">
+        <Navbar />
+        <div>
+          <h1 className="font-Roboto font-semibold text-[30px] p-9 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20 text-black">Out Bound Product</h1>
+        </div>
+        <div className="grid grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center">
+          {datas.map((data) => (
+            <OutBound key={data.id} id={data.ID} name={data.product_name} unit={data.unit} qty={data.qty} />
+          ))}
 
-					{/* <div className="w-auto h-auto bg-white rounded-[20px] shadow-md flex m-2 justify-center">
+          {/* <div className="w-auto h-auto bg-white rounded-[20px] shadow-md flex m-2 justify-center">
 					<img
 						className="p-5 h-[200px] w-[140px]"
 						src="https://images.unsplash.com/photo-1610663711502-35f870cfaea2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
@@ -100,10 +90,10 @@ function Outbound() {
 						</div>
 					</div>
 				</div> */}
-				</div>
-				<Modal id="modal-delete" title="Delete Product" />
-			</div>
-		);
-	}
+        </div>
+        <Modal id="modal-delete" title="Delete Product" />
+      </div>
+    );
+  }
 }
 export default Outbound;
