@@ -29,7 +29,12 @@ export async function getServerSideProps({ req, res }) {
 	const data = await response.json();
 	if (response.status === 200) {
 		return {
-			props: { code: data.code, data: data.data, message: data.message, token },
+			props: {
+				code: data.code,
+				data: data.data.items,
+				message: data.message,
+				token,
+			},
 		};
 	} else {
 		deleteCookie("token");
@@ -42,7 +47,7 @@ export async function getServerSideProps({ req, res }) {
 	}
 }
 
-function Outbound() {
+function Outbound({ data }) {
 	const [datas, setDatas] = useState([]);
 
 	// useEffect(() => {
@@ -80,8 +85,8 @@ function Outbound() {
 					Out Bound Product
 				</h1>
 			</div>
-			<div className="grid grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center">
-				{datas.map((data) => (
+			<div className="grid mx-5 gap-5 grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center">
+				{data.map((data) => (
 					<OutBound
 						key={data.id}
 						id={data.product_id}
@@ -90,44 +95,6 @@ function Outbound() {
 						qty={data.qty}
 					/>
 				))}
-
-				{/* <div className="w-auto h-auto bg-white rounded-[20px] shadow-md flex m-2 justify-center">
-					<img
-						className="p-5 h-[200px] w-[140px]"
-						src="https://images.unsplash.com/photo-1610663711502-35f870cfaea2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
-						alt="image"
-					/>
-					<div className="flex flex-col  font-Poppins font-medium   ">
-						<div className="flex flex-row">
-							<h2 className="py-2 pr-8 text-black">Beras Wangi</h2>
-						</div>
-						<h3 className="pb-4 text-black">5 Kg</h3>
-						<h3 className="pb-4 text-black">Rp 40.000</h3>
-
-						<div className="flex flex-row">
-							<h3 className="pb-4 text-black">Ammount</h3>{" "}
-							<button className="bg-white border-[#1DB468] border-2 rounded-[5px] w-[33px] h-[33px] ml-3 text-black">
-								-
-							</button>
-							<p className="ml-3 text-black">3</p>
-							<button className="bg-[#1DB468] rounded-[5px] w-[33px] h-[33px] text-white ml-3">
-								+
-							</button>
-						</div>
-						<h3 className="text-black">Total Rp 120.000</h3>
-					</div>
-					<div className="relative">
-						<div className="absolute top-0 -right-3 lg:-right-10">
-							<label
-								id="btn-delete"
-								htmlFor="modal-delete"
-								className="p-2 btn btn-secondary text-white rounded-[10px]"
-							>
-								Delete
-							</label>
-						</div>
-					</div>
-				</div> */}
 			</div>
 			<Modal id="modal-delete" title="Delete Product" />
 		</div>

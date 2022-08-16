@@ -9,14 +9,14 @@ function DashboardCard(props) {
 				<p className="pb-5 text-black">{props.unit}</p>
 				<p className="pb-5 text-black">{props.stock}</p>
 				<p className="pb-8 text-black">Rp {props.price}</p>
-				<Link href="/toko/cart">
-					<button
-						id="to-cart"
-						className="p-3 btn btn-primary text-white rounded-[20px]"
-					>
-						Add
-					</button>
-				</Link>
+				{/* <Link href="/toko/cart"> */}
+				<button
+					id="to-cart"
+					className="p-3 btn btn-primary text-white rounded-[20px]"
+					onClick={(e) => props.handleSubmit(e, props.product_id)}
+				>
+					Add
+				</button>
 			</div>
 		</div>
 	);

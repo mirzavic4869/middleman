@@ -29,7 +29,12 @@ export async function getServerSideProps({ req, res }) {
 	const data = await response.json();
 	if (response.status === 200) {
 		return {
-			props: { code: data.code, data: data.data, message: data.message, token },
+			props: {
+				code: data.code,
+				data: data.data.items,
+				message: data.message,
+				token,
+			},
 		};
 	} else {
 		deleteCookie("token");
@@ -42,40 +47,15 @@ export async function getServerSideProps({ req, res }) {
 	}
 }
 
-function Cart({ datas }) {
+function Cart({ data }) {
 	const token = getCookie("token");
 	const router = useRouter();
 	const [total, setTotal] = useState([]);
-
-	// useEffect(() => {
-	// 	if (!token) {
-	// 		router.push("/auth/welcome");
-	// 	}
-	// 	fetchData();
-	// }, []);
-
-	// const fetchData = async () => {
-	// 	const requestOptions = {
-	// 		method: "GET",
-	// 	};
-
-	// 	fetch("https://postme.site/carts", requestOptions)
-	// 		.then((response) => response.json())
-	// 		.then((result) => {
-	// 			const { code, data } = result;
-	// 			if (code === 200) {
-	// 				setDatas(data.items);
-	// 			}
-	// 			if (code === 200) {
-	// 				setTotal(data);
-	// 			}
-	// 		})
-	// 		.catch((error) => alert(error.toString))
-	// 		.finally(() => setLoading(false));
-	// };
+	const [loading, setLoading] = useState();
+	const [counter, setCounter] = useState(1);
 
 	// update
-	const handleSubmit = async (e) => {
+	const handleSubmit = async (e, qty) => {
 		setLoading(true);
 		e.preventDefault();
 		const body = { qty };
@@ -95,7 +75,6 @@ function Cart({ datas }) {
 		)
 			.then((response) => response.json())
 			.then((result) => {
-				console.log(result);
 				const { message } = result;
 				location.reload();
 				alert(message);
@@ -107,8 +86,16 @@ function Cart({ datas }) {
 			.finally(() => setLoading(false));
 	};
 
+	const handleIncrement = () => {
+		setCounter(counter + 1);
+	};
+
+	const handleDecrement = () => {
+		setCounter(counter - 1);
+	};
+
 	// delete user
-	const handleDelete = () => {
+	const handleDelete = (e, product_id) => {
 		setLoading(true);
 		var requestOptions = {
 			method: "DELETE",
@@ -144,8 +131,8 @@ function Cart({ datas }) {
 					My Cart
 				</h1>
 			</div>
-			<div className="grid grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center">
-				{datas.map((data) => (
+			<div className="mx-5 gap-5 grid grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center">
+				{data.map((data) => (
 					<MyCart
 						key={data.id}
 						image={data.product_image}
@@ -154,9 +141,13 @@ function Cart({ datas }) {
 						price={data.price}
 						qty={data.qty}
 						subtotal={data.subtotal}
+						handleSubmit={handleSubmit}
+						handleDelete={handleDelete}
+						handleIncrement={handleIncrement}
+						handleDecrement={handleDecrement}
 					/>
 				))}
-				<div className="relative">
+				{/* <div className="relative">
 					<div className="absolute top-0 -right-2 md:right-0 lg:-right-5">
 						<label
 							id="btn-delete"
@@ -167,10 +158,10 @@ function Cart({ datas }) {
 							Delete
 						</label>
 					</div>
-				</div>
+				</div> */}
 			</div>
 
-			<div className="w-auto h-auto bg-white rounded-[20px] shadow-md m-2 flex justify-between font-Poppins font-semibold p-3 text-black text-lg">
+			<div className="w-auto h-auto bg-white rounded-[20px] shadow-md m-5 flex justify-between font-Poppins font-semibold p-3 text-black text-lg">
 				<p>Total Price Rp {total.grand_total}</p>
 				<Link href="/toko/history_order">
 					<button
