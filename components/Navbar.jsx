@@ -24,7 +24,7 @@ function Navbar() {
   return (
     <>
       <Head>
-        <title>MIDDLEMAN</title>
+        <title>{role === "admin" ? "MIDDLEMAN Admin" : "MIDDLEMAN"}</title>
         <meta name="description" content="Middleman website" />
         <link rel="icon" href="/favicon.png" />
       </Head>
@@ -41,7 +41,7 @@ function Navbar() {
               <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-3 shadow bg-white rounded-box w-52 md:w-60 font-Roboto font-medium">
                 <li>
                   <Link href="/inventory">
-                    <a id="to-inventory">My Product</a>
+                    <a id="to-inventory">{role === "admin" ? "Incoming Product" : "My Product"}</a>
                   </Link>
                 </li>
                 <li>
@@ -89,7 +89,7 @@ function Navbar() {
             <ul className="menu menu-horizontal font-Roboto font-medium">
               <li>
                 <Link href="/inventory">
-                  <a id="to-inventory">My Product</a>
+                  <a id="to-inventory">{role === "admin" ? "Incoming Product" : "My Product"}</a>
                 </Link>
               </li>
               <li>

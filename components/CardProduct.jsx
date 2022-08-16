@@ -63,13 +63,10 @@ function CardProduct({ data, fnFetchData }) {
     };
 
     fetch(`https://postme.site/${roles}/products/${idProduct}`, requestOptions)
-      .then((response) => response.json())
       .then((result) => {
-        const { message } = result;
-        console.log(message);
-        alert(message);
+        alert("Berhasil hapus data");
       })
-      .catch((error) => alert(error.toString))
+      .catch((error) => alert(error.toString()))
       .finally(() => {
         setShowModal({ title: "delete", view: false });
         fnFetchData();
@@ -202,13 +199,7 @@ function CardProduct({ data, fnFetchData }) {
             <section>
               <p className="text-black font-Roboto font-medium">Are you sure you want to delete this product ?</p>
               <div className="modal-action font-Roboto">
-                <button
-                  id="btn-yes"
-                  onClick={(e) => {
-                    deleteData(e, data.id);
-                  }}
-                  className="btn btn-primary btn-sm w-20 text-white"
-                >
+                <button id="btn-yes" onClick={(e) => deleteData(e, data.id)} className="btn btn-primary btn-sm w-20 text-white">
                   Yes
                 </button>
                 <button
