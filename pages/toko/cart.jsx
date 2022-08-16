@@ -22,29 +22,17 @@ export async function getServerSideProps({ req, res }) {
 			Authorization: `Bearer ${token}`,
 		},
 	};
-	const response = await fetch(
-		"https://virtserver.swaggerhub.com/vaniliacahya/capstone/1.0.0/carts",
-		requestOptions
-	);
+	const response = await fetch("https://postme.site/carts", requestOptions);
 	const data = await response.json();
-	if (response.status === 200) {
-		return {
-			props: {
-				code: data.code,
-				data: data.data.items,
-				message: data.message,
-				token,
-			},
-		};
-	} else {
-		deleteCookie("token");
-		return {
-			redirect: {
-				permanent: false,
-				destination: "/auth/welcome",
-			},
-		};
-	}
+
+	return {
+		props: {
+			code: data.code,
+			data: data.data.items,
+			message: data.message,
+			token,
+		},
+	};
 }
 
 function Cart({ data }) {
@@ -69,10 +57,7 @@ function Cart({ data }) {
 			body: JSON.stringify(body),
 		};
 
-		fetch(
-			`https://virtserver.swaggerhub.com/vaniliacahya/capstone/1.0.0/carts/1`,
-			requestOptions
-		)
+		fetch(`https://postme.site/carts/1`, requestOptions)
 			.then((response) => response.json())
 			.then((result) => {
 				const { message } = result;
@@ -105,10 +90,7 @@ function Cart({ data }) {
 			},
 		};
 
-		fetch(
-			"https://virtserver.swaggerhub.com/vaniliacahya/capstone/1.0.0/carts/1",
-			requestOptions
-		)
+		fetch("https://postme.site/carts/1", requestOptions)
 			.then((response) => response.json())
 			.then((result) => {
 				const { message, code } = result;
@@ -134,11 +116,11 @@ function Cart({ data }) {
 			<div className="mx-5 gap-5 grid grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center">
 				{data.map((data) => (
 					<MyCart
-						key={data.id}
-						image={data.product_image}
-						name={data.product_name}
-						unit={data.unit}
-						price={data.price}
+						key={data.product.id}
+						image={data.product.product_image}
+						name={data.product.product_name}
+						unit={data.product.unit}
+						price={data.product.price}
 						qty={data.qty}
 						subtotal={data.subtotal}
 						handleSubmit={handleSubmit}
@@ -147,18 +129,6 @@ function Cart({ data }) {
 						handleDecrement={handleDecrement}
 					/>
 				))}
-				{/* <div className="relative">
-					<div className="absolute top-0 -right-2 md:right-0 lg:-right-5">
-						<label
-							id="btn-delete"
-							// htmlFor="modal-delete"
-							className="p-2 btn btn-secondary text-white rounded-[10px]"
-							onClick={() => handleDelete()}
-						>
-							Delete
-						</label>
-					</div>
-				</div> */}
 			</div>
 
 			<div className="w-auto h-auto bg-white rounded-[20px] shadow-md m-5 flex justify-between font-Poppins font-semibold p-3 text-black text-lg">
@@ -172,7 +142,6 @@ function Cart({ data }) {
 					</button>
 				</Link>
 			</div>
-			{/* <Modal id="modal-delete" title="Delete Product" /> */}
 		</div>
 	);
 }

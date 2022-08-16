@@ -2,15 +2,17 @@ import Link from "next/link";
 
 function MyCart(props) {
 	return (
-		<div class="card card-side bg-white shadow-md">
+		<div className="card card-side bg-white shadow-md">
 			<figure>
 				<img src={props.image} alt="image" />
 			</figure>
-			<div class="card-body font-Poppins">
-				<h2 class="card-title">{props.name}</h2>
+			<div className="card-body font-Poppins">
+				<h2 className="card-title">{props.name}</h2>
 				<p>{props.unit}</p>
 				<p>Rp {props.price}</p>
 				<p>Ammount</p>
+				<p>{props.qty}</p>
+				<p>{props.subtotal}</p>
 				<div className="flex">
 					<button
 						className="bg-white btn btn-outline btn-primary rounded-[5px] w-[50px] text-black"
@@ -33,7 +35,6 @@ function MyCart(props) {
 					<button
 						class="btn btn-secondary text-white"
 						onClick={(e) => props.handleDelete(e)}
-						// htmlFor="modal-delete"
 					>
 						Delete
 					</button>
@@ -45,12 +46,12 @@ function MyCart(props) {
 
 function OutBound(props) {
 	return (
-		<div class="card card-side bg-white shadow-md">
+		<div className="card card-side bg-white shadow-md">
 			<figure>
 				<img src={props.image} alt="image" />
 			</figure>
-			<div class="card-body font-Poppins">
-				<h2 class="card-title">{props.name}</h2>
+			<div className="card-body font-Poppins">
+				<h2 className="card-title">{props.name}</h2>
 				<p>{props.unit}</p>
 				<p>Rp {props.price}</p>
 				<p>Ammount</p>
@@ -63,8 +64,8 @@ function OutBound(props) {
 					</button>
 				</div>
 
-				<div class="card-actions justify-end">
-					<button class="btn btn-secondary text-white">Delete</button>
+				<div className="card-actions justify-end">
+					<button className="btn btn-secondary text-white">Delete</button>
 				</div>
 			</div>
 		</div>

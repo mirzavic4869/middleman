@@ -34,24 +34,25 @@ export default function Home({ data }) {
 	const token = getCookie("token");
 	const router = useRouter();
 	const [loading, setLoading] = useState(false);
+	const [qty] = useState(1);
 
-	const handleSubmit = async (e, product_id, qty) => {
+	const handleSubmit = async (e, key) => {
 		setLoading(true);
 		e.preventDefault();
 		const body = {
-			product_id,
-			qty,
+			product_id: key,
+			qty: qty,
 		};
 		var requestOptions = {
 			method: "POST",
-			headers: { "Content-Type": "application/json" },
+			headers: {
+				Authorization: `Bearer ${token}`,
+				"Content-Type": "application/json",
+			},
 			body: JSON.stringify(body),
 		};
 
-		fetch(
-			"https://virtserver.swaggerhub.com/vaniliacahya/capstone/1.0.0/carts",
-			requestOptions
-		)
+		fetch("https://postme.site/carts", requestOptions)
 			.then((response) => response.json())
 			.then((result) => {
 				const { message } = result;
@@ -74,6 +75,7 @@ export default function Home({ data }) {
 					{data.map((data) => (
 						<DashboardCard
 							key={data.id}
+							id={data.id}
 							image={data.product_image}
 							name={data.product_name}
 							unit={data.unit}
