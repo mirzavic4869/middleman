@@ -21,51 +21,48 @@ export async function getServerSideProps({ req, res }) {
 		},
 	};
 	const response = await fetch(
-		`https://virtserver.swaggerhub.com/vaniliacahya/capstone/1.0.0/users/products`,
+		`https://postme.site/admins/products`,
 		requestOptions
 	);
 	const data = await response.json();
-	if (response.status === 200) {
-		return {
-			props: { code: data.code, data: data.data, message: data.message, token },
-		};
-	} else {
-		deleteCookie("token");
-		return {
-			redirect: {
-				permanent: false,
-				destination: "/auth/welcome",
-			},
-		};
-	}
+	return {
+		props: { code: data.code, data: data.data, message: data.message, token },
+	};
 }
 export default function Home({ data }) {
+	console.log(data);
 	const token = getCookie("token");
 	const router = useRouter();
+	const [loading, setLoading] = useState(false);
+	const [qty] = useState(1);
 
-	// useEffect(() => {
-	// 	if (!token) {
-	// 		router.push("/auth/welcome");
-	// 	}
-	// 	fetchData();
-	// }, []);
+	const handleSubmit = async (e, key) => {
+		setLoading(true);
+		e.preventDefault();
+		const body = {
+			product_id: key,
+			qty: qty,
+		};
+		var requestOptions = {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${token}`,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(body),
+		};
 
-	// const fetchData = async () => {
-	// 	const requestOptions = {
-	// 		method: "GET",
-	// 	};
-
-	// 	fetch("https://postme.site/users/products", requestOptions)
-	// 		.then((response) => response.json())
-	// 		.then((result) => {
-	// 			const { code, data } = result;
-	// 			if (code === 200) {
-	// 				setDatas(data);
-	// 			}
-	// 		})
-	// 		.catch((error) => alert(error.toString))
-	// 		.finally(() => setLoading(false));
-	// };
+		fetch("https://postme.site/carts", requestOptions)
+			.then((response) => response.json())
+			.then((result) => {
+				const { message } = result;
+				alert(message);
+			})
+			.catch((error) => alert(error.toString))
+			.finally(() => {
+				setLoading(false);
+			});
+	};
 
 	return (
 		<div className="bg-base-100 min-h-screen">
@@ -78,11 +75,13 @@ export default function Home({ data }) {
 					{data.map((data) => (
 						<DashboardCard
 							key={data.id}
+							id={data.id}
 							image={data.product_image}
 							name={data.product_name}
 							unit={data.unit}
 							stock={data.stock}
 							price={data.price}
+							handleSubmit={handleSubmit}
 						/>
 					))}
 				</div>

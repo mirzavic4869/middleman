@@ -29,7 +29,7 @@ export async function getServerSideProps({ req, res }) {
 		return {
 			props: {
 				code: data.code,
-				data: data.items,
+				data: data.data.items,
 				message: data.message,
 				token,
 			},
@@ -98,7 +98,7 @@ function Detail_order({ data }) {
 				</p>
 			</div>
 			<div className="p-5 gap-4 grid grid-flow-row auto-rows-max grid-cols-1 mx-auto">
-				{datas.map((data) => (
+				{data.map((data) => (
 					<DetailOrder
 						key={data.id}
 						name={data.product_name}
