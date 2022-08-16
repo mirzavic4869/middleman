@@ -2,6 +2,7 @@ import { AddButton } from "../../../components/CustomButton";
 import InputCustom from "../../../components/InputCustom";
 
 import Link from "next/link";
+import Head from "next/head";
 import { useState, useEffect } from "react";
 import { setCookie, getCookie } from "cookies-next";
 import { useRouter } from "next/router";
@@ -53,6 +54,11 @@ export default function Login() {
 
   return (
     <>
+      <Head>
+        <title>MIDDLEMAN</title>
+        <meta name="description" content="Middleman website" />
+        <link rel="icon" href="/favicon.png" />
+      </Head>
       <div className="min-h-screen flex justify-center flex-col items-center bg-base-100">
         <div className="hidden md:block my-10"></div>
         <div className="h-1/2 ">
@@ -63,8 +69,20 @@ export default function Login() {
 
           {/* form login */}
           <form onSubmit={(e) => handleSubmit(e)}>
-            <InputCustom type="text" onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-            <InputCustom type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+
+            <InputCustom
+              id="input-email"
+              type="text"
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+            />
+            <InputCustom
+              id="input-password"
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+            />
+
             <div className="mt-2 w-full">
               <AddButton loading={loading} id="btn-login" title="sign in" />
             </div>
