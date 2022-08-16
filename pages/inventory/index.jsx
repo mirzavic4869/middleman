@@ -12,6 +12,7 @@ function Inventory() {
   const [loading, setLoading] = useState([]);
   const [objSubmit, setObjSubmit] = useState({});
   const [showModal, setShowModal] = useState(false);
+  const [value, setValue] = useState("");
 
   useEffect(() => {
     if (!token) {
@@ -63,6 +64,7 @@ function Inventory() {
         const { message } = result;
         alert(message);
         setObjSubmit({});
+        setValue("");
       })
       .catch((error) => alert(error.toString))
       .finally(() => {
@@ -118,43 +120,32 @@ function Inventory() {
             </span>
           </label>
           <form onSubmit={(e) => addData(e)}>
-            <input type="file" id="input-image" onChange={(e) => handleChange(e.target.files[0], "product_image")} className="w-full text-black font-Poppins mb-2" required />
+            <input type="file" id="input-image" onChange={(e) => handleChange(e.target.files[0], "product_image")} className="w-full text-black font-Poppins mb-2" />
             <input
               type="text"
               id="input-name"
-              defaultValue={objSubmit.product_name}
+              defaultValue={value}
               onChange={(e) => handleChange(e.target.value, "product_name")}
               placeholder="Product Name*"
               className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
-              required
             />
-            <input
-              type="text"
-              id="input-unit"
-              defaultValue={objSubmit.unit}
-              onChange={(e) => handleChange(e.target.value, "unit")}
-              placeholder="Unit*"
-              className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
-              required
-            />
+            <input type="text" id="input-unit" defaultValue={value} onChange={(e) => handleChange(e.target.value, "unit")} placeholder="Unit*" className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2" />
             <div className="flex gap-2">
               <input
                 type="number"
                 id="input-stock"
-                defaultValue={objSubmit.stock}
+                defaultValue={value}
                 onChange={(e) => handleChange(e.target.value, "stock")}
                 placeholder="Stock*"
                 className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
-                required
               />
               <input
                 type="number"
                 id="input-price"
-                defaultValue={objSubmit.price}
+                defaultValue={value}
                 onChange={(e) => handleChange(e.target.value, "price")}
                 placeholder="Price*"
                 className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
-                required
               />
             </div>
             <div className="modal-action font-Roboto">
@@ -163,10 +154,10 @@ function Inventory() {
               </button>
               <button
                 id="btn-cancel"
-                type="button"
+                type="reset"
                 onClick={() => {
-                  setObjSubmit({});
                   setShowModal(false);
+                  setValue("");
                 }}
                 className="btn btn-secondary btn-sm w-20 text-white"
               >

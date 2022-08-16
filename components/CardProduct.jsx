@@ -182,12 +182,12 @@ function CardProduct({ data, fnFetchData }) {
                   />
                 </div>
                 <div className="modal-action font-Roboto">
-                  <button id="btn-edit" className="btn btn-primary btn-sm w-20 text-white">
+                  <button id="btn-edit" type="reset" className="btn btn-primary btn-sm w-20 text-white">
                     Edit
                   </button>
                   <button
                     id="btn-cancel"
-                    type="button"
+                    type="reset"
                     onClick={() => {
                       setShowModal({ view: false });
                     }}

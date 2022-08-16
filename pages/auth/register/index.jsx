@@ -67,7 +67,7 @@ export default function Register() {
           {/* form */}
           <form onSubmit={(e) => handleSubmit(e)}>
             <div className="lg:min-w-full">
-              <InputCustom onChange={(e) => setName(e.target.value)} type="text" placeholder="Name shop" />
+              <InputCustom onChange={(e) => setName(e.target.value)} type="text" placeholder="Name Shop" />
               <InputCustom onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
               <InputCustom onChange={(e) => setPhone(e.target.value)} type="number" placeholder="Phone Number" />
               <InputCustom onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />

@@ -12,6 +12,7 @@ function MyProduct({ data }) {
   const [loading, setLoading] = useState([]);
   const [objSubmit, setObjSubmit] = useState({});
   const [showModal, setShowModal] = useState(false);
+  const [value, setValue] = useState("");
 
   useEffect(() => {
     if (!token) {
@@ -35,6 +36,8 @@ function MyProduct({ data }) {
         console.log(data);
         if (code === 200) {
           setDatas(data);
+        } else {
+          setDatas(null);
         }
       })
       .catch((error) => alert(error.toString))
@@ -61,6 +64,7 @@ function MyProduct({ data }) {
         const { message } = result;
         alert(message);
         setObjSubmit({});
+        setValue("");
       })
       .catch((error) => alert(error.toString))
       .finally(() => {
@@ -92,9 +96,19 @@ function MyProduct({ data }) {
           Add Product
         </button>
       </div>
-      <div className="grid grid-cols-1 gap-2 m-2 md:grid-cols-2 lg:grid-cols-3">
-        {loading ? <div>Loading...</div> : datas ? datas.map((value) => <CardProduct key={value.id} data={value} fnFetchData={fetchData} />) : <div className="place-content-center">Kosong</div>}
-      </div>
+      {datas ? (
+        loading ? (
+          <div className="text-center">Loading...</div>
+        ) : (
+          <div className="grid grid-cols-1 gap-2 m-2 md:grid-cols-2 lg:grid-cols-3">
+            {datas.map((value) => (
+              <CardProduct key={value.id} data={value} fnFetchData={fetchData} />
+            ))}
+          </div>
+        )
+      ) : (
+        <div className="text-center">Please add your products</div>
+      )}
       <input type="checkbox" className="modal-toggle" checked={showModal} />
       <div className="modal">
         <div className="modal-box">
@@ -109,25 +123,40 @@ function MyProduct({ data }) {
             <input
               type="text"
               id="input-name"
+              defaultValue={value}
               onChange={(e) => handleChange(e.target.value, "product_name")}
               placeholder="Product Name*"
               className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
-              required
             />
-            <input type="text" id="input-unit" onChange={(e) => handleChange(e.target.value, "unit")} placeholder="Unit*" className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2" required />
+            <input type="text" id="input-unit" defaultValue={value} onChange={(e) => handleChange(e.target.value, "unit")} placeholder="Unit*" className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2" />
             <div className="flex gap-2">
-              <input type="number" id="input-stock" onChange={(e) => handleChange(e.target.value, "stock")} placeholder="Stock*" className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2" required />
-              <input type="number" id="input-price" onChange={(e) => handleChange(e.target.value, "price")} placeholder="Price*" className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2" required />
+              <input
+                type="number"
+                id="input-stock"
+                defaultValue={value}
+                onChange={(e) => handleChange(e.target.value, "stock")}
+                placeholder="Stock*"
+                className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
+              />
+              <input
+                type="number"
+                id="input-price"
+                defaultValue={value}
+                onChange={(e) => handleChange(e.target.value, "price")}
+                placeholder="Price*"
+                className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
+              />
             </div>
             <div className="modal-action font-Roboto">
-              <button id="btn-add" className="btn btn-primary btn-sm w-20 text-white">
+              <button id="btn-add" type="submit" className="btn btn-primary btn-sm w-20 text-white">
                 Add
               </button>
               <button
                 id="btn-cancel"
+                type="reset"
                 onClick={() => {
                   setShowModal(false);
-                  setObjSubmit({});
+                  setValue("");
                 }}
                 className="btn btn-secondary btn-sm w-20 text-white"
               >
