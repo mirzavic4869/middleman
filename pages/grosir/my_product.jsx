@@ -5,10 +5,10 @@ import { MdSearch } from "react-icons/md";
 import { useRouter } from "next/dist/client/router";
 import { getCookie } from "cookies-next";
 
-function Inventory() {
+function MyProduct({ data }) {
   const token = getCookie("token");
   const router = useRouter();
-  const [datas, setDatas] = useState([]);
+  const [datas, setDatas] = useState([data]);
   const [loading, setLoading] = useState([]);
   const [objSubmit, setObjSubmit] = useState({});
   const [showModal, setShowModal] = useState(false);
@@ -29,7 +29,7 @@ function Inventory() {
       },
     };
 
-    fetch("https://postme.site/users/products", requestOptions)
+    fetch("https://postme.site/admins/products", requestOptions)
       .then((response) => response.json())
       .then((result) => {
         const { code, data } = result;
@@ -58,7 +58,7 @@ function Inventory() {
       body: formData,
     };
 
-    fetch("https://postme.site/users/products", requestOptions)
+    fetch("https://postme.site/admins/products", requestOptions)
       .then((response) => response.json())
       .then((result) => {
         const { message } = result;
@@ -109,7 +109,6 @@ function Inventory() {
       ) : (
         <div className="text-center">Please add your products</div>
       )}
-
       <input type="checkbox" className="modal-toggle" checked={showModal} />
       <div className="modal">
         <div className="modal-box">
@@ -171,4 +170,4 @@ function Inventory() {
   );
 }
 
-export default Inventory;
+export default MyProduct;

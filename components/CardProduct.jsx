@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MdAdd } from "react-icons/md";
-import Modal from "./Modal";
 import { getCookie } from "cookies-next";
 
 export const formatCurrency = (number) => {
@@ -11,7 +10,14 @@ export const formatCurrency = (number) => {
 
 function CardProduct({ data, fnFetchData }) {
   const token = getCookie("token");
+  const role = getCookie("role");
   const [objSubmit, setObjSubmit] = useState({});
+  const [showModal, setShowModal] = useState({ title: "edit", view: false });
+  let roles = "users";
+
+  if (role === "admin") {
+    roles = "admins";
+  }
 
   const editData = async (e, idProduct) => {
     e.preventDefault();
@@ -27,7 +33,7 @@ function CardProduct({ data, fnFetchData }) {
       body: formData,
     };
 
-    fetch(`https://postme.site/users/products/${idProduct}`, requestOptions)
+    fetch(`https://postme.site/${roles}/products/${idProduct}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         const { message } = result;
@@ -36,6 +42,7 @@ function CardProduct({ data, fnFetchData }) {
       })
       .catch((error) => alert(error.toString))
       .finally(() => {
+        setShowModal({ title: "edit", view: false });
         fnFetchData();
       });
   };
@@ -55,16 +62,42 @@ function CardProduct({ data, fnFetchData }) {
       },
     };
 
-    fetch(`https://postme.site/users/products/${idProduct}`, requestOptions)
+    fetch(`https://postme.site/${roles}/products/${idProduct}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        const { message } = result;
+        console.log(message);
+        alert(message);
+      })
+      .catch((error) => alert(error.toString))
+      .finally(() => {
+        setShowModal({ title: "delete", view: false });
+        fnFetchData();
+      });
+  };
+
+  const addProductOut = async (e, idProduct, qty) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("product_id", idProduct);
+    formData.append("qty", qty);
+
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    };
+
+    fetch(`https://postme.site/inoutbounds`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         const { message } = result;
         alert(message);
       })
       .catch((error) => alert(error.toString))
-      .finally(() => {
-        fnFetchData();
-      });
+      .finally(() => {});
   };
 
   return (
@@ -81,24 +114,118 @@ function CardProduct({ data, fnFetchData }) {
             <p className="text-base">Price: {formatCurrency(data.price)}</p>
           </div>
           <div className="card-actions justify-start font-Roboto">
-            <label id="btn-edit" title="Edit Product" htmlFor={`modal-edit${data.id}`} className="btn btn-primary btn-sm modal-button text-white">
+            <button id="btn-edit" title="Edit Product" onClick={() => setShowModal({ title: "edit", view: true })} className="btn btn-primary btn-sm modal-button text-white">
               Edit
-            </label>
-            <label id="btn-delete" title="Delete Product" htmlFor={`modal-delete${data.id}`} className="btn btn-secondary btn-sm modal-button text-white">
+            </button>
+            <label id="btn-delete" title="Delete Product" onClick={() => setShowModal({ title: "delete", view: true })} className="btn btn-secondary btn-sm modal-button text-white">
               Delete
             </label>
           </div>
         </div>
         <div className="relative">
           <div className="absolute top-0 right-0">
-            <button id="btn-add" title="Add to Product Out" className="p-2 modal-button text-white bg-primary rounded-md hover:bg-green-700">
+            <button id="btn-add" onClick={(e) => addProductOut(e, data.id, data.stock)} title="Add to Product Out" className="p-2 modal-button text-white bg-primary  hover:bg-green-700">
               <MdAdd size={20} />
             </button>
           </div>
         </div>
       </div>
-      <Modal id={`modal-edit${data.id}`} title="Edit Product" product_id={data.id} product_name={data.product_name} unit={data.unit} stock={data.stock} price={data.price} handleSubmit={editData} handleChange={handleChange} />
-      <Modal id={`modal-delete${data.id}`} title="Delete Product" product_id={data.id} handleSubmit={deleteData} />
+      <input type="checkbox" className="modal-toggle" checked={showModal.view} />
+      <div className="modal">
+        <div className="modal-box">
+          <h3 className="text-3xl text-primary my-3 font-Roboto font-medium">{showModal.title === "edit" ? "Edit Product" : "Delete Product"}</h3>
+          {showModal.title === "edit" ? (
+            <section>
+              <label className="label">
+                <span className="label-text text-primary text-base font-Poppins">
+                  Product Image<span className="text-secondary">*</span>
+                </span>
+              </label>
+              <form onSubmit={(e) => editData(e, data.id)}>
+                <input type="file" id="input-image" onChange={(e) => handleChange(e.target.files[0], "product_image")} className="w-full text-black font-Poppins mb-2" />
+                <input
+                  type="text"
+                  id="input-name"
+                  defaultValue={data.product_name}
+                  onChange={(e) => handleChange(e.target.value, "product_name")}
+                  placeholder="Product Name*"
+                  className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
+                  required
+                />
+                <input
+                  type="text"
+                  id="input-unit"
+                  defaultValue={data.unit}
+                  onChange={(e) => data.handleChange(e.target.value, "unit")}
+                  placeholder="Unit*"
+                  className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
+                  required
+                />
+                <div className="flex gap-2">
+                  <input
+                    type="number"
+                    id="input-stock"
+                    defaultValue={data.stock}
+                    onChange={(e) => handleChange(e.target.value, "stock")}
+                    placeholder="Stock*"
+                    className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
+                    required
+                  />
+                  <input
+                    type="number"
+                    id="input-price"
+                    defaultValue={data.price}
+                    onChange={(e) => handleChange(e.target.value, "price")}
+                    placeholder="Price*"
+                    className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
+                    required
+                  />
+                </div>
+                <div className="modal-action font-Roboto">
+                  <button id="btn-edit" type="reset" className="btn btn-primary btn-sm w-20 text-white">
+                    Edit
+                  </button>
+                  <button
+                    id="btn-cancel"
+                    type="reset"
+                    onClick={() => {
+                      setShowModal({ view: false });
+                    }}
+                    className="btn btn-secondary btn-sm w-20 text-white"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </section>
+          ) : (
+            <section>
+              <p className="text-black font-Roboto font-medium">Are you sure you want to delete this product ?</p>
+              <div className="modal-action font-Roboto">
+                <button
+                  id="btn-yes"
+                  onClick={(e) => {
+                    deleteData(e, data.id);
+                  }}
+                  className="btn btn-primary btn-sm w-20 text-white"
+                >
+                  Yes
+                </button>
+                <button
+                  id="btn-no"
+                  type="button"
+                  onClick={() => {
+                    setShowModal({ view: false });
+                  }}
+                  className="btn btn-secondary btn-sm w-20 text-white"
+                >
+                  No
+                </button>
+              </div>
+            </section>
+          )}
+        </div>
+      </div>
     </>
   );
 }

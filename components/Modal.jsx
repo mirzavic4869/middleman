@@ -4,7 +4,6 @@ export default function Modal(props) {
   return (
     <>
       {/* Modal */}
-      <input type="checkbox" id={props.id} className="modal-toggle" />
       <div className="modal">
         <div className="modal-box">
           <h3 className="text-3xl text-primary my-3 font-Roboto font-medium">{props.title}</h3>
@@ -12,7 +11,13 @@ export default function Modal(props) {
             <section>
               {props.id === "modal-logout" ? <p className="text-black font-Roboto font-medium">Are you sure you want to logout ?</p> : <p className="text-black font-Roboto font-medium">Are you sure you want to delete this product ?</p>}
               <div className="modal-action font-Roboto">
-                <label htmlFor={props.id} onClick={(e) => props.handleSubmit(e, props.product_id)} className="btn btn-primary btn-sm w-20 text-white">
+                <label
+                  htmlFor={props.id}
+                  onClick={(e) => {
+                    props.handleSubmit(e, props.product_id);
+                  }}
+                  className="btn btn-primary btn-sm w-20 text-white"
+                >
                   Yes
                 </label>
                 <label htmlFor={props.id} className="btn btn-secondary btn-sm w-20 text-white">

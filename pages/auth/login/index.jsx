@@ -40,7 +40,11 @@ export default function Login() {
           const { token, role } = data;
           setCookie("token", token);
           setCookie("role", role);
-          router.push("/");
+          if (role === "admin") {
+            router.push("/grosir/my_product");
+          } else {
+            router.push("/");
+          }
         }
         alert(message);
       })
@@ -59,16 +63,13 @@ export default function Login() {
         <div className="hidden md:block my-10"></div>
         <div className="h-1/2 ">
           <div className="mb-10">
-            <h1 className="text-black font-Roboto font-extrabold text-5xl md:text-6xl">
-              Welcome!
-            </h1>
-            <h4 className="text-black/50 font-Roboto text-2xl italic md:text-3xl">
-              Sign in to continue
-            </h4>
+            <h1 className="text-black font-Roboto font-extrabold text-5xl md:text-6xl">Welcome!</h1>
+            <h4 className="text-black/50 font-Roboto text-2xl italic md:text-3xl">Sign in to continue</h4>
           </div>
 
           {/* form login */}
           <form onSubmit={(e) => handleSubmit(e)}>
+
             <InputCustom
               id="input-email"
               type="text"
@@ -81,6 +82,7 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
             />
+
             <div className="mt-2 w-full">
               <AddButton loading={loading} id="btn-login" title="sign in" />
             </div>
