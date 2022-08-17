@@ -1,5 +1,5 @@
 import { deleteCookie, getCookie } from "cookies-next";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/dist/client/router";
 
 import Navbar from "../../components/Navbar";
@@ -113,9 +113,7 @@ const Profile = ({ data }) => {
       <div className="min-h-screen flex justify-center items-center bg-base-100">
         <div className="h-1/2 md:w-[32rem]">
           {/* judul */}
-          <h1 className="text-left mb-6 text-black font-Roboto font-semibold text-[30px] md:text-[50px]">
-            My Profile
-          </h1>
+          <h1 className="text-left mb-6 text-black font-Roboto font-semibold text-[30px] md:text-[50px]">My Profile</h1>
 
           <div className="overflow-x-auto">
             <table className="table table-compact w-full">
@@ -143,19 +141,11 @@ const Profile = ({ data }) => {
           {/* button */}
           <div className="flex flex-col mt-6">
             {/* edit button */}
-            <label
-              id="open-modal"
-              htmlFor="modal-edit"
-              className="btn btn-sm w-full btn-primary text-white font-Roboto mt-2 rounded-[20px] md:h-10"
-            >
+            <label id="open-modal" htmlFor="modal-edit" className="btn btn-sm w-full btn-primary text-white font-Roboto mt-2 rounded-[20px] md:h-10">
               Edit
             </label>
             {/* delete button */}
-            <label
-              id="open-modal"
-              htmlFor="modal-delete"
-              className="btn btn-sm w-full btn-secondary text-white font-Roboto mt-2 rounded-[20px] md:h-10"
-            >
+            <label id="open-modal" htmlFor="modal-delete" className="btn btn-sm w-full btn-secondary text-white font-Roboto mt-2 rounded-[20px] md:h-10">
               delete
             </label>
           </div>
@@ -165,26 +155,14 @@ const Profile = ({ data }) => {
       <input type="checkbox" id="modal-delete" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box">
-          <h3 className="text-3xl text-primary my-3 font-Roboto font-medium">
-            delete
-          </h3>
+          <h3 className="text-3xl text-primary my-3 font-Roboto font-medium">delete</h3>
           <section>
-            <p className="text-black font-Roboto font-medium">
-              Are you sure you want to delete?
-            </p>
+            <p className="text-black font-Roboto font-medium">Are you sure you want to delete?</p>
             <div className="modal-action font-Roboto">
-              <label
-                id="btn-delete"
-                htmlFor="modal-delete"
-                className="btn btn-primary btn-sm w-20 text-white"
-                onClick={() => handleDelete()}
-              >
+              <label id="btn-delete" htmlFor="modal-delete" className="btn btn-primary btn-sm w-20 text-white" onClick={() => handleDelete()}>
                 Yes
               </label>
-              <label
-                htmlFor="modal-delete"
-                className="btn btn-secondary btn-sm w-20 text-white"
-              >
+              <label htmlFor="modal-delete" className="btn btn-secondary btn-sm w-20 text-white">
                 No
               </label>
             </div>
@@ -196,47 +174,16 @@ const Profile = ({ data }) => {
       <input type="checkbox" id="modal-edit" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box">
-          <h3 className="text-3xl text-primary my-3 font-Roboto font-medium">
-            Edit profile
-          </h3>
+          <h3 className="text-3xl text-primary my-3 font-Roboto font-medium">Edit profile</h3>
           <section className="w-full">
             <form onSubmit={(e) => handleSubmit(e)}>
-              <InputCustom
-                id="input-name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                type="text"
-              />
-              <InputCustom
-                id="input-email"
-                onChange={(e) => setEmail(e.target.value)}
-                type="email"
-                value={email}
-              />
-              <InputCustom
-                id="input-phone"
-                onChange={(e) => setPhone(e.target.value)}
-                type="number"
-                value={phone}
-              />
-              {/* <InputCustom
-              id="input-password"
-              onChange={(e) => setPassword(e.target.value)}
-              type="password"
-              value={password}
-            /> */}
-              <InputCustom
-                id="input-address"
-                onChange={(e) => setAddress(e.target.value)}
-                type="text"
-                value={address}
-              />
+              <InputCustom id="input-name" value={name} onChange={(e) => setName(e.target.value)} type="text" />
+              <InputCustom id="input-email" onChange={(e) => setEmail(e.target.value)} type="email" value={email} />
+              <InputCustom id="input-phone" onChange={(e) => setPhone(e.target.value)} type="number" value={phone} />
+              <InputCustom id="input-address" onChange={(e) => setAddress(e.target.value)} type="text" value={address} />
               <AddButton id="btn-edit" title="edit" loading={loading} />
             </form>
-            <label
-              htmlFor="modal-edit"
-              className="btn btn-sm btn-secondary w-full text-white shadow-lg font-Roboto mt-2 rounded-[20px] md:h-10"
-            >
+            <label htmlFor="modal-edit" className="btn btn-sm btn-secondary w-full text-white shadow-lg font-Roboto mt-2 rounded-[20px] md:h-10">
               Cancel
             </label>
           </section>

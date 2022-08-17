@@ -30,7 +30,6 @@ function Inbound() {
       .then((response) => response.json())
       .then((result) => {
         const { code, data } = result;
-        console.log(result);
         if (code === 200) {
           setDatas(data.items);
         }
@@ -59,10 +58,10 @@ function Inbound() {
   };
 
   return (
-    <div className="bg-base-100 min-h-screen">
+    <div className="bg-base-100 w-full h-screen">
       <Navbar />
       <div>
-        <h1 className="font-Roboto font-semibold text-[30px] p-9 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20 text-black">In Bound Product</h1>
+        <h1 className="font-Roboto font-semibold text-[30px] p-9 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20 text-black">Inbound Product</h1>
       </div>
       {datas ? (
         loading ? (
@@ -77,7 +76,7 @@ function Inbound() {
       ) : (
         <div className="text-center">Please add your products</div>
       )}
-      <div className="absolute bottom-0 right-0 m-3">
+      <div className="fixed bottom-0 right-0 m-3">
         <button id="btn-submit" onClick={(e) => addData(e)} className="btn btn-primary text-white font-Roboto">
           Submit
         </button>

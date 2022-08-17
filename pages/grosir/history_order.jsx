@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Navbar from "../../components/Navbar";
 import { HistoryAdminOrder } from "../../components/OrderAdmin";
-import { useRouter } from "next/dist/client/router";
 import { getCookie } from "cookies-next";
 
 export async function getServerSideProps({ req, res }) {
@@ -33,11 +32,6 @@ export async function getServerSideProps({ req, res }) {
 }
 
 function History_order({ data }) {
-  const [datas, setDatas] = useState([]);
-  const [loading, setLoading] = useState([]);
-  const token = getCookie("token");
-  const router = useRouter();
-
   return (
     <div className="bg-base-100 min-h-screen">
       <Navbar />
@@ -53,15 +47,6 @@ function History_order({ data }) {
                 <td className="py-2">TOTAL PRICE</td>
               </tr>
             </thead>
-            <tbody>
-              <tr className="bg-white text-xs md:text-lg lg:text-lg  text-black border-b-2 border-neutral-400 ">
-                {/* <td className="py-3 pl-2">1</td>
-								<td className="py-3">20/07/2022</td>
-								<td className="py-3">Beras Wangi</td>
-								<td className="py-3">Pengiriman</td>
-								<td className="py-3">Rp 299.000</td> */}
-              </tr>
-            </tbody>
           </table>
           {data.map((data) => (
             <HistoryAdminOrder key={data.id} id={data.order_id} date={data.date} status={data.status} total={data.grand_total} />
