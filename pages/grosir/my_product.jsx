@@ -66,7 +66,7 @@ function MyProduct({ data }) {
         setObjSubmit({});
         setValue("");
       })
-      .catch((error) => alert(error.toString))
+      .catch((error) => alert(error.toString()))
       .finally(() => {
         setShowModal(false);
         fetchData();

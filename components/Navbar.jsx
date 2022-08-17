@@ -24,7 +24,7 @@ function Navbar() {
   return (
     <>
       <Head>
-        <title>MIDDLEMAN</title>
+        <title>{role === "admin" ? "MIDDLEMAN Admin" : "MIDDLEMAN"}</title>
         <meta name="description" content="Middleman website" />
         <link rel="icon" href="/favicon.png" />
       </Head>
@@ -39,35 +39,47 @@ function Navbar() {
                 </div>
               </label>
               <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-3 shadow bg-white rounded-box w-52 md:w-60 font-Roboto font-medium">
+                {role === "admin" ? (
+                  <li>
+                    <Link href="/grosir/my_product">
+                      <a id="to-my-product">My Product</a>
+                    </Link>
+                  </li>
+                ) : null}
                 <li>
-                  <Link href="/inventory">
-                    <a id="to-inventory">My Product</a>
+                  <Link href={`${role === "admin" ? "/grosir/incoming_product" : "/inventory"}`}>
+                    <a id="to-inventory">{role === "admin" ? "Incoming Product" : "My Product"}</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/toko/cart">
-                    <a id="to-cart">My Cart</a>
+                  <Link href={`${role === "admin" ? "/grosir/inbound" : "/toko/cart"}`}>
+                    <a id="to-cart">{role === "admin" ? "Inbound" : "My Cart"}</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/toko/history_order">
+                  <Link href={`${role === "admin" ? "/grosir/history_order" : "/toko/history_order"}`}>
                     <a id="to-history-order">History Order</a>
                   </Link>
                 </li>
+                {role === "admin" ? null : (
+                  <li>
+                    <Link href="/history-product-out">
+                      <a id="to-history-product-out">Product Out</a>
+                    </Link>
+                  </li>
+                )}
+                {role === "admin" ? null : (
+                  <li>
+                    <Link href="/profile">
+                      <a id="to-profile">My Profile</a>
+                    </Link>
+                  </li>
+                )}
+
                 <li>
-                  <Link href="/history-product-out">
-                    <a id="to-history-product-out">Product Out</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/profile">
-                    <a id="to-profile">My Profile</a>
-                  </Link>
-                </li>
-                <li>
-                  <label className="btn btn-sm btn-secondary text-white mt-3 p-1" id="btn-logout" title="logout" htmlFor="modal-logout">
+                  <button onClick={() => setShowModal(true)} className="btn btn-sm btn-secondary text-white mt-3 p-1" id="btn-logout" title="logout" htmlFor="modal-logout">
                     Logout
-                  </label>
+                  </button>
                 </li>
               </ul>
             </div>
@@ -75,7 +87,7 @@ function Navbar() {
 
           {/* logo */}
           <div className="w-24 md:w-40">
-            <Link href="/">
+            <Link href={`${role === "admin" ? "/grosir/my_product" : "/"}`}>
               <a id="to-dasboard">
                 <Image src={logo} alt="logo" />
               </a>
@@ -87,26 +99,35 @@ function Navbar() {
         <div>
           <div className="flex-none hidden lg:block">
             <ul className="menu menu-horizontal font-Roboto font-medium">
+              {role === "admin" ? (
+                <li>
+                  <Link href="/grosir/my_product">
+                    <a id="to-my-product">My Product</a>
+                  </Link>
+                </li>
+              ) : null}
               <li>
-                <Link href="/inventory">
-                  <a id="to-inventory">My Product</a>
+                <Link href={`${role === "admin" ? "/grosir/incoming_product" : "/inventory"}`}>
+                  <a id="to-inventory">{role === "admin" ? "Incoming Product" : "My Product"}</a>
                 </Link>
               </li>
               <li>
-                <Link href="/toko/cart">
-                  <a id="to-cart">My Cart</a>
+                <Link href={`${role === "admin" ? "/grosir/inbound" : "/toko/cart"}`}>
+                  <a id="to-cart">{role === "admin" ? "Inbound" : "My Cart"}</a>
                 </Link>
               </li>
               <li>
-                <Link href="/toko/history_order">
+                <Link href={`${role === "admin" ? "/grosir/history_order" : "/toko/history_order"}`}>
                   <a id="to-history-order">History Order</a>
                 </Link>
               </li>
-              <li>
-                <Link href="/history-product-out">
-                  <a id="to-history-product-out">Product Out</a>
-                </Link>
-              </li>
+              {role === "admin" ? null : (
+                <li>
+                  <Link href="/history-product-out">
+                    <a id="to-history-product-out">Product Out</a>
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
           <div className="mx-2">
@@ -119,11 +140,13 @@ function Navbar() {
               </div>
             </label>
             <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52 font-Roboto font-medium">
-              <li>
-                <Link href="/profile">
-                  <a id="to-profile">My Profile</a>
-                </Link>
-              </li>
+              {role === "admin" ? null : (
+                <li>
+                  <Link href="/profile">
+                    <a id="to-profile">My Profile</a>
+                  </Link>
+                </li>
+              )}
               <li>
                 <button onClick={() => setShowModal(true)} className="btn btn-sm btn-secondary text-white mt-2 p-1" id="btn-logout" title="logout">
                   Logout

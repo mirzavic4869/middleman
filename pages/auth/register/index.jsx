@@ -73,39 +73,11 @@ export default function Register() {
           {/* form */}
           <form onSubmit={(e) => handleSubmit(e)}>
             <div className="lg:min-w-full">
-
-
-              <InputCustom
-                id="input-name"
-                onChange={(e) => setName(e.target.value)}
-                type="text"
-                placeholder="Name shop"
-              />
-              <InputCustom
-                id="input-email"
-                onChange={(e) => setEmail(e.target.value)}
-                type="email"
-                placeholder="Email"
-              />
-              <InputCustom
-                id="input-phone"
-                onChange={(e) => setPhone(e.target.value)}
-                type="number"
-                placeholder="Phone Number"
-              />
-              <InputCustom
-                id="input-password"
-                onChange={(e) => setPassword(e.target.value)}
-                type="password"
-                placeholder="Password"
-              />
-              <InputCustom
-                id="input-address"
-                onChange={(e) => setAddress(e.target.value)}
-                type="text"
-                placeholder="Address"
-              />
-              
+              <InputCustom id="input-name" onChange={(e) => setName(e.target.value)} type="text" placeholder="Name shop" />
+              <InputCustom id="input-email" onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
+              <InputCustom id="input-phone" onChange={(e) => setPhone(e.target.value)} type="number" placeholder="Phone Number" />
+              <InputCustom id="input-password" onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />
+              <InputCustom id="input-address" onChange={(e) => setAddress(e.target.value)} type="text" placeholder="Address" />
             </div>
             <div className="mt-2">
               <AddButton id="to-register" loading={loading} title="sign up" />

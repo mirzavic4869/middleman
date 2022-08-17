@@ -63,13 +63,10 @@ function CardProduct({ data, fnFetchData }) {
     };
 
     fetch(`https://postme.site/${roles}/products/${idProduct}`, requestOptions)
-      .then((response) => response.json())
       .then((result) => {
-        const { message } = result;
-        console.log(message);
-        alert(message);
+        alert("Berhasil hapus data");
       })
-      .catch((error) => alert(error.toString))
+      .catch((error) => alert(error.toString()))
       .finally(() => {
         setShowModal({ title: "delete", view: false });
         fnFetchData();
@@ -93,8 +90,7 @@ function CardProduct({ data, fnFetchData }) {
     fetch(`https://postme.site/inoutbounds`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        const { message } = result;
-        alert(message);
+        alert("success creating a cart");
       })
       .catch((error) => alert(error.toString))
       .finally(() => {});
@@ -124,7 +120,7 @@ function CardProduct({ data, fnFetchData }) {
         </div>
         <div className="relative">
           <div className="absolute top-0 right-0">
-            <button id="btn-add" onClick={(e) => addProductOut(e, data.id, data.stock)} title="Add to Product Out" className="p-2 modal-button text-white bg-primary  hover:bg-green-700">
+            <button id="btn-add" onClick={(e) => addProductOut(e, data.id, data.stock)} title="Add to Product Out" className="p-2 modal-button text-white bg-primary rounded-bl-2xl hover:bg-green-700">
               <MdAdd size={20} />
             </button>
           </div>
@@ -202,13 +198,7 @@ function CardProduct({ data, fnFetchData }) {
             <section>
               <p className="text-black font-Roboto font-medium">Are you sure you want to delete this product ?</p>
               <div className="modal-action font-Roboto">
-                <button
-                  id="btn-yes"
-                  onClick={(e) => {
-                    deleteData(e, data.id);
-                  }}
-                  className="btn btn-primary btn-sm w-20 text-white"
-                >
+                <button id="btn-yes" onClick={(e) => deleteData(e, data.id)} className="btn btn-primary btn-sm w-20 text-white">
                   Yes
                 </button>
                 <button
