@@ -21,10 +21,10 @@ function Navbar() {
     inventory: { link: "/inventory", title: "My Product" },
     cart: { link: "/toko/cart", title: "My Cart" },
     history: "/toko/history_order",
-    product_out: (
+    outbound: (
       <li>
-        <Link href="/history-product-out">
-          <a id="to-history-product-out">Product Out</a>
+        <Link href="/toko/outbound">
+          <a id="to-outbound">Outbound</a>
         </Link>
       </li>
     ),
@@ -52,7 +52,7 @@ function Navbar() {
         inventory: { link: "/grosir/incoming_product", title: "Incoming Product" },
         cart: { link: "/grosir/inbound", title: "Inbound" },
         history: "/grosir/history_order",
-        product_out: null,
+        outbound: null,
         myprofile: null,
         link_logo: "/grosir/my_product",
       });
@@ -98,7 +98,7 @@ function Navbar() {
                     <a id="to-history-order">History Order</a>
                   </Link>
                 </li>
-                {view.product_out}
+                {view.outbound}
                 {view.myprofile}
                 <li>
                   <button onClick={() => setShowModal(true)} className="btn btn-sm btn-secondary text-white mt-3 p-1" id="btn-logout" title="logout" htmlFor="modal-logout">
@@ -139,7 +139,7 @@ function Navbar() {
                   <a id="to-history-order">History Order</a>
                 </Link>
               </li>
-              {view.product_out}
+              {view.outbound}
             </ul>
           </div>
           <div className="mx-2">

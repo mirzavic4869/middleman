@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import { useRouter } from "next/dist/client/router";
 import { getCookie } from "cookies-next";
-import { DetailOrder } from "../../components/OrderAdmin";
+import { DetailOrder } from "../../components/OrderCard";
+import { formatCurrency } from "../../components/CardProduct";
 
 function Detail() {
   const [total, setTotal] = useState([]);
@@ -20,6 +21,7 @@ function Detail() {
   }, []);
 
   const fetchData = async () => {
+    setLoading(true);
     const { idOrder } = router.query;
     const requestOptions = {
       method: "GET",
@@ -54,17 +56,22 @@ function Detail() {
         <h1 className="text-black font-Roboto font-semibold text-[30px] p-9 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20">Detail Order Product</h1>
       </div>
       <div className="text-black font-Poppins font-semibold">
-        <p className="border-b-2 pb-4 border-black mx-auto text-center text-xl md:text-2xl lg:text-3xl">{id}</p>
+        <p className="border-b-2 pb-4 border-black mx-auto text-center text-xl md:text-2xl lg:text-3xl">Id Order: {id}</p>
       </div>
-      <div className="p-5 gap-4 grid grid-flow-row auto-rows-max grid-cols-1 mx-auto">
-        {items.map((data) => (
-          <DetailOrder key={data.product_id} name={data.product_name} price={data.price} qty={data.qty} />
-        ))}
-      </div>
+      {loading ? (
+        <div className="text-center">Loading...</div>
+      ) : (
+        <div className="p-5 gap-2 grid grid-flow-row auto-rows-max grid-cols-1 mx-auto">
+          {items.map((data) => (
+            <DetailOrder key={data.product_id} name={data.product_name} price={data.price} qty={data.qty} />
+          ))}
+        </div>
+      )}
+
       <div className="p-5 md:flex-1 lg:flex-1">
-        <div className="w-auto h-auto mx-5 lg:mx-6 bg-white rounded-[10px] shadow-md font-Poppins font-semibold p-3 text-black flex justify-between ">
+        <div className="w-auto h-auto  bg-white rounded-[10px] shadow-md font-Poppins font-semibold p-3 text-black flex justify-between ">
           <p>Total Price</p>
-          <p className="md:ml-28">Rp {total}</p>
+          <p className="md:ml-28">{formatCurrency(total)}</p>
         </div>
         <div className="flex justify-center mt-5">
           <button className="mx-3 py-2 px-8 btn btn-primary text-white rounded-[10px]">Accept</button>

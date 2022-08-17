@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { formatDate } from "../pages/history-product-out";
+import { formatCurrency } from "./CardProduct";
 
 function HistoryOrder(props) {
   return (
@@ -21,13 +22,11 @@ function HistoryOrder(props) {
 
 function DetailOrder(props) {
   return (
-    <div className="p-5 gap-4 grid grid-flow-row auto-rows-max grid-cols-1 mx-auto">
-      <div className="w-auto h-auto bg-white rounded-[20px] shadow-md font-Poppins font-semibold p-5 text-black">
-        <p>{props.name}</p>
-        <p>
-          Sub Total : Rp {props.price} x {props.qty} = Rp 120.000
-        </p>
-      </div>
+    <div className="w-auto h-auto bg-white rounded-[20px] shadow-md font-Poppins font-semibold p-3 text-black">
+      <p>{props.name}</p>
+      <p>
+        Sub Total : {formatCurrency(props.price)} x {props.qty} = {formatCurrency(props.price * props.qty)}
+      </p>
     </div>
   );
 }
