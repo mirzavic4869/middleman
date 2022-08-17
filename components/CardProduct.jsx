@@ -90,8 +90,7 @@ function CardProduct({ data, fnFetchData }) {
     fetch(`https://postme.site/inoutbounds`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        const { message } = result;
-        alert(message);
+        alert("success creating a cart");
       })
       .catch((error) => alert(error.toString))
       .finally(() => {});
@@ -121,7 +120,7 @@ function CardProduct({ data, fnFetchData }) {
         </div>
         <div className="relative">
           <div className="absolute top-0 right-0">
-            <button id="btn-add" onClick={(e) => addProductOut(e, data.id, data.stock)} title="Add to Product Out" className="p-2 modal-button text-white bg-primary  hover:bg-green-700">
+            <button id="btn-add" onClick={(e) => addProductOut(e, data.id, data.stock)} title="Add to Product Out" className="p-2 modal-button text-white bg-primary rounded-bl-2xl hover:bg-green-700">
               <MdAdd size={20} />
             </button>
           </div>
