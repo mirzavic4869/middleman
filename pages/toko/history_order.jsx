@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Navbar from "../../components/Navbar";
-import { getCookie, deleteCookie } from "cookies-next";
+import { getCookie } from "cookies-next";
 import { HistoryOrder } from "../../components/OrderCard";
 import { formatCurrency } from "../../components/CardProduct";
 
