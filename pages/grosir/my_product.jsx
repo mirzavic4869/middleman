@@ -37,9 +37,8 @@ function MyProduct({ data }) {
       .then((response) => response.json())
       .then((result) => {
         const { code, data } = result;
-        console.log(data);
         if (code === 200) {
-          setDatas(data);
+          setDatas(data.reverse());
         } else {
           setDatas(null);
         }

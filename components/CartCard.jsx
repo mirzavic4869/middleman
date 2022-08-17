@@ -53,10 +53,10 @@ function OutBound(props) {
   }, [value]);
 
   return (
-    <div className="card w-96 bg-white shadow-md">
+    <div className="card w-auto bg-white shadow-md">
       <div className="card-body font-Poppins">
         <div className="card-actions justify-end">
-          <button id="btn-delete" onClick={(e) => props.fnDeleteData(e, props.id)} title="Delete" className="p-2 rounded-2xl modal-button text-white bg-secondary font-Roboto hover:bg-red-700">
+          <button id="btn-delete" onClick={(e) => props.fnDeleteData(e, props.id)} title="Delete" className="btn btn-secondary text-white font-Roboto rounded-full">
             Delete
           </button>
         </div>

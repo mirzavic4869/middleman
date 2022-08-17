@@ -31,7 +31,7 @@ function Inbound() {
       .then((result) => {
         const { code, data } = result;
         if (code === 200) {
-          setDatas(data.items);
+          setDatas(data.items.reverse());
         }
       })
       .catch((error) => alert(error.toString))
@@ -61,13 +61,18 @@ function Inbound() {
     <div className="bg-base-100 w-full h-screen">
       <Navbar />
       <div>
-        <h1 className="font-Roboto font-semibold text-[30px] p-9 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20 text-black">Inbound Product</h1>
+        <h1 className="font-Roboto font-semibold text-[30px] p-3 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20 text-black">Inbound Product</h1>
+      </div>
+      <div className="flex justify-end m-3">
+        <button id="to-history-outbound" onClick={() => router.push("/history-product-in")} className="btn btn-primary btn-sm text-white font-Roboto">
+          History Product In
+        </button>
       </div>
       {datas ? (
         loading ? (
           <div className="text-center">Loading...</div>
         ) : (
-          <div className="grid mx-5 gap-5 grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center">
+          <div className="grid gap-2 m-2 grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center">
             {datas.map((data) => (
               <OutBound key={data.product_id} id={data.product_id} name={data.product_name} unit={data.unit} qty={data.qty} fnDeleteData={deleteData} />
             ))}
@@ -77,7 +82,7 @@ function Inbound() {
         <div className="text-center">Please add your products</div>
       )}
       <div className="fixed bottom-0 right-0 m-3">
-        <button id="btn-submit" onClick={(e) => addData(e)} className="btn btn-primary text-white font-Roboto">
+        <button id="btn-submit" onClick={(e) => addData(e)} className={`btn btn-primary ${datas ? null : "btn-disabled"} btn text-white font-Roboto`}>
           Submit
         </button>
       </div>

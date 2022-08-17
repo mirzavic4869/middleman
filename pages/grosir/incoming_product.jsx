@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import Navbar from "../../components/Navbar";
 import { IncomingOrder } from "../../components/OrderAdmin";
-import { useRouter } from "next/dist/client/router";
+
 import { getCookie } from "cookies-next";
 import { formatDate } from "../history-product-out";
 
@@ -26,7 +26,7 @@ export async function getServerSideProps({ req, res }) {
   return {
     props: {
       code: data.code,
-      data: data.data,
+      data: data.data.reverse(),
       message: data.message,
       token,
     },
@@ -34,11 +34,6 @@ export async function getServerSideProps({ req, res }) {
 }
 
 function Incoming_product({ data }) {
-  const [datas, setDatas] = useState([]);
-  const [loading, setLoading] = useState([]);
-  const token = getCookie("token");
-  const router = useRouter();
-
   return (
     <div className="bg-base-100 min-h-screen">
       <Navbar />

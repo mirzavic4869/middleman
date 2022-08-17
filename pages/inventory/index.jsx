@@ -34,7 +34,7 @@ function Inventory() {
       .then((result) => {
         const { code, data } = result;
         if (code === 200) {
-          setDatas(data);
+          setDatas(data.reverse());
         } else {
           setDatas(null);
         }
@@ -44,11 +44,14 @@ function Inventory() {
   };
 
   const addData = async (e) => {
+    setLoading(true);
     e.preventDefault();
+
     const formData = new FormData();
     for (const key in objSubmit) {
       formData.append(key, objSubmit[key]);
     }
+
     const requestOptions = {
       method: "POST",
       headers: {
@@ -67,6 +70,7 @@ function Inventory() {
       })
       .catch((error) => alert(error.toString))
       .finally(() => {
+        setLoading(false);
         setShowModal(false);
         fetchData();
       });
@@ -91,7 +95,14 @@ function Inventory() {
             <MdSearch />
           </button>
         </div>
-        <button id="btn-add" onClick={() => setShowModal(true)} className="btn btn-sm btn-primary modal-button text-white font-Roboto">
+        <button
+          id="btn-add"
+          type="button"
+          onClick={() => {
+            setShowModal(true);
+          }}
+          className="btn btn-sm btn-primary modal-button text-white font-Roboto"
+        >
           Add Product
         </button>
       </div>
@@ -119,7 +130,7 @@ function Inventory() {
             </span>
           </label>
           <form onSubmit={(e) => addData(e)}>
-            <input type="file" id="input-image" onChange={(e) => handleChange(e.target.files[0], "product_image")} className="w-full text-black font-Poppins mb-2" />
+            <input type="file" id="input-image" defaultValue={value} onChange={(e) => handleChange(e.target.files[0], "product_image")} className="w-full text-black font-Poppins mb-2" />
             <input
               type="text"
               id="input-name"
@@ -148,7 +159,7 @@ function Inventory() {
               />
             </div>
             <div className="modal-action font-Roboto">
-              <button id="btn-add" type="submit" className="btn btn-primary btn-sm w-20 text-white">
+              <button id="btn-add" className="btn btn-primary btn-sm w-20 text-white" disabled={loading}>
                 Add
               </button>
               <button
@@ -156,7 +167,6 @@ function Inventory() {
                 type="reset"
                 onClick={() => {
                   setShowModal(false);
-                  setValue("");
                 }}
                 className="btn btn-secondary btn-sm w-20 text-white"
               >
