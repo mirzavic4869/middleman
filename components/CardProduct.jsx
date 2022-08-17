@@ -152,7 +152,7 @@ function CardProduct({ data, fnFetchData }) {
                   type="text"
                   id="input-unit"
                   defaultValue={data.unit}
-                  onChange={(e) => data.handleChange(e.target.value, "unit")}
+                  onChange={(e) => handleChange(e.target.value, "unit")}
                   placeholder="Unit*"
                   className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
                   required
@@ -178,7 +178,7 @@ function CardProduct({ data, fnFetchData }) {
                   />
                 </div>
                 <div className="modal-action font-Roboto">
-                  <button id="btn-edit" type="reset" className="btn btn-primary btn-sm w-20 text-white">
+                  <button id="btn-edit" type="submit" className="btn btn-primary btn-sm w-20 text-white">
                     Edit
                   </button>
                   <button

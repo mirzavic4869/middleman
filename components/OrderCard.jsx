@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { formatDate } from "../pages/history-product-out";
+import { formatCurrency } from "./CardProduct";
 
 function HistoryOrder(props) {
   return (
@@ -9,7 +10,7 @@ function HistoryOrder(props) {
       <p className="pb-3">Status : {props.status}</p>
       <p className="pb-3">Total Price : {props.total}</p>
       <div className="flex justify-end">
-        <Link href="/toko/detail_order">
+        <Link href={`/toko/${props.id}`}>
           <button id="to-detail_order" className="p-3 btn btn-primary text-white rounded-[10px]">
             Detail
           </button>
@@ -21,15 +22,11 @@ function HistoryOrder(props) {
 
 function DetailOrder(props) {
   return (
-    <div>
-      <div className="p-5 gap-4 grid grid-flow-row auto-rows-max grid-cols-1 mx-auto">
-        <div className="w-auto h-auto bg-white rounded-[20px] shadow-md font-Poppins font-semibold p-5 text-black">
-          <p>{props.name}</p>
-          <p>
-            Sub Total : Rp {props.price} x {props.qty} = Rp 120.000
-          </p>
-        </div>
-      </div>
+    <div className="w-auto h-auto bg-white rounded-[20px] shadow-md font-Poppins font-semibold p-3 text-black">
+      <p>{props.name}</p>
+      <p>
+        Sub Total : {formatCurrency(props.price)} x {props.qty} = {formatCurrency(props.price * props.qty)}
+      </p>
     </div>
   );
 }

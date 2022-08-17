@@ -48,7 +48,7 @@ function HistoryProductOut() {
     <>
       <Navbar />
       <div className="m-4">
-        <h1 className="text-black font-Roboto font-semibold text-4xl">History Product Out</h1>
+        <h1 className="text-black font-Roboto font-semibold text-4xl my-10">History Product Out</h1>
         {loading ? (
           <div className="text-center">Loading...</div>
         ) : (
