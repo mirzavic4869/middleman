@@ -81,7 +81,7 @@ function Outbound() {
     <div className="bg-base-100 h-screen w-full">
       <Navbar />
       <div>
-        <h1 className="font-Roboto font-semibold text-[30px] p-3 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20 text-black">Out Bound Product</h1>
+        <h1 className="font-Roboto font-semibold text-[30px] p-3 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20 text-black">Outbound Product</h1>
       </div>
       <div className="flex justify-end m-3">
         <button id="to-history-outbound" onClick={() => router.push("/history-product-out")} className="btn btn-primary btn-sm text-white font-Roboto">
@@ -102,7 +102,7 @@ function Outbound() {
         <div className="text-center">Please add your products</div>
       )}
       <div className="fixed bottom-0 right-0 m-3">
-        <button id="btn-submit" onClick={(e) => addData(e)} className="btn btn-primary text-white font-Roboto">
+        <button id="btn-submit" onClick={(e) => addData(e)} className={`btn btn-primary ${datas ? null : "btn-disabled"} btn text-white font-Roboto`}>
           Submit
         </button>
       </div>

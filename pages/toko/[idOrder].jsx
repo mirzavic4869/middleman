@@ -55,7 +55,7 @@ function Detail_order() {
         <h1 className="text-black font-Roboto font-semibold text-[30px] p-9 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20">Detail Order Product</h1>
       </div>
       <div className="text-black font-Poppins font-semibold">
-        <p className="border-b-2 pb-4 border-black mx-auto text-center text-xl md:text-2xl lg:text-3xl">Id Order: {id}</p>
+        <p className="border-b-2 pb-4 border-black mx-auto text-center text-xl md:text-2xl lg:text-3xl">Id Order : {id}</p>
       </div>
       {loading ? (
         <div className="text-center">Loading...</div>

@@ -45,10 +45,12 @@ function Inventory() {
 
   const addData = async (e) => {
     e.preventDefault();
+
     const formData = new FormData();
     for (const key in objSubmit) {
       formData.append(key, objSubmit[key]);
     }
+
     const requestOptions = {
       method: "POST",
       headers: {
@@ -63,10 +65,10 @@ function Inventory() {
         const { message } = result;
         alert(message);
         setObjSubmit({});
-        setValue("");
       })
       .catch((error) => alert(error.toString))
       .finally(() => {
+        setValue("");
         setShowModal(false);
         fetchData();
       });
@@ -91,7 +93,14 @@ function Inventory() {
             <MdSearch />
           </button>
         </div>
-        <button id="btn-add" onClick={() => setShowModal(true)} className="btn btn-sm btn-primary modal-button text-white font-Roboto">
+        <button
+          id="btn-add"
+          type="button"
+          onClick={() => {
+            setShowModal(true);
+          }}
+          className="btn btn-sm btn-primary modal-button text-white font-Roboto"
+        >
           Add Product
         </button>
       </div>
@@ -120,32 +129,11 @@ function Inventory() {
           </label>
           <form onSubmit={(e) => addData(e)}>
             <input type="file" id="input-image" onChange={(e) => handleChange(e.target.files[0], "product_image")} className="w-full text-black font-Poppins mb-2" />
-            <input
-              type="text"
-              id="input-name"
-              defaultValue={value}
-              onChange={(e) => handleChange(e.target.value, "product_name")}
-              placeholder="Product Name*"
-              className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
-            />
-            <input type="text" id="input-unit" defaultValue={value} onChange={(e) => handleChange(e.target.value, "unit")} placeholder="Unit*" className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2" />
+            <input type="text" id="input-name" onChange={(e) => handleChange(e.target.value, "product_name")} placeholder="Product Name*" className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2" />
+            <input type="text" id="input-unit" onChange={(e) => handleChange(e.target.value, "unit")} placeholder="Unit*" className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2" />
             <div className="flex gap-2">
-              <input
-                type="number"
-                id="input-stock"
-                defaultValue={value}
-                onChange={(e) => handleChange(e.target.value, "stock")}
-                placeholder="Stock*"
-                className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
-              />
-              <input
-                type="number"
-                id="input-price"
-                defaultValue={value}
-                onChange={(e) => handleChange(e.target.value, "price")}
-                placeholder="Price*"
-                className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
-              />
+              <input type="number" id="input-stock" onChange={(e) => handleChange(e.target.value, "stock")} placeholder="Stock*" className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2" />
+              <input type="number" id="input-price" onChange={(e) => handleChange(e.target.value, "price")} placeholder="Price*" className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2" />
             </div>
             <div className="modal-action font-Roboto">
               <button id="btn-add" type="submit" className="btn btn-primary btn-sm w-20 text-white">
@@ -156,7 +144,6 @@ function Inventory() {
                 type="reset"
                 onClick={() => {
                   setShowModal(false);
-                  setValue("");
                 }}
                 className="btn btn-secondary btn-sm w-20 text-white"
               >
