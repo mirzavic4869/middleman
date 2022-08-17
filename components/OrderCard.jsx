@@ -10,7 +10,7 @@ function HistoryOrder(props) {
       <p className="pb-3">Status : {props.status}</p>
       <p className="pb-3">Total Price : {props.total}</p>
       <div className="flex justify-end">
-        <Link href="/toko/detail_order">
+        <Link href={`/toko/${props.id}`}>
           <button id="to-detail_order" className="p-3 btn btn-primary text-white rounded-[10px]">
             Detail
           </button>

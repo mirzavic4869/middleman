@@ -5,7 +5,7 @@ import { getCookie } from "cookies-next";
 import { DetailOrder } from "../../components/OrderCard";
 import { formatCurrency } from "../../components/CardProduct";
 
-function Detail() {
+function Detail_order() {
   const [total, setTotal] = useState([]);
   const [id, setId] = useState([]);
   const [items, setItems] = useState([]);
@@ -60,25 +60,20 @@ function Detail() {
       {loading ? (
         <div className="text-center">Loading...</div>
       ) : (
-        <div className="p-5 gap-2 grid grid-flow-row auto-rows-max grid-cols-1 mx-auto">
+        <div className="p-5 gap-4 grid grid-flow-row auto-rows-max grid-cols-1 mx-auto">
           {items.map((data) => (
             <DetailOrder key={data.product_id} name={data.product_name} price={data.price} qty={data.qty} />
           ))}
         </div>
       )}
-
-      <div className="p-5 md:flex-1 lg:flex-1">
-        <div className="w-auto h-auto bg-white rounded-[10px] shadow-md font-Poppins font-semibold p-3 text-black flex justify-between ">
+      <div className="p-5">
+        <div className="w-auto h-auto bg-white rounded-[10px] shadow-md font-Poppins font-semibold p-3 text-black flex justify-between">
           <p>Total Price</p>
-          <p className="md:ml-28">{formatCurrency(total)}</p>
-        </div>
-        <div className="flex justify-center mt-5">
-          <button className="mx-3 py-2 px-8 btn btn-primary text-white rounded-[10px]">Accept</button>
-          <button className="py-2 px-8 btn btn-primary text-white rounded-[10px]">Done</button>
+          <p>{formatCurrency(total)}</p>
         </div>
       </div>
     </div>
   );
 }
 
-export default Detail;
+export default Detail_order;
