@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/dist/client/image";
 import Link from "next/link";
 import Head from "next/head";
@@ -15,6 +15,49 @@ function Navbar() {
   const router = useRouter();
   const role = getCookie("role");
   const [showModal, setShowModal] = useState(false);
+  const [view, setView] = useState({
+    title: "MIDDLEMAN",
+    myproduct: null,
+    inventory: { link: "/inventory", title: "My Product" },
+    cart: { link: "/toko/cart", title: "My Cart" },
+    history: "/toko/history_order",
+    product_out: (
+      <li>
+        <Link href="/history-product-out">
+          <a id="to-history-product-out">Product Out</a>
+        </Link>
+      </li>
+    ),
+    myprofile: (
+      <li>
+        <Link href="/profile">
+          <a id="to-profile">My Profile</a>
+        </Link>
+      </li>
+    ),
+    link_logo: "/",
+  });
+
+  useEffect(() => {
+    if (role === "admin") {
+      setView({
+        title: "MIDDLEMAN Admin",
+        myproduct: (
+          <li>
+            <Link href="/grosir/my_product">
+              <a id="to-my-product">My Product</a>
+            </Link>
+          </li>
+        ),
+        inventory: { link: "/grosir/incoming_product", title: "Incoming Product" },
+        cart: { link: "/grosir/inbound", title: "Inbound" },
+        history: "/grosir/history_order",
+        product_out: null,
+        myprofile: null,
+        link_logo: "/grosir/my_product",
+      });
+    }
+  }, []);
 
   const handlelogout = () => {
     deleteCookie("token");
@@ -24,7 +67,7 @@ function Navbar() {
   return (
     <>
       <Head>
-        <title>{role === "admin" ? "MIDDLEMAN Admin" : "MIDDLEMAN"}</title>
+        <title>{view.title}</title>
         <meta name="description" content="Middleman website" />
         <link rel="icon" href="/favicon.png" />
       </Head>
@@ -39,43 +82,24 @@ function Navbar() {
                 </div>
               </label>
               <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-3 shadow bg-white rounded-box w-52 md:w-60 font-Roboto font-medium">
-                {role === "admin" ? (
-                  <li>
-                    <Link href="/grosir/my_product">
-                      <a id="to-my-product">My Product</a>
-                    </Link>
-                  </li>
-                ) : null}
+                {view.myproduct}
                 <li>
-                  <Link href={`${role === "admin" ? "/grosir/incoming_product" : "/inventory"}`}>
-                    <a id="to-inventory">{role === "admin" ? "Incoming Product" : "My Product"}</a>
+                  <Link href={view.inventory.link}>
+                    <a id="to-inventory">{view.inventory.title}</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href={`${role === "admin" ? "/grosir/inbound" : "/toko/cart"}`}>
-                    <a id="to-cart">{role === "admin" ? "Inbound" : "My Cart"}</a>
+                  <Link href={view.cart.link}>
+                    <a id="to-cart">{view.cart.title}</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href={`${role === "admin" ? "/grosir/history_order" : "/toko/history_order"}`}>
+                  <Link href={view.history}>
                     <a id="to-history-order">History Order</a>
                   </Link>
                 </li>
-                {role === "admin" ? null : (
-                  <li>
-                    <Link href="/history-product-out">
-                      <a id="to-history-product-out">Product Out</a>
-                    </Link>
-                  </li>
-                )}
-                {role === "admin" ? null : (
-                  <li>
-                    <Link href="/profile">
-                      <a id="to-profile">My Profile</a>
-                    </Link>
-                  </li>
-                )}
-
+                {view.product_out}
+                {view.myprofile}
                 <li>
                   <button onClick={() => setShowModal(true)} className="btn btn-sm btn-secondary text-white mt-3 p-1" id="btn-logout" title="logout" htmlFor="modal-logout">
                     Logout
@@ -87,7 +111,7 @@ function Navbar() {
 
           {/* logo */}
           <div className="w-24 md:w-40">
-            <Link href={`${role === "admin" ? "/grosir/my_product" : "/"}`}>
+            <Link href={view.link_logo}>
               <a id="to-dasboard">
                 <Image src={logo} alt="logo" />
               </a>
@@ -99,35 +123,23 @@ function Navbar() {
         <div>
           <div className="flex-none hidden lg:block">
             <ul className="menu menu-horizontal font-Roboto font-medium">
-              {role === "admin" ? (
-                <li>
-                  <Link href="/grosir/my_product">
-                    <a id="to-my-product">My Product</a>
-                  </Link>
-                </li>
-              ) : null}
+              {view.myproduct}
               <li>
-                <Link href={`${role === "admin" ? "/grosir/incoming_product" : "/inventory"}`}>
-                  <a id="to-inventory">{role === "admin" ? "Incoming Product" : "My Product"}</a>
+                <Link href={view.inventory.link}>
+                  <a id="to-inventory">{view.inventory.title}</a>
                 </Link>
               </li>
               <li>
-                <Link href={`${role === "admin" ? "/grosir/inbound" : "/toko/cart"}`}>
-                  <a id="to-cart">{role === "admin" ? "Inbound" : "My Cart"}</a>
+                <Link href={view.cart.link}>
+                  <a id="to-cart">{view.cart.title}</a>
                 </Link>
               </li>
               <li>
-                <Link href={`${role === "admin" ? "/grosir/history_order" : "/toko/history_order"}`}>
+                <Link href={view.history}>
                   <a id="to-history-order">History Order</a>
                 </Link>
               </li>
-              {role === "admin" ? null : (
-                <li>
-                  <Link href="/history-product-out">
-                    <a id="to-history-product-out">Product Out</a>
-                  </Link>
-                </li>
-              )}
+              {view.product_out}
             </ul>
           </div>
           <div className="mx-2">
@@ -140,13 +152,7 @@ function Navbar() {
               </div>
             </label>
             <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52 font-Roboto font-medium">
-              {role === "admin" ? null : (
-                <li>
-                  <Link href="/profile">
-                    <a id="to-profile">My Profile</a>
-                  </Link>
-                </li>
-              )}
+              {view.myprofile}
               <li>
                 <button onClick={() => setShowModal(true)} className="btn btn-sm btn-secondary text-white mt-2 p-1" id="btn-logout" title="logout">
                   Logout

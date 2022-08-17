@@ -7,6 +7,7 @@ import { getCookie } from "cookies-next";
 
 function MyProduct({ data }) {
   const token = getCookie("token");
+  const role = getCookie("role");
   const router = useRouter();
   const [datas, setDatas] = useState([data]);
   const [loading, setLoading] = useState([]);
@@ -17,6 +18,9 @@ function MyProduct({ data }) {
   useEffect(() => {
     if (!token) {
       router.push("/auth/welcome");
+    }
+    if (role === "user") {
+      router.push("/");
     }
     fetchData();
   }, []);
