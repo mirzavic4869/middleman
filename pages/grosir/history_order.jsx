@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
-import HistoryAdminOrder from "../../components/OrderAdmin";
+import { HistoryAdminOrder } from "../../components/OrderAdmin";
 import { useRouter } from "next/dist/client/router";
 import { getCookie } from "cookies-next";
 
@@ -21,28 +21,18 @@ export async function getServerSideProps({ req, res }) {
 		},
 	};
 	const response = await fetch(
-		`https://virtserver.swaggerhub.com/vaniliacahya/capstone/1.0.0/orders/admins`,
+		`https://postme.site/orders/admins`,
 		requestOptions
 	);
 	const data = await response.json();
-	if (response.status === 200) {
-		return {
-			props: {
-				code: data.code,
-				data: data.data,
-				message: data.message,
-				token,
-			},
-		};
-	} else {
-		deleteCookie("token");
-		return {
-			redirect: {
-				permanent: false,
-				destination: "/auth/welcome",
-			},
-		};
-	}
+	return {
+		props: {
+			code: data.code,
+			data: data.data,
+			message: data.message,
+			token,
+		},
+	};
 }
 
 function History_order({ data }) {
@@ -51,32 +41,6 @@ function History_order({ data }) {
 	const token = getCookie("token");
 	const router = useRouter();
 
-	// useEffect(() => {
-	// 	if (!token) {
-	// 		router.push("/auth/welcome");
-	// 	}
-	// 	fetchData();
-	// }, []);
-
-	// const fetchData = async () => {
-	// 	const requestOptions = {
-	// 		method: "GET",
-	// 	};
-
-	// 	fetch("https://postme.site/orders/admins", requestOptions)
-	// 		.then((response) => response.json())
-	// 		.then((result) => {
-	// 			const { code, data } = result;
-	// 			if (code === 200) {
-	// 				setDatas(data);
-	// 			}
-	// 		})
-	// 		.catch((error) => alert(error.toString))
-	// 		.finally(() => setLoading(false));
-	// };
-	// if (loading) {
-	// 	return <div>Please wait...</div>;
-	// } else {
 	return (
 		<div className="bg-base-100 min-h-screen">
 			<Navbar />

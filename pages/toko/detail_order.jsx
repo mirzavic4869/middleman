@@ -20,69 +20,26 @@ export async function getServerSideProps({ req, res }) {
 			Authorization: `Bearer ${token}`,
 		},
 	};
-	const response = await fetch(
-		`https://virtserver.swaggerhub.com/vaniliacahya/capstone/1.0.0/orders/${token}`,
-		requestOptions
-	);
+	const response = await fetch(`https://postme.site/orders/1`, requestOptions);
 	const data = await response.json();
-	if (response.status === 200) {
-		return {
-			props: {
-				code: data.code,
-				data: data.data.items,
-				message: data.message,
-				token,
-			},
-		};
-	} else {
-		deleteCookie("token");
-		return {
-			redirect: {
-				permanent: false,
-				destination: "/auth/welcome",
-			},
-		};
-	}
+
+	return {
+		props: {
+			code: data.code,
+			data: data.data,
+			message: data.message,
+			token,
+		},
+	};
 }
 
 function Detail_order({ data }) {
+	console.log(data);
 	const [total, setTotal] = useState([]);
 	const [id, setId] = useState([]);
 	const [datas, setDatas] = useState([]);
-
 	const token = getCookie("token");
 	const router = useRouter();
-
-	// useEffect(() => {
-	// 	if (!token) {
-	// 		router.push("/auth/welcome");
-	// 	}
-	// 	fetchData();
-	// }, []);
-
-	// const fetchData = async () => {
-	// 	const requestOptions = {
-	// 		method: "GET",
-	// 	};
-
-	// 	fetch("https://postme.site/orders/1", requestOptions)
-	// 		.then((response) => response.json())
-	// 		.then((result) => {
-	// 			console.log(result);
-	// 			const { code, data } = result;
-	// 			if (code === 200) {
-	// 				setDatas(data.items);
-	// 			}
-	// 			if (code === 200) {
-	// 				setTotal(data);
-	// 			}
-	// 			if (code === 200) {
-	// 				setId(data);
-	// 			}
-	// 		})
-	// 		.catch((error) => alert(error.toString))
-	// 		.finally(() => setLoading(false));
-	// };
 
 	return (
 		<div className="bg-base-100 min-h-screen">
@@ -98,12 +55,12 @@ function Detail_order({ data }) {
 				</p>
 			</div>
 			<div className="p-5 gap-4 grid grid-flow-row auto-rows-max grid-cols-1 mx-auto">
-				{data.map((data) => (
+				{data.data.map((data) => (
 					<DetailOrder
-						key={data.id}
-						name={data.product_name}
-						price={data.price}
-						qty={data.qty}
+						key={data.product.id}
+						name={data.product.product_name}
+						price={data.product.price}
+						qty={data.product.qty}
 					/>
 				))}
 			</div>
