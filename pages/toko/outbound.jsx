@@ -23,59 +23,25 @@ export async function getServerSideProps({ req, res }) {
 		},
 	};
 	const response = await fetch(
-		"https://virtserver.swaggerhub.com/vaniliacahya/capstone/1.0.0/inoutbounds",
+		"https://postme.site/inoutbounds",
 		requestOptions
 	);
 	const data = await response.json();
-	if (response.status === 200) {
-		return {
-			props: {
-				code: data.code,
-				data: data.data.items,
-				message: data.message,
-				token,
-			},
-		};
-	} else {
-		deleteCookie("token");
-		return {
-			redirect: {
-				permanent: false,
-				destination: "/auth/welcome",
-			},
-		};
-	}
+
+	return {
+		props: {
+			code: data.code,
+			data: data.data.items,
+			message: data.message,
+			token,
+		},
+	};
 }
 
 function Outbound({ data }) {
+	console.log(data);
 	const [datas, setDatas] = useState([]);
-
-	// useEffect(() => {
-	// 	if (!token) {
-	// 		router.push("/auth/welcome");
-	// 	}
-	// 	fetchData();
-	// }, []);
-
-	// const fetchData = async () => {
-	// 	const requestOptions = {
-	// 		method: "GET",
-	// 	};
-
-	// 	fetch("https://postme.site/inoutbounds", requestOptions)
-	// 		.then((response) => response.json())
-	// 		.then((result) => {
-	// 			const { code, data } = result;
-	// 			if (code === 200) {
-	// 				setDatas(data.items);
-	// 			}
-	// 			if (code === 200) {
-	// 				setTotal(data);
-	// 			}
-	// 		})
-	// 		.catch((error) => alert(error.toString))
-	// 		.finally(() => setLoading(false));
-	// };
+	const token = getCookie("token");
 
 	return (
 		<div className="bg-base-100 min-h-screen">
@@ -86,17 +52,18 @@ function Outbound({ data }) {
 				</h1>
 			</div>
 			<div className="grid mx-5 gap-5 grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center">
-				{data.map((data) => (
+				{data.items.map((data) => (
 					<OutBound
 						key={data.id}
-						id={data.product_id}
+						image={data.product_image}
 						name={data.product_name}
 						unit={data.unit}
+						price={data.price}
 						qty={data.qty}
+						subtotal={data.subtotal}
 					/>
 				))}
 			</div>
-			<Modal id="modal-delete" title="Delete Product" />
 		</div>
 	);
 }
