@@ -35,7 +35,6 @@ function HistoryProductOut() {
       .then((response) => response.json())
       .then((result) => {
         const { code, data } = result;
-        console.log(data);
         if (code === 200) {
           setDatas(data);
         }

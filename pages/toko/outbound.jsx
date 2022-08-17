@@ -92,7 +92,7 @@ function Outbound() {
         loading ? (
           <div className="text-center">Loading...</div>
         ) : (
-          <div className="grid mx-5 gap-5 grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center">
+          <div className="grid grid-cols-1 m-3 gap-2 md:grid-cols-2 lg:grid-cols-3">
             {datas.map((data) => (
               <OutBound key={data.product_id} id={data.product_id} name={data.product_name} unit={data.unit} qty={data.qty} fnDeleteData={deleteData} />
             ))}
@@ -101,7 +101,7 @@ function Outbound() {
       ) : (
         <div className="text-center">Please add your products</div>
       )}
-      <div className="absolute bottom-0 right-0 m-3">
+      <div className="fixed bottom-0 right-0 m-3">
         <button id="btn-submit" onClick={(e) => addData(e)} className="btn btn-primary text-white font-Roboto">
           Submit
         </button>

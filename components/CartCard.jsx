@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { MdDelete } from "react-icons/md";
+/* eslint-disable @next/next/no-img-element */
+import { useState, useEffect } from "react";
 
 function MyCart(props) {
   return (
@@ -35,48 +35,47 @@ function MyCart(props) {
 }
 
 function OutBound(props) {
+  const [value, setValue] = useState(1);
+  function Increment() {
+    setValue(value + 1);
+  }
+  function Decrement() {
+    setValue(value - 1);
+  }
+
+  useEffect(() => {
+    if (value < 1) {
+      setValue(0);
+    }
+    if (value > props.qty) {
+      setValue(props.qty);
+    }
+  }, [value]);
+
   return (
-    <div className="card card-side bg-white shadow-md">
+    <div className="card w-96 bg-white shadow-md">
       <div className="card-body font-Poppins">
+        <div className="card-actions justify-end">
+          <button id="btn-delete" onClick={(e) => props.fnDeleteData(e, props.id)} title="Delete" className="p-2 rounded-2xl modal-button text-white bg-secondary font-Roboto hover:bg-red-700">
+            Delete
+          </button>
+        </div>
         <h2 className="card-title">{props.name}</h2>
         <p>Unit: {props.unit}</p>
         <p>Stock: {props.qty}</p>
-        <div className="flex gap-2">
-          {/* <button
-            id="decrement"
-            onClick={() => {
-              setValue(value - 1);
-              if (value <= 2) {
-                setDisabledMinus(true);
-              }
-            }}
-            className="bg-white btn btn-outline btn-primary rounded-[5px] w-[50px]  text-black"
-            disabled={disabledMinus}
-          >
-            -
-          </button> */}
-          <p>Amount:</p>
-          <input type="number" defaultValue={1} min={1} max={props.qty} className="w-full input input-sm input-bordered input-primary text-black font-Poppins" />
-          {/* <button
-            id="increment"
-            onClick={() => {
-              setValue(value + 1);
-              if (value > props.qty) {
-                setDisabledPlus(true);
-              }
-            }}
-            className="btn btn-primary rounded-[5px] w-[50px] text-white ml-8"
-            disabled={disabledPlus}
-          >
-            +
-          </button> */}
-        </div>
-      </div>
-      <div className="relative">
-        <div className="absolute top-0 right-0">
-          <button id="btn-delete" onClick={(e) => props.fnDeleteData(e, props.id)} title="Delete" className="p-2 rounded-bl-2xl modal-button text-white bg-secondary font-Roboto hover:bg-red-700">
-            Delete
-          </button>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Enter amount</span>
+          </label>
+          <div className="input-group">
+            <button id="decrement" onClick={() => Decrement()} className="btn btn-outline btn-sm btn-primary text-lg">
+              -
+            </button>
+            <input type="number" value={value} className="border input-sm input-primary w-20" />
+            <button id="increment" onClick={() => Increment()} className="btn btn-primary btn-sm text-white text-lg">
+              +
+            </button>
+          </div>
         </div>
       </div>
     </div>

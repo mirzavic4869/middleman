@@ -29,7 +29,6 @@ function DetailProductOut() {
       .then((response) => response.json())
       .then((result) => {
         const { code, data } = result;
-        console.log(data.items);
         if (code === 200) {
           setDatas(data.items);
         }
