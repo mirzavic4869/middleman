@@ -31,7 +31,7 @@ function Inbound() {
       .then((result) => {
         const { code, data } = result;
         if (code === 200) {
-          setDatas(data.items);
+          setDatas(data.items.reverse());
         }
       })
       .catch((error) => alert(error.toString))

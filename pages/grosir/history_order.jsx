@@ -24,7 +24,7 @@ export async function getServerSideProps({ req, res }) {
   return {
     props: {
       code: data.code,
-      data: data.data,
+      data: data.data.reverse(),
       message: data.message,
       token,
     },
