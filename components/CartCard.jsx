@@ -3,16 +3,7 @@ import { useState, useEffect } from "react";
 import { formatCurrency } from "./CardProduct";
 
 function MyCart(props) {
-	const [counter, setCounter] = useState(1);
-	const handleIncrement = () => {
-		setCounter(counter + 1);
-	};
-
-	const handleDecrement = () => {
-		setCounter(counter - 1);
-	};
-
-	return (
+  return (
     <div className="card card-side bg-white shadow-md">
       <figure>
         <img src={props.image} alt="image" />
@@ -22,27 +13,31 @@ function MyCart(props) {
         <p>{props.unit}</p>
         <p>{formatCurrency(props.price)}</p>
 
-        <p>Ammount</p>
+        <p>Amount</p>
         <div className="flex">
           <button
             className={
-              counter > 1
-                ? "bg-white btn btn-outline btn-primary btn-sm text-black text-lg"
-                : "bg-white btn btn-outline btn-primary btn-disabled btn-sm text-black text-lg"
+              props.qty <= 1 || props.loading
+                ? "bg-white btn btn-outline btn-disabled btn-sm text-black text-lg"
+                : "bg-white btn btn-outline btn-primary  btn-sm text-black text-lg"
             }
-            onClick={() => handleDecrement()}
+            onClick={() => props.handleQty("decrement")}
           >
             -
           </button>
-          <p className="text-center w-20">{counter} </p>
+          <p className="text-center w-20">{props.qty}</p>
           <button
-            className="btn btn-primary btn-sm text-white text-lg"
-            onClick={() => handleIncrement()}
+            className={
+              props.loading
+                ? "btn  btn-disabled btn-primary btn-sm text-black text-lg"
+                : "btn btn-primary btn-sm text-white text-lg"
+            }
+            onClick={() => props.handleQty("increment")}
           >
             +
           </button>
         </div>
-        <p>Sub Total : {formatCurrency(props.price * counter)}</p>
+        <p>Sub Total : {formatCurrency(props.subtotal)}</p>
 
         <div className="card-actions justify-end">
           <button
