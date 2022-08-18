@@ -148,7 +148,7 @@ function Cart() {
         ))}
       </div>
 
-      <div className="w-auto h-auto bg-white rounded-[20px] shadow-md m-5 flex justify-between font-Poppins font-semibold p-3 text-black text-lg">
+      <div className="w-auto h-auto bg-white rounded-[20px] shadow-md m-5 flex justify-between items-center font-Poppins font-semibold p-3 text-black text-lg">
         <p>Total Price {formatCurrency(total.grand_total)}</p>
         <Link href="/toko/history_order">
           <button
