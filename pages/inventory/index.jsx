@@ -19,9 +19,14 @@ function Inventory() {
   const router = useRouter();
   const [datas, setDatas] = useState([]);
   const [loading, setLoading] = useState([]);
-  const [objSubmit, setObjSubmit] = useState({});
+  const [objSubmit, setObjSubmit] = useState({
+    product_image: "",
+    product_name: "",
+    unit: "",
+    price: "",
+    stock: "",
+  });
   const [showModal, setShowModal] = useState(false);
-  const [value, setValue] = useState("");
 
   useEffect(() => {
     if (!token) {
@@ -77,8 +82,13 @@ function Inventory() {
       .then((result) => {
         const { message } = result;
         alert(message);
-        setObjSubmit({});
-        setValue("");
+        setObjSubmit({
+          product_image: "",
+          product_name: "",
+          unit: "",
+          price: "",
+          stock: "",
+        });
       })
       .catch((error) => alert(error.toString()))
       .finally(() => {
@@ -204,21 +214,21 @@ function Inventory() {
             </span>
           </label>
           <form id="form-add" onSubmit={(e) => addData(e)}>
-            <input type="file" id="input-image" defaultValue={value} onChange={(e) => handleChange(e.target.files[0], "product_image")} accept="image/png, image/jpeg" className="w-full text-black font-Poppins mb-2" />
+            <input type="file" id="input-image" onChange={(e) => handleChange(e.target.files[0], "product_image")} onClick={(e) => (e.target.value = null)} accept="image/png, image/jpeg" className="w-full text-black font-Poppins mb-2" />
             <input
               type="text"
               id="input-name"
-              defaultValue={value}
+              value={objSubmit.product_name}
               onChange={(e) => handleChange(e.target.value, "product_name")}
               placeholder="Product Name*"
               className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
             />
-            <input type="text" id="input-unit" defaultValue={value} onChange={(e) => handleChange(e.target.value, "unit")} placeholder="Unit*" className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2" />
+            <input type="text" id="input-unit" value={objSubmit.unit} onChange={(e) => handleChange(e.target.value, "unit")} placeholder="Unit*" className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2" />
             <div className="flex gap-2">
               <input
                 type="number"
                 id="input-stock"
-                defaultValue={value}
+                value={objSubmit.stock}
                 onChange={(e) => handleChange(e.target.value, "stock")}
                 placeholder="Stock*"
                 className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
@@ -226,7 +236,7 @@ function Inventory() {
               <input
                 type="number"
                 id="input-price"
-                defaultValue={value}
+                value={objSubmit.price}
                 onChange={(e) => handleChange(e.target.value, "price")}
                 placeholder="Price*"
                 className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
