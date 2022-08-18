@@ -35,7 +35,6 @@ function Inbound() {
       .then((result) => {
         const { code, data } = result;
         if (code === 200) {
-          console.log(data);
           if (data.items === null) {
             setDatas(null);
           } else {

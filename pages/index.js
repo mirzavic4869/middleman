@@ -52,10 +52,8 @@ export default function Home({ data }) {
         const { message } = result;
         alert(message);
       })
-      .catch((error) => alert(error.toString))
-      .finally(() => {
-        setLoading(false);
-      });
+      .catch((error) => alert(error.toString()))
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -63,11 +61,15 @@ export default function Home({ data }) {
       <Navbar />
       <div>
         <h1 className="text-black font-Roboto font-semibold text-[30px] p-9 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20">Dashboard</h1>
-        <div className="grid grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {data.map((data) => (
-            <DashboardCard key={data.id} id={data.id} image={data.product_image} name={data.product_name} unit={data.unit} stock={data.stock} price={data.price} handleSubmit={handleSubmit} />
-          ))}
-        </div>
+        {data ? (
+          <div className="grid grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {data.map((data) => (
+              <DashboardCard key={data.id} id={data.id} image={data.product_image} name={data.product_name} unit={data.unit} stock={data.stock} price={data.price} handleSubmit={handleSubmit} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center">Data not found</div>
+        )}
       </div>
     </div>
   );

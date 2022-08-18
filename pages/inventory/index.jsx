@@ -5,6 +5,15 @@ import { MdSearch } from "react-icons/md";
 import { useRouter } from "next/dist/client/router";
 import { getCookie } from "cookies-next";
 
+export const formatCurrency = (number) => {
+  const currency = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    maximumSignificantDigits: Math.trunc(Math.abs(number)).toFixed().length,
+  }).format(number);
+  return currency;
+};
+
 function Inventory() {
   const token = getCookie("token");
   const router = useRouter();
@@ -35,12 +44,14 @@ function Inventory() {
       .then((result) => {
         const { code, data } = result;
         if (code === 200) {
-          setDatas(data.reverse());
-        } else {
-          setDatas(null);
+          if (data === null) {
+            setDatas(null);
+          } else {
+            setDatas(data.reverse());
+          }
         }
       })
-      .catch((error) => alert(error.toString))
+      .catch((error) => alert(error.toString()))
       .finally(() => setLoading(false));
   };
 
@@ -67,14 +78,82 @@ function Inventory() {
         const { message } = result;
         alert(message);
         setObjSubmit({});
+        setValue("");
       })
-      .catch((error) => alert(error.toString))
+      .catch((error) => alert(error.toString()))
       .finally(() => {
         setLoading(false);
         setShowModal(false);
         fetchData();
-        setValue("");
       });
+  };
+
+  const editData = async (e, idProduct) => {
+    e.preventDefault();
+    const formData = new FormData();
+    for (const key in objSubmit) {
+      formData.append(key, objSubmit[key]);
+    }
+    const requestOptions = {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    };
+
+    fetch(`https://postme.site/users/products/${idProduct}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        const { message } = result;
+        alert(message);
+        setObjSubmit({});
+      })
+      .catch((error) => alert(error.toString()))
+      .finally(() => {
+        fetchData();
+      });
+  };
+
+  const deleteData = async (e, idProduct) => {
+    e.preventDefault();
+    const requestOptions = {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    fetch(`https://postme.site/users/products/${idProduct}`, requestOptions)
+      .then((result) => {
+        alert("success delete product");
+      })
+      .catch((error) => alert(error.toString()))
+      .finally(() => {
+        fetchData();
+      });
+  };
+
+  const addProductOut = async (e, idProduct, qty) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("product_id", idProduct);
+    formData.append("qty", qty);
+
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    };
+
+    fetch(`https://postme.site/inoutbounds`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        alert("success creating a cart");
+      })
+      .catch((error) => alert(error.toString()));
   };
 
   const handleChange = (value, key) => {
@@ -96,7 +175,7 @@ function Inventory() {
             <MdSearch />
           </button>
         </div>
-        <button id="btn-add" type="button" onClick={() => setShowModal(true)} className="btn btn-sm btn-primary modal-button text-white font-Roboto">
+        <button id="btn-add-modal" type="button" onClick={() => setShowModal(true)} className="btn btn-sm btn-primary modal-button text-white font-Roboto">
           Add Product
         </button>
       </div>
@@ -106,7 +185,7 @@ function Inventory() {
         ) : (
           <div className="grid grid-cols-1 gap-2 m-2 md:grid-cols-2 lg:grid-cols-3">
             {datas.map((value) => (
-              <CardProduct key={value.id} data={value} fnFetchData={fetchData} />
+              <CardProduct key={value.id} data={value} fnEditData={editData} fnDeleteData={deleteData} fnHandleChange={handleChange} fnAddProductOut={addProductOut} />
             ))}
           </div>
         )
@@ -114,7 +193,8 @@ function Inventory() {
         <div className="text-center">Please add your products</div>
       )}
 
-      <input type="checkbox" className="modal-toggle" checked={showModal} />
+      {/* Modal */}
+      <input type="checkbox" id="modal" className="modal-toggle" checked={showModal} />
       <div className="modal">
         <div className="modal-box">
           <h3 className="text-3xl text-primary my-3 font-Roboto font-medium">Add Product</h3>
@@ -123,7 +203,7 @@ function Inventory() {
               Product Image<span className="text-secondary">*</span>
             </span>
           </label>
-          <form onSubmit={(e) => addData(e)}>
+          <form id="form-add" onSubmit={(e) => addData(e)}>
             <input type="file" id="input-image" defaultValue={value} onChange={(e) => handleChange(e.target.files[0], "product_image")} accept="image/png, image/jpeg" className="w-full text-black font-Poppins mb-2" />
             <input
               type="text"

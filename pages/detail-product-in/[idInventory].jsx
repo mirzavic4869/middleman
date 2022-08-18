@@ -37,7 +37,7 @@ function DetailProductIn() {
           setDatas(data.items);
         }
       })
-      .catch((error) => alert(error.toString))
+      .catch((error) => alert(error.toString()))
       .finally(() => setLoading(false));
   };
 

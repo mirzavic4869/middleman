@@ -37,10 +37,14 @@ function HistoryProductOut() {
       .then((result) => {
         const { code, data } = result;
         if (code === 200) {
-          setDatas(data.reverse());
+          if (data === null) {
+            setDatas(null);
+          } else {
+            setDatas(data.reverse());
+          }
         }
       })
-      .catch((error) => alert(error.toString))
+      .catch((error) => alert(error.toString()))
       .finally(() => setLoading(false));
   };
 

@@ -5,11 +5,11 @@ import { MdSearch } from "react-icons/md";
 import { useRouter } from "next/dist/client/router";
 import { getCookie } from "cookies-next";
 
-function MyProduct({ data }) {
+function MyProduct() {
   const token = getCookie("token");
   const role = getCookie("role");
   const router = useRouter();
-  const [datas, setDatas] = useState([data]);
+  const [datas, setDatas] = useState([]);
   const [loading, setLoading] = useState([]);
   const [objSubmit, setObjSubmit] = useState({});
   const [showModal, setShowModal] = useState(false);
@@ -39,12 +39,14 @@ function MyProduct({ data }) {
       .then((result) => {
         const { code, data } = result;
         if (code === 200) {
-          setDatas(data.reverse());
-        } else {
-          setDatas(null);
+          if (data === null) {
+            setDatas(null);
+          } else {
+            setDatas(data.reverse());
+          }
         }
       })
-      .catch((error) => alert(error.toString))
+      .catch((error) => alert(error.toString()))
       .finally(() => setLoading(false));
   };
 
@@ -81,6 +83,74 @@ function MyProduct({ data }) {
       });
   };
 
+  const editData = async (e, idProduct) => {
+    e.preventDefault();
+    const formData = new FormData();
+    for (const key in objSubmit) {
+      formData.append(key, objSubmit[key]);
+    }
+    const requestOptions = {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    };
+
+    fetch(`https://postme.site/admins/products/${idProduct}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        const { message } = result;
+        alert(message);
+        setObjSubmit({});
+      })
+      .catch((error) => alert(error.toString()))
+      .finally(() => {
+        fetchData();
+      });
+  };
+
+  const deleteData = async (e, idProduct) => {
+    e.preventDefault();
+    const requestOptions = {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    fetch(`https://postme.site/admins/products/${idProduct}`, requestOptions)
+      .then((result) => {
+        alert("success delete product");
+      })
+      .catch((error) => alert(error.toString()))
+      .finally(() => {
+        fetchData();
+      });
+  };
+
+  const addProductOut = async (e, idProduct, qty) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("product_id", idProduct);
+    formData.append("qty", qty);
+
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    };
+
+    fetch(`https://postme.site/inoutbounds`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        alert("success creating a cart");
+      })
+      .catch((error) => alert(error.toString()));
+  };
+
   const handleChange = (value, key) => {
     let temp = { ...objSubmit };
     temp[key] = value;
@@ -110,13 +180,15 @@ function MyProduct({ data }) {
         ) : (
           <div className="grid grid-cols-1 gap-2 m-2 md:grid-cols-2 lg:grid-cols-3">
             {datas.map((value) => (
-              <CardProduct key={value.id} data={value} fnFetchData={fetchData} />
+              <CardProduct key={value.id} data={value} fnEditData={editData} fnDeleteData={deleteData} fnHandleChange={handleChange} fnAddProductOut={addProductOut} />
             ))}
           </div>
         )
       ) : (
         <div className="text-center">Please add your products</div>
       )}
+
+      {/* Modal */}
       <input type="checkbox" className="modal-toggle" checked={showModal} />
       <div className="modal">
         <div className="modal-box">

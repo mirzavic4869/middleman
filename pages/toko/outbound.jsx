@@ -38,7 +38,7 @@ function Outbound() {
           }
         }
       })
-      .catch((error) => alert(error.toString))
+      .catch((error) => alert(error.toString()))
       .finally(() => setLoading(false));
   };
 
@@ -58,8 +58,7 @@ function Outbound() {
         const { message } = result;
         alert(message);
       })
-      .catch((error) => alert(error.toString))
-      .finally(() => {});
+      .catch((error) => alert(error.toString()));
   };
 
   const deleteData = async (e, idProduct) => {
@@ -73,7 +72,7 @@ function Outbound() {
 
     fetch(`https://postme.site/inoutbounds/${idProduct}`, requestOptions)
       .then((result) => {
-        alert("Berhasil hapus data");
+        alert("success delete product");
       })
       .catch((error) => alert(error.toString()))
       .finally(() => {
@@ -97,8 +96,8 @@ function Outbound() {
           <div className="text-center">Loading...</div>
         ) : (
           <div className="grid grid-cols-1 m-3 gap-2 md:grid-cols-2 lg:grid-cols-3">
-            {datas.map((data) => (
-              <OutBound key={data.product_id} id={data.product_id} name={data.product_name} unit={data.unit} qty={data.qty} fnDeleteData={deleteData} />
+            {datas.map((value) => (
+              <OutBound key={value.product_id} id={value.product_id} name={value.product_name} unit={value.unit} qty={value.qty} fnDeleteData={deleteData} />
             ))}
           </div>
         )

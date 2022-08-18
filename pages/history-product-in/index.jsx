@@ -2,13 +2,7 @@ import React, { useState, useEffect } from "react";
 import CardHistoryProductOut from "../../components/CardHistoryProductOut";
 import Navbar from "../../components/Navbar";
 import { getCookie } from "cookies-next";
-import moment from "moment";
 import { useRouter } from "next/dist/client/router";
-
-export function formatDate(date) {
-  const d = moment(date);
-  return d.format("DD/MM/YYYY");
-}
 
 function HistoryProductIn() {
   const token = getCookie("token");
@@ -40,10 +34,14 @@ function HistoryProductIn() {
       .then((result) => {
         const { code, data } = result;
         if (code === 200) {
-          setDatas(data.reverse());
+          if (data === null) {
+            setDatas(null);
+          } else {
+            setDatas(data.reverse());
+          }
         }
       })
-      .catch((error) => alert(error.toString))
+      .catch((error) => alert(error.toString()))
       .finally(() => setLoading(false));
   };
 

@@ -69,10 +69,7 @@ const Profile = ({ data }) => {
         const { message } = result;
         alert(message);
       })
-      .catch((error) => {
-        console.log(error);
-        alert(error.toString());
-      })
+      .catch((error) => alert(error.toString()))
       .finally(() => setLoading(false));
   };
 
@@ -97,9 +94,7 @@ const Profile = ({ data }) => {
           router.push("/auth/welcome");
         }
       })
-      .catch((error) => {
-        console.log(error);
-      })
+      .catch((error) => alert(error.toString()))
       .finally(() => setLoading(false));
   };
 

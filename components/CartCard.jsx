@@ -71,7 +71,7 @@ function OutBound(props) {
             <button id="decrement" onClick={() => Decrement()} className="btn btn-outline btn-sm btn-primary text-lg">
               -
             </button>
-            <input type="number" value={value} className="border input-sm input-primary w-20" />
+            <input id="input-amount" type="number" value={value} className="border input-sm input-primary w-20" />
             <button id="increment" onClick={() => Increment()} className="btn btn-primary btn-sm text-white text-lg">
               +
             </button>

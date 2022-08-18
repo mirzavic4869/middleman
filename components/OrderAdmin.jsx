@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { formatDate } from "../pages/history-product-out";
-import { formatCurrency } from "./CardProduct";
+import { formatCurrency } from "../pages/inventory";
 
 function HistoryAdminOrder(props) {
   return (

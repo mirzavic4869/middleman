@@ -64,7 +64,6 @@ function Cart({ data }) {
         alert(message);
       })
       .catch((error) => {
-        console.log(error);
         alert(error.toString());
       })
       .finally(() => setLoading(false));
@@ -98,9 +97,7 @@ function Cart({ data }) {
           deleteCookie("token");
         }
       })
-      .catch((error) => {
-        console.log(error);
-      })
+      .catch((error) => alert(error.toString()))
       .finally(() => setLoading(false));
   };
 
