@@ -33,21 +33,13 @@ export default function Welcome() {
               <Image src={logo} alt="logo" />
             </div>
             <div className="w-72 md:w-96">
-              <Image src={store} />
+              <Image src={store} alt="store" />
             </div>
           </div>
           <div className="flex flex-col items-center">
             <div className="w-full md:w-96 lg:w-[432px]">
-              <AddButton
-                id="to-login"
-                onClick={() => router.push("/auth/login")}
-                title="sign in"
-              />
-              <AddButton2
-                id="to-register"
-                onClick={() => router.push("/auth/register")}
-                title="sign up"
-              />
+              <AddButton id="to-login" onClick={() => router.push("/auth/login")} title="sign in" />
+              <AddButton2 id="to-register" onClick={() => router.push("/auth/register")} title="sign up" />
             </div>
           </div>
         </div>

@@ -31,7 +31,9 @@ function IncomingOrder(props) {
             <td className="py-2">{formatCurrency(props.total)}</td>
             <td className="py-2">
               <Link href={`/grosir/${props.id}`}>
-                <button className="btn btn-primary btn-sm text-white rounded-[10px]">Detail</button>
+                <button id="to-detail-order" className="btn btn-primary btn-sm text-white rounded-[10px]">
+                  Detail
+                </button>
               </Link>
             </td>
           </tr>

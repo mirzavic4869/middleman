@@ -22,6 +22,7 @@ function Inventory() {
   }, []);
 
   const fetchData = async () => {
+    setLoading(true);
     const requestOptions = {
       method: "GET",
       headers: {
@@ -66,13 +67,13 @@ function Inventory() {
         const { message } = result;
         alert(message);
         setObjSubmit({});
-        setValue("");
       })
       .catch((error) => alert(error.toString))
       .finally(() => {
         setLoading(false);
         setShowModal(false);
         fetchData();
+        setValue("");
       });
   };
 
@@ -95,14 +96,7 @@ function Inventory() {
             <MdSearch />
           </button>
         </div>
-        <button
-          id="btn-add"
-          type="button"
-          onClick={() => {
-            setShowModal(true);
-          }}
-          className="btn btn-sm btn-primary modal-button text-white font-Roboto"
-        >
+        <button id="btn-add" type="button" onClick={() => setShowModal(true)} className="btn btn-sm btn-primary modal-button text-white font-Roboto">
           Add Product
         </button>
       </div>
@@ -130,7 +124,7 @@ function Inventory() {
             </span>
           </label>
           <form onSubmit={(e) => addData(e)}>
-            <input type="file" id="input-image" defaultValue={value} onChange={(e) => handleChange(e.target.files[0], "product_image")} className="w-full text-black font-Poppins mb-2" />
+            <input type="file" id="input-image" defaultValue={value} onChange={(e) => handleChange(e.target.files[0], "product_image")} accept="image/png, image/jpeg" className="w-full text-black font-Poppins mb-2" />
             <input
               type="text"
               id="input-name"

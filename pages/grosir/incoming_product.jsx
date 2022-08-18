@@ -51,8 +51,8 @@ function Incoming_product({ data }) {
               </tr>
             </thead>
           </table>
-          {data.map((data) => (
-            <IncomingOrder key={data.id} id={data.order_id} date={formatDate(data.date)} status={data.status} total={data.grand_total} />
+          {data.map((value) => (
+            <IncomingOrder key={value.id} id={value.order_id} date={formatDate(value.date)} status={value.status} total={value.grand_total} />
           ))}
         </div>
       </div>

@@ -20,10 +20,14 @@ function HistoryProductIn() {
     if (!token) {
       router.push("/auth/welcome");
     }
+    if (role === "user") {
+      router.push("/");
+    }
     fetchData();
   }, []);
 
   const fetchData = async () => {
+    setLoading(true);
     const requestOptions = {
       method: "GET",
       headers: {

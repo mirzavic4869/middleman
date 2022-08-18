@@ -24,6 +24,7 @@ function HistoryProductOut() {
   }, []);
 
   const fetchData = async () => {
+    setLoading(true);
     const requestOptions = {
       method: "GET",
       headers: {
@@ -36,7 +37,7 @@ function HistoryProductOut() {
       .then((result) => {
         const { code, data } = result;
         if (code === 200) {
-          setDatas(data);
+          setDatas(data.reverse());
         }
       })
       .catch((error) => alert(error.toString))

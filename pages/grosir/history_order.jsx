@@ -48,8 +48,8 @@ function History_order({ data }) {
               </tr>
             </thead>
           </table>
-          {data.map((data) => (
-            <HistoryAdminOrder key={data.id} id={data.order_id} date={data.date} status={data.status} total={data.grand_total} />
+          {data.map((value) => (
+            <HistoryAdminOrder key={value.id} id={value.order_id} date={value.date} status={value.status} total={value.grand_total} />
           ))}
         </div>
       </div>

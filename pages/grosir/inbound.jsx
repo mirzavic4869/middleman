@@ -6,6 +6,7 @@ import { useRouter } from "next/dist/client/router";
 
 function Inbound() {
   const token = getCookie("token");
+  const role = getCookie("role");
   const router = useRouter();
   const [datas, setDatas] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -13,6 +14,9 @@ function Inbound() {
   useEffect(() => {
     if (!token) {
       router.push("/auth/welcome");
+    }
+    if (role === "user") {
+      router.push("/");
     }
     fetchData();
   }, []);
@@ -31,10 +35,15 @@ function Inbound() {
       .then((result) => {
         const { code, data } = result;
         if (code === 200) {
-          setDatas(data.items.reverse());
+          console.log(data);
+          if (data.items === null) {
+            setDatas(null);
+          } else {
+            setDatas(data.items.reverse());
+          }
         }
       })
-      .catch((error) => alert(error.toString))
+      .catch((error) => alert(error.toString()))
       .finally(() => setLoading(false));
   };
 

@@ -26,6 +26,7 @@ function MyProduct({ data }) {
   }, []);
 
   const fetchData = async () => {
+    setLoading(true);
     const requestOptions = {
       method: "GET",
       headers: {
@@ -48,11 +49,14 @@ function MyProduct({ data }) {
   };
 
   const addData = async (e) => {
+    setLoading(true);
     e.preventDefault();
+
     const formData = new FormData();
     for (const key in objSubmit) {
       formData.append(key, objSubmit[key]);
     }
+
     const requestOptions = {
       method: "POST",
       headers: {
@@ -71,6 +75,7 @@ function MyProduct({ data }) {
       })
       .catch((error) => alert(error.toString()))
       .finally(() => {
+        setLoading(false);
         setShowModal(false);
         fetchData();
       });
@@ -122,7 +127,7 @@ function MyProduct({ data }) {
             </span>
           </label>
           <form onSubmit={(e) => addData(e)}>
-            <input type="file" id="input-image" onChange={(e) => handleChange(e.target.files[0], "product_image")} className="w-full text-black font-Poppins mb-2" />
+            <input type="file" id="input-image" onChange={(e) => handleChange(e.target.files[0], "product_image")} accept="image/png, image/jpeg" className="w-full text-black font-Poppins mb-2" />
             <input
               type="text"
               id="input-name"
@@ -151,7 +156,7 @@ function MyProduct({ data }) {
               />
             </div>
             <div className="modal-action font-Roboto">
-              <button id="btn-add" type="submit" className="btn btn-primary btn-sm w-20 text-white">
+              <button id="btn-add" className="btn btn-primary btn-sm w-20 text-white" disabled={loading}>
                 Add
               </button>
               <button
@@ -159,7 +164,6 @@ function MyProduct({ data }) {
                 type="reset"
                 onClick={() => {
                   setShowModal(false);
-                  setValue("");
                 }}
                 className="btn btn-secondary btn-sm w-20 text-white"
               >

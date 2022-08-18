@@ -1,8 +1,7 @@
 import Navbar from "../components/Navbar";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import DashboardCard from "../components/DashboardCard";
-import { useRouter } from "next/dist/client/router";
-import { deleteCookie, getCookie } from "cookies-next";
+import { getCookie } from "cookies-next";
 
 export async function getServerSideProps({ req, res }) {
   const token = getCookie("token", { req, res });
@@ -27,9 +26,7 @@ export async function getServerSideProps({ req, res }) {
   };
 }
 export default function Home({ data }) {
-  console.log(data);
   const token = getCookie("token");
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [qty] = useState(1);
 

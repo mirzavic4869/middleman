@@ -25,7 +25,7 @@ function MyCart(props) {
         </div>
 
         <div className="card-actions justify-end">
-          <button className="btn btn-secondary text-white" onClick={(e) => props.handleDelete(e)}>
+          <button id="btn-delete" className="btn btn-secondary text-white" onClick={(e) => props.handleDelete(e)}>
             Delete
           </button>
         </div>

@@ -31,7 +31,11 @@ function Outbound() {
       .then((result) => {
         const { code, data } = result;
         if (code === 200) {
-          setDatas(data.items.reverse());
+          if (data.items === null) {
+            setDatas(null);
+          } else {
+            setDatas(data.items.reverse());
+          }
         }
       })
       .catch((error) => alert(error.toString))
