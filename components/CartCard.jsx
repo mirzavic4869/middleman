@@ -13,44 +13,48 @@ function MyCart(props) {
 	};
 
 	return (
-		<div className="card card-side bg-white shadow-md">
-			<figure>
-				<img src={props.image} alt="image" />
-			</figure>
-			<div className="card-body font-Poppins">
-				<h1 className="card-title">{props.name}</h1>
-				<p>{props.unit}</p>
-				<p>{formatCurrency(props.price)}</p>
+    <div className="card card-side bg-white shadow-md">
+      <figure>
+        <img src={props.image} alt="image" />
+      </figure>
+      <div className="card-body font-Poppins">
+        <h1 className="card-title">{props.name}</h1>
+        <p>{props.unit}</p>
+        <p>{formatCurrency(props.price)}</p>
 
-				<p>Ammount</p>
-				<div className="flex">
-					<button
-						className="bg-white btn btn-outline btn-primary btn-sm text-black text-lg"
-						onClick={() => handleDecrement()}
-					>
-						-
-					</button>
-					<p className="text-center w-20">{counter} </p>
-					<button
-						className="btn btn-primary btn-sm text-white text-lg"
-						onClick={() => handleIncrement()}
-					>
-						+
-					</button>
-				</div>
-				<p>Sub Total : {formatCurrency(props.price * counter)}</p>
+        <p>Ammount</p>
+        <div className="flex">
+          <button
+            className={
+              counter > 1
+                ? "bg-white btn btn-outline btn-primary btn-sm text-black text-lg"
+                : "bg-white btn btn-outline btn-primary btn-disabled btn-sm text-black text-lg"
+            }
+            onClick={() => handleDecrement()}
+          >
+            -
+          </button>
+          <p className="text-center w-20">{counter} </p>
+          <button
+            className="btn btn-primary btn-sm text-white text-lg"
+            onClick={() => handleIncrement()}
+          >
+            +
+          </button>
+        </div>
+        <p>Sub Total : {formatCurrency(props.price * counter)}</p>
 
-				<div className="card-actions justify-end">
-					<button
-						className="btn btn-secondary text-white"
-						onClick={(e) => props.handleDelete(e, props.id)}
-					>
-						Delete
-					</button>
-				</div>
-			</div>
-		</div>
-	);
+        <div className="card-actions justify-end">
+          <button
+            className="btn btn-secondary text-white"
+            onClick={(e) => props.handleDelete(e, props.id)}
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function OutBound(props) {
