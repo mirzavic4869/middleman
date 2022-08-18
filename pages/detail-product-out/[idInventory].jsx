@@ -25,19 +25,18 @@ function DetailProductOut() {
 			},
 		};
 
-
-    fetch(`https://virtserver.swaggerhub.com/vaniliacahya/capstone/1.0.0/users/inventory/${idInventory}`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        const { code, data } = result;
-        if (code === 200) {
-          setDatas(data.items);
-        }
-      })
-      .catch((error) => alert(error.toString))
-      .finally(() => setLoading(false));
-  };
-
+		fetch(`https://postme.site/users/inventory/${idInventory}`, requestOptions)
+			.then((response) => response.json())
+			.then((result) => {
+				console.log(result);
+				const { code, data } = result;
+				if (code === 200) {
+					setDatas(data.items);
+				}
+			})
+			.catch((error) => alert(error.toString()))
+			.finally(() => setLoading(false));
+	};
 
 	return (
 		<>
