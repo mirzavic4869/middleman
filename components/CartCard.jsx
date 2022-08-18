@@ -40,10 +40,7 @@ function MyCart(props) {
         <p>Sub Total : {formatCurrency(props.subtotal)}</p>
 
         <div className="card-actions justify-end">
-          <button
-            className="btn btn-secondary text-white"
-            onClick={(e) => props.handleDelete(e, props.id)}
-          >
+          <button id="btn-delete" className="btn btn-secondary text-white" onClick={(e) => props.handleDelete(e)}>
             Delete
           </button>
         </div>
@@ -70,51 +67,34 @@ function OutBound(props) {
 		}
 	}, [value]);
 
-	return (
-		<div className="card w-auto bg-white shadow-md">
-			<div className="card-body font-Poppins">
-				<div className="card-actions justify-end">
-					<button
-						id="btn-delete"
-						onClick={(e) => props.fnDeleteData(e, props.id)}
-						title="Delete"
-						className="btn btn-secondary text-white font-Roboto rounded-[10px]"
-					>
-						Delete
-					</button>
-				</div>
-				<h2 className="card-title">{props.name}</h2>
-				<p>Unit: {props.unit}</p>
-				<p>Stock: {props.qty}</p>
-				<div className="form-control">
-					<label className="label">
-						<span className="label-text">Enter amount</span>
-					</label>
-					<div className="input-group">
-						<button
-							id="decrement"
-							onClick={() => Decrement()}
-							className="btn btn-outline btn-sm btn-primary text-lg"
-						>
-							-
-						</button>
-						<input
-							type="number"
-							value={value}
-							className="border input-sm input-primary w-20"
-						/>
-						<button
-							id="increment"
-							onClick={() => Increment()}
-							className="btn btn-primary btn-sm text-white text-lg"
-						>
-							+
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+  return (
+    <div className="card w-auto bg-white shadow-md">
+      <div className="card-body font-Poppins">
+        <div className="card-actions justify-end">
+          <button id="btn-delete" onClick={(e) => props.fnDeleteData(e, props.id)} title="Delete" className="btn btn-secondary text-white font-Roboto rounded-full">
+            Delete
+          </button>
+        </div>
+        <h2 className="card-title">{props.name}</h2>
+        <p>Unit: {props.unit}</p>
+        <p>Stock: {props.qty}</p>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Enter amount</span>
+          </label>
+          <div className="input-group">
+            <button id="decrement" onClick={() => Decrement()} className="btn btn-outline btn-sm btn-primary text-lg">
+              -
+            </button>
+            <input id="input-amount" type="number" value={value} className="border input-sm input-primary w-20" />
+            <button id="increment" onClick={() => Increment()} className="btn btn-primary btn-sm text-white text-lg">
+              +
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export { MyCart, OutBound };

@@ -13,10 +13,14 @@ function DetailProductIn() {
     if (!token) {
       router.push("/auth/welcome");
     }
+    if (role === "user") {
+      router.push("/");
+    }
     fetchData();
   }, []);
 
   const fetchData = async () => {
+    setLoading(true);
     const { idInventory } = router.query;
     const requestOptions = {
       method: "GET",
@@ -33,7 +37,7 @@ function DetailProductIn() {
           setDatas(data.items);
         }
       })
-      .catch((error) => alert(error.toString))
+      .catch((error) => alert(error.toString()))
       .finally(() => setLoading(false));
   };
 

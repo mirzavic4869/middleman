@@ -77,7 +77,7 @@ const Profile = ({ data }) => {
       .finally(() => {
         setLoading(false);
         setShowModal(false);
-      });
+
   };
 
   // delete user
@@ -101,9 +101,7 @@ const Profile = ({ data }) => {
           router.push("/auth/welcome");
         }
       })
-      .catch((error) => {
-        console.log(error);
-      })
+      .catch((error) => alert(error.toString()))
       .finally(() => setLoading(false));
   };
 

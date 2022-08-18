@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import Link from "next/link";
-import { formatCurrency } from "./CardProduct";
+import { formatCurrency } from "../pages/inventory";
 
 function DashboardCard(props) {
   return (
@@ -10,7 +9,6 @@ function DashboardCard(props) {
         <h1 className="pb-5 text-black">{props.name}</h1>
         <p className="pb-5 text-black">{`${props.stock} ${props.unit}`}</p>
         <p className="pb-5 text-black">{formatCurrency(props.price)}</p>
-        {/* <Link href="/toko/cart"> */}
         <button id="to-cart" className="btn btn-primary text-white rounded-[20px]" onClick={(e) => props.handleSubmit(e, props.id)}>
           Add
         </button>

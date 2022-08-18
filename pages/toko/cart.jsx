@@ -122,6 +122,7 @@ function Cart() {
         fetchData();
       });
   };
+
   return (
     <div className="bg-base-100 min-h-screen">
       <Navbar />

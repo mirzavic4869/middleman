@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../../components/Navbar";
 import { getCookie } from "cookies-next";
 import { HistoryOrder } from "../../components/OrderCard";
-import { formatCurrency } from "../../components/CardProduct";
+import { formatCurrency } from "../inventory";
 
 export async function getServerSideProps({ req, res }) {
   const token = getCookie("token", { req, res });
@@ -34,11 +34,15 @@ function History_order({ data }) {
       <Navbar />
       <div>
         <h1 className="text-black font-Roboto font-semibold text-[30px] p-9 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20">History Order Product</h1>
-        <div className="p-5 gap-4 grid grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {data.map((data) => (
-            <HistoryOrder key={data.order_id} id={data.order_id} date={data.date} status={data.status} total={formatCurrency(data.grand_total)} />
-          ))}
-        </div>
+        {data ? (
+          <div className="p-5 gap-4 grid grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {data.map((value) => (
+              <HistoryOrder key={value.order_id} id={value.order_id} date={value.date} status={value.status} total={formatCurrency(value.grand_total)} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center">Data not found</div>
+        )}
       </div>
     </div>
   );

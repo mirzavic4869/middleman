@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar";
 import { useRouter } from "next/dist/client/router";
 import { getCookie } from "cookies-next";
 import { DetailOrder } from "../../components/OrderCard";
-import { formatCurrency } from "../../components/CardProduct";
+import { formatCurrency } from "../inventory";
 
 function Detail() {
   const [total, setTotal] = useState([]);
@@ -44,7 +44,7 @@ function Detail() {
           setId(data.order_id);
         }
       })
-      .catch((error) => alert(error.toString))
+      .catch((error) => alert(error.toString()))
       .finally(() => setLoading(false));
   };
 
