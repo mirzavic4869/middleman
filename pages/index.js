@@ -4,47 +4,56 @@ import DashboardCard from "../components/DashboardCard";
 import { getCookie } from "cookies-next";
 
 export async function getServerSideProps({ req, res }) {
-  const token = getCookie("token", { req, res });
-  if (!token) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/auth/welcome",
-      },
-    };
-  }
-  const requestOptions = {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-  const response = await fetch(`https://postme.site/admins/products`, requestOptions);
-  const data = await response.json();
-  return {
-    props: { code: data.code, data: data.data.reverse(), message: data.message, token },
-  };
+	const token = getCookie("token", { req, res });
+	if (!token) {
+		return {
+			redirect: {
+				permanent: false,
+				destination: "/auth/welcome",
+			},
+		};
+	}
+	const requestOptions = {
+		method: "GET",
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
+	const response = await fetch(
+		`https://postme.site/admins/products`,
+		requestOptions
+	);
+	const data = await response.json();
+	return {
+		props: {
+			code: data.code,
+			data: data.data.reverse(),
+			message: data.message,
+			token,
+		},
+	};
 }
 export default function Home({ data }) {
   const token = getCookie("token");
   const [loading, setLoading] = useState(false);
   const [qty] = useState(1);
 
-  const handleSubmit = async (e, key) => {
-    setLoading(true);
-    e.preventDefault();
-    const body = {
-      product_id: key,
-      qty: qty,
-    };
-    var requestOptions = {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    };
+	const handleSubmit = async (e, key) => {
+		setLoading(true);
+		e.preventDefault();
+		const body = {
+			product_id: key,
+			qty: qty,
+		};
+		var requestOptions = {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${token}`,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(body),
+		};
+
 
     fetch("https://postme.site/carts", requestOptions)
       .then((response) => response.json())
