@@ -70,17 +70,13 @@ function Inbound() {
 
   const handleQty = (data, type) => {
     let temp = datas.slice();
-    temp.map((i) => {
-      if (i.id === data.id) {
-        type === "increment" ? data.amount++ : data.amount--;
-        if (data.amount < 1) {
-          data.amount = 1;
-        }
-        if (data.amount > data.qty) {
-          data.amount = data.qty;
-        }
-      }
-    });
+    type === "increment" ? data.amount++ : data.amount--;
+    if (data.amount < 1) {
+      data.amount = 1;
+    }
+    if (data.amount > data.qty) {
+      data.amount = data.qty;
+    }
     setDatas(temp);
   };
 

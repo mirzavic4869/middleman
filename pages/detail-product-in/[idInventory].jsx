@@ -5,6 +5,7 @@ import { useRouter } from "next/dist/client/router";
 
 function DetailProductIn() {
   const token = getCookie("token");
+  const role = getCookie("role");
   const router = useRouter();
   const [datas, setDatas] = useState([]);
   const [loading, setLoading] = useState([]);
