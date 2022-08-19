@@ -31,11 +31,31 @@ function Outbound() {
 			.then((result) => {
 				const { code, data } = result;
 				if (code === 200) {
-					setDatas(data.items.reverse());
+					console.log(data);
+					if (data.items === null) {
+						setDatas(null);
+					} else {
+						data.items.forEach((element) => {
+							element.amount = 1;
+						});
+						setDatas(data.items.reverse());
+					}
 				}
 			})
 			.catch((error) => alert(error.toString))
 			.finally(() => setLoading(false));
+	};
+
+	const handleQty = (data, type) => {
+		let temp = datas.slice();
+		type === "increment" ? data.amount++ : data.amount--;
+		if (data.amount < 1) {
+			data.amount = 1;
+		}
+		if (data.amount > data.qty) {
+			data.amount = data.qty;
+		}
+		setDatas(temp);
 	};
 
 	const addData = async (e, key, qty, unit) => {
@@ -115,6 +135,9 @@ function Outbound() {
 								unit={data.unit}
 								qty={data.qty}
 								fnDeleteData={deleteData}
+								loading={loading}
+								amount={data.amount}
+								handleQty={(type) => handleQty(data, type)}
 							/>
 						))}
 					</div>
