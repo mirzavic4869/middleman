@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/dist/client/router";
 
+
 function HistoryProductIn() {
   const token = getCookie("token");
   const role = getCookie("role");
@@ -46,23 +47,26 @@ function HistoryProductIn() {
       .finally(() => setLoading(false));
   };
 
-  return (
-    <>
-      <Navbar />
-      <div className="m-4">
-        <h1 className="text-black font-Roboto font-semibold text-4xl my-10">History Product In</h1>
-        {loading ? (
-          <div className="text-center">Loading...</div>
-        ) : (
-          <div className="grid grid-cols-1 gap-2 lg:grid-cols-3 my-4">
-            {datas.map((value) => (
-              <CardHistoryProductOut key={value.inventory_id} data={value} />
-            ))}
-          </div>
-        )}
-      </div>
-    </>
-  );
+
+	return (
+		<>
+			<Navbar />
+			<div className="m-4">
+				<h1 className="text-black font-Roboto font-semibold text-4xl my-10">
+					History Product In
+				</h1>
+				{loading ? (
+					<div className="text-center">Loading...</div>
+				) : (
+					<div className="grid grid-cols-1 gap-2 lg:grid-cols-3 my-4">
+						{datas.map((value) => (
+							<CardHistoryProductOut key={value.inventory_id} data={value} />
+						))}
+					</div>
+				)}
+			</div>
+		</>
+	);
 }
 
 export default HistoryProductIn;

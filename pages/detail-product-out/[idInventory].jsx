@@ -16,6 +16,7 @@ function DetailProductOut() {
     fetchData();
   }, []);
 
+
   const fetchData = async () => {
     setLoading(true);
     const { idInventory } = router.query;
@@ -74,6 +75,7 @@ function DetailProductOut() {
       </div>
     </>
   );
+
 }
 
 export default DetailProductOut;

@@ -5,6 +5,7 @@ import { getCookie } from "cookies-next";
 import { useRouter } from "next/dist/client/router";
 
 function Inbound() {
+
   const token = getCookie("token");
   const role = getCookie("role");
   const router = useRouter();
@@ -21,14 +22,16 @@ function Inbound() {
     fetchData();
   }, []);
 
-  const fetchData = async () => {
-    setLoading(true);
-    const requestOptions = {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
+
+	const fetchData = async () => {
+		setLoading(true);
+		const requestOptions = {
+			method: "GET",
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		};
+
 
     fetch("https://postme.site/inoutbounds", requestOptions)
       .then((response) => response.json())
@@ -49,24 +52,35 @@ function Inbound() {
       .finally(() => setLoading(false));
   };
 
-  const deleteData = async (e, idProduct) => {
-    e.preventDefault();
-    const requestOptions = {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
 
-    fetch(`https://postme.site/inoutbounds/${idProduct}`, requestOptions)
-      .then((result) => {
-        alert("Berhasil hapus data");
-      })
-      .catch((error) => alert(error.toString()))
-      .finally(() => {
-        fetchData();
-      });
-  };
+	const addData = async (e, key, qty, unit) => {
+		e.preventDefault();
+		// const body = {
+		// 	product_id: key,
+		// 	qty: qty,
+		// 	unit: unit,
+		// };
+		const requestOptions = {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${token}`,
+				"Content-Type": "application/json",
+			},
+			body: datas.items,
+		};
+
+		fetch("https://postme.site/admins/inventory", requestOptions)
+			.then((response) => response.json())
+			.then((result) => {
+				const { message } = result;
+				alert(message);
+			})
+			.catch((error) => alert(error.toString))
+			.finally(() => {
+				fetchData();
+			});
+	};
+
 
   const handleQty = (data, type) => {
     let temp = datas.slice();
@@ -111,6 +125,7 @@ function Inbound() {
       </div>
     </div>
   );
+
 }
 
 export default Inbound;
