@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
-import Link from "next/link";
+
 import { MyCart } from "../../components/CartCard";
 import { useRouter } from "next/dist/client/router";
 import { getCookie } from "cookies-next";
@@ -40,8 +40,14 @@ function Cart() {
   const token = getCookie("token");
   const router = useRouter();
   const [total, setTotal] = useState([]);
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
   const [datas, setDatas] = useState([]);
+  const [payment, setPayment] = useState({});
+
+  const items = [];
+  {
+    datas.map((item) => items.push(item));
+  }
 
   useEffect(() => {
     if (!token) {
@@ -65,8 +71,7 @@ function Cart() {
         const { code, data } = result;
         if (code === 200) {
           setDatas(data.items.reverse());
-        }
-        if (code === 200) {
+          setPayment(data);
           setTotal(data);
         }
       })
@@ -123,11 +128,43 @@ function Cart() {
       });
   };
 
+  // payment
+  const handlePayment = async () => {
+    setLoading(true);
+    const body = { grand_total: payment.grand_total, items: payment.items };
+    var requestOptions = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    };
+    fetch(`https://postme.site/orders/users`, requestOptions).then((response) =>
+      response
+        .json()
+        .then((result) => {
+          console.log(result);
+          const { code, message, data } = result;
+          if (code === 201) {
+            alert(message);
+            router.push(`/payment/${data.token}`);
+          }
+        })
+        .catch((err) => {
+          alert(err.toString());
+        })
+        .finally(setLoading(false))
+    );
+  };
+
   return (
     <div className="bg-base-100 min-h-screen">
       <Navbar />
       <div>
-        <h1 className="font-Roboto font-semibold text-[30px] p-9 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20 text-black">My Cart</h1>
+        <h1 className="font-Roboto font-semibold text-[30px] p-9 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20 text-black">
+          My Cart
+        </h1>
       </div>
       <div className="mx-5 gap-5 grid grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center">
         {datas.map((data) => (
@@ -147,14 +184,30 @@ function Cart() {
         ))}
       </div>
 
-      <div className="w-auto h-auto bg-white rounded-[20px] shadow-md m-5 flex justify-between items-center font-Poppins font-semibold p-3 text-black text-lg">
-        <p>Total Price {formatCurrency(total.grand_total)}</p>
-        <Link href="/toko/history_order">
-          <button id="to-payment" className="py-2 px-8 btn btn-primary text-white rounded-[10px]">
-            Next
-          </button>
-        </Link>
-      </div>
+      {total.grand_total === 0 ? (
+        <div className="flex  justify-center items-center text-lg md:text-3xl font-Roboto font-bold text-slate-700/20">
+          Add your cart
+        </div>
+      ) : (
+        <div className="w-auto h-auto bg-white rounded-[20px] shadow-md m-5 flex justify-between items-center font-Poppins font-semibold p-3 text-black text-lg">
+          <p>Total Price {formatCurrency(total.grand_total)}</p>
+          {loading ? (
+            <button
+              id="to-payment"
+              className="py-2 px-8 btn btn-square loading btn-primary opacity-40 text-white rounded-[10px]"
+              onClick={() => handlePayment()}
+            ></button>
+          ) : (
+            <button
+              id="to-payment"
+              className="py-2 px-8 btn btn-primary text-white rounded-[10px]"
+              onClick={() => handlePayment()}
+            >
+              Next
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 }
