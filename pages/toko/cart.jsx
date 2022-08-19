@@ -77,7 +77,7 @@ function Cart() {
           setTotal(data);
         }
       })
-      .catch((error) => alert(error.toString))
+      .catch((error) => alert(error.toString()))
       .finally(() => setLoading(false));
   };
 
@@ -103,7 +103,7 @@ function Cart() {
 
     fetch(`https://postme.site/carts/${data.product_id}`, requestOptions)
       .then((response) => response.json())
-      .catch((error) => alert(error.toString))
+      .catch((error) => alert(error.toString()))
       .finally(() => {
         fetchData();
         setLoading(false);
@@ -124,7 +124,7 @@ function Cart() {
       .then((result) => {
         alert("success delete product");
       })
-      .catch((error) => alert(error.toString))
+      .catch((error) => alert(error.toString()))
       .finally(() => {
         fetchData();
       });
