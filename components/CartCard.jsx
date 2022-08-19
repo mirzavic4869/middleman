@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { formatCurrency } from "./CardProduct";
+import { formatCurrency } from "../pages/inventory";
 
 function MyCart(props) {
 	return (
