@@ -77,7 +77,7 @@ const Profile = ({ data }) => {
       .finally(() => {
         setLoading(false);
         setShowModal(false);
-
+      });
   };
 
   // delete user
