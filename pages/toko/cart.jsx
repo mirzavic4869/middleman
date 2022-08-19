@@ -72,8 +72,6 @@ function Cart() {
         if (code === 200) {
           setDatas(data.items.reverse());
           setPayment(data);
-        }
-        if (code === 200) {
           setTotal(data);
         }
       })
