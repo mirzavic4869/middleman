@@ -28,7 +28,6 @@ function DetailProductOut() {
 		fetch(`https://postme.site/users/inventory/${idInventory}`, requestOptions)
 			.then((response) => response.json())
 			.then((result) => {
-				console.log(result);
 				const { code, data } = result;
 				if (code === 200) {
 					setDatas(data.items);
