@@ -26,6 +26,7 @@ function Outbound() {
 			},
 		};
 
+
 		fetch("https://postme.site/inoutbounds", requestOptions)
 			.then((response) => response.json())
 			.then((result) => {
@@ -46,6 +47,7 @@ function Outbound() {
 			.finally(() => setLoading(false));
 	};
 
+
 	const handleQty = (data, type) => {
 		let temp = datas.slice();
 		type === "increment" ? data.amount++ : data.amount--;
@@ -57,6 +59,7 @@ function Outbound() {
 		}
 		setDatas(temp);
 	};
+
 
 	const addData = async (e, key, qty, unit) => {
 		e.preventDefault();
@@ -74,6 +77,7 @@ function Outbound() {
 			body: datas.items,
 		};
 
+
 		fetch("https://postme.site/users/inventory", requestOptions)
 			.then((response) => response.json())
 			.then((result) => {
@@ -85,6 +89,7 @@ function Outbound() {
 				fetchData();
 			});
 	};
+
 
 	const deleteData = async (e, idProduct) => {
 		e.preventDefault();
@@ -158,6 +163,7 @@ function Outbound() {
 			</div>
 		</div>
 	);
+
 }
 
 export default Outbound;

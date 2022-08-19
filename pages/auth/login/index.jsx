@@ -69,19 +69,8 @@ export default function Login() {
 
           {/* form login */}
           <form onSubmit={(e) => handleSubmit(e)}>
-
-            <InputCustom
-              id="input-email"
-              type="text"
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-            />
-            <InputCustom
-              id="input-password"
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-            />
+            <InputCustom id="input-email" type="text" onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
+            <InputCustom id="input-password" type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
 
             <div className="mt-2 w-full">
               <AddButton loading={loading} id="btn-login" title="sign in" />

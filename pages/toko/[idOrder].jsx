@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar";
 import { useRouter } from "next/dist/client/router";
 import { getCookie } from "cookies-next";
 import { DetailOrder } from "../../components/OrderCard";
-import { formatCurrency } from "../../components/CardProduct";
+import { formatCurrency } from "../inventory";
 
 function Detail_order() {
   const [total, setTotal] = useState([]);
@@ -36,15 +36,11 @@ function Detail_order() {
         const { code, data } = result;
         if (code === 200) {
           setItems(data.items);
-        }
-        if (code === 200) {
           setTotal(data.grand_total);
-        }
-        if (code === 200) {
           setId(data.order_id);
         }
       })
-      .catch((error) => alert(error.toString))
+      .catch((error) => alert(error.toString()))
       .finally(() => setLoading(false));
   };
 

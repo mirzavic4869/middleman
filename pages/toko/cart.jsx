@@ -4,7 +4,7 @@ import Link from "next/link";
 import { MyCart } from "../../components/CartCard";
 import { useRouter } from "next/dist/client/router";
 import { getCookie } from "cookies-next";
-import { formatCurrency } from "../../components/CardProduct";
+import { formatCurrency } from "../inventory";
 
 // export async function getServerSideProps({ req, res }) {
 // 	const token = getCookie("token", { req, res });
@@ -37,11 +37,11 @@ import { formatCurrency } from "../../components/CardProduct";
 // }
 
 function Cart() {
-	const token = getCookie("token");
-	const router = useRouter();
-	const [total, setTotal] = useState([]);
-	const [loading, setLoading] = useState();
-	const [datas, setDatas] = useState([]);
+  const token = getCookie("token");
+  const router = useRouter();
+  const [total, setTotal] = useState([]);
+  const [loading, setLoading] = useState();
+  const [datas, setDatas] = useState([]);
 
   useEffect(() => {
     if (!token) {
@@ -70,7 +70,7 @@ function Cart() {
           setTotal(data);
         }
       })
-      .catch((error) => alert(error.toString))
+      .catch((error) => alert(error.toString()))
       .finally(() => setLoading(false));
   };
 
@@ -96,7 +96,7 @@ function Cart() {
 
     fetch(`https://postme.site/carts/${data.product_id}`, requestOptions)
       .then((response) => response.json())
-      .catch((error) => alert(error.toString))
+      .catch((error) => alert(error.toString()))
       .finally(() => {
         fetchData();
         setLoading(false);
@@ -117,18 +117,17 @@ function Cart() {
       .then((result) => {
         alert("success delete product");
       })
-      .catch((error) => alert(error.toString))
+      .catch((error) => alert(error.toString()))
       .finally(() => {
         fetchData();
       });
   };
+
   return (
     <div className="bg-base-100 min-h-screen">
       <Navbar />
       <div>
-        <h1 className="font-Roboto font-semibold text-[30px] p-9 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20 text-black">
-          My Cart
-        </h1>
+        <h1 className="font-Roboto font-semibold text-[30px] p-9 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20 text-black">My Cart</h1>
       </div>
       <div className="mx-5 gap-5 grid grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center">
         {datas.map((data) => (
@@ -151,10 +150,7 @@ function Cart() {
       <div className="w-auto h-auto bg-white rounded-[20px] shadow-md m-5 flex justify-between items-center font-Poppins font-semibold p-3 text-black text-lg">
         <p>Total Price {formatCurrency(total.grand_total)}</p>
         <Link href="/toko/history_order">
-          <button
-            id="to-payment"
-            className="py-2 px-8 btn btn-primary text-white rounded-[10px]"
-          >
+          <button id="to-payment" className="py-2 px-8 btn btn-primary text-white rounded-[10px]">
             Next
           </button>
         </Link>

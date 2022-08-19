@@ -81,7 +81,10 @@ function Navbar() {
                   <HiOutlineMenuAlt2 size={25} />
                 </div>
               </label>
-              <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-3 shadow bg-white rounded-box w-52 md:w-60 font-Roboto font-medium">
+              <ul
+                tabIndex="0"
+                className="menu menu-compact dropdown-content mt-3 p-3 shadow bg-white rounded-box w-52 md:w-60 font-Roboto font-medium"
+              >
                 {view.myproduct}
                 <li>
                   <Link href={view.inventory.link}>
@@ -101,7 +104,13 @@ function Navbar() {
                 {view.outbound}
                 {view.myprofile}
                 <li>
-                  <button onClick={() => setShowModal(true)} className="btn btn-sm btn-secondary text-white mt-3 p-1" id="btn-logout" title="logout" htmlFor="modal-logout">
+                  <button
+                    onClick={() => setShowModal(true)}
+                    className="btn btn-sm btn-secondary text-white mt-3 p-1"
+                    id="btn-logout"
+                    title="logout"
+                    htmlFor="modal-logout"
+                  >
                     Logout
                   </button>
                 </li>
@@ -142,19 +151,27 @@ function Navbar() {
               {view.outbound}
             </ul>
           </div>
-          <div className="mx-2">
+          {/* <div className="mx-2">
             <input type="checkbox" className="toggle" />
-          </div>
+          </div> */}
           <div className="dropdown dropdown-end mx-2 hidden lg:block">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
                 <IoPersonCircle size={40} />
               </div>
             </label>
-            <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52 font-Roboto font-medium">
+            <ul
+              tabIndex={0}
+              className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52 font-Roboto font-medium"
+            >
               {view.myprofile}
               <li>
-                <button onClick={() => setShowModal(true)} className="btn btn-sm btn-secondary text-white mt-2 p-1" id="btn-logout" title="logout">
+                <button
+                  onClick={() => setShowModal(true)}
+                  className="btn btn-sm btn-secondary text-white mt-2 p-1"
+                  id="btn-logout"
+                  title="logout"
+                >
                   Logout
                 </button>
               </li>
@@ -166,8 +183,12 @@ function Navbar() {
       <input type="checkbox" className="modal-toggle" checked={showModal} />
       <div className="modal">
         <div className="modal-box">
-          <h3 className="text-3xl text-primary my-3 font-Roboto font-medium">Logout</h3>
-          <p className="text-black font-Roboto font-medium">Are you sure you want to logout ?</p>
+          <h3 className="text-3xl text-primary my-3 font-Roboto font-medium">
+            Logout
+          </h3>
+          <p className="text-black font-Roboto font-medium">
+            Are you sure you want to logout ?
+          </p>
           <div className="modal-action font-Roboto">
             <button
               id="btn-yes"
