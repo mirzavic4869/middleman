@@ -38,6 +38,9 @@ function Inbound() {
           if (data.items === null) {
             setDatas(null);
           } else {
+            data.items.forEach((element) => {
+              element.amount = 1;
+            });
             setDatas(data.items.reverse());
           }
         }
@@ -65,6 +68,22 @@ function Inbound() {
       });
   };
 
+  const handleQty = (data, type) => {
+    let temp = datas.slice();
+    temp.map((i) => {
+      if (i.id === data.id) {
+        type === "increment" ? data.amount++ : data.amount--;
+        if (data.amount < 1) {
+          data.amount = 1;
+        }
+        if (data.amount > data.qty) {
+          data.amount = data.qty;
+        }
+      }
+    });
+    setDatas(temp);
+  };
+
   return (
     <div className="bg-base-100 w-full h-screen">
       <Navbar />
@@ -82,7 +101,7 @@ function Inbound() {
         ) : (
           <div className="grid gap-2 m-2 grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center">
             {datas.map((data) => (
-              <OutBound key={data.product_id} id={data.product_id} name={data.product_name} unit={data.unit} qty={data.qty} fnDeleteData={deleteData} />
+              <OutBound key={data.product_id} id={data.product_id} name={data.product_name} unit={data.unit} qty={data.qty} amount={data.amount} fnDeleteData={deleteData} handleQty={(type) => handleQty(data, type)} />
             ))}
           </div>
         )
