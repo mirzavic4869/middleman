@@ -94,7 +94,6 @@ function OutBound(props) {
 			</div>
 		</div>
 	);
-
 }
 
 export { MyCart, OutBound };
