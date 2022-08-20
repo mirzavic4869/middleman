@@ -14,6 +14,7 @@ function MyProduct() {
   const [objSubmit, setObjSubmit] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [value, setValue] = useState("");
+  const [inputData, setInputData] = useState("");
 
   useEffect(() => {
     if (!token) {
@@ -151,10 +152,40 @@ function MyProduct() {
       .catch((error) => alert(error.toString()));
   };
 
+  const searchData = async (e, productName) => {
+    setLoading(true);
+    e.preventDefault();
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    fetch(`https://postme.site/admins/products/search?productname=${productName}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        const { code, data } = result;
+        if (code === 200) {
+          if (data === null) {
+            setDatas(null);
+          } else {
+            setDatas(data.reverse());
+          }
+        }
+      })
+      .catch((error) => alert(error.toString()))
+      .finally(() => setLoading(false));
+  };
+
   const handleChange = (value, key) => {
     let temp = { ...objSubmit };
     temp[key] = value;
     setObjSubmit(temp);
+  };
+
+  const inputOnChangeHandler = (event) => {
+    setInputData(event.target.value);
   };
 
   return (
@@ -164,12 +195,14 @@ function MyProduct() {
         <h1 className="text-black font-Roboto font-semibold text-4xl">My Product</h1>
       </div>
       <div className="flex justify-between gap-2 m-4">
-        <div className="flex gap-2 w-96">
-          <input type="text" placeholder="Search..." className="input input-sm input-bordered input-primary w-full max-w-xs text-black font-Poppins" />
-          <button id="btn-search" title="Search" className="btn btn-sm btn-primary text-2xl text-white">
-            <MdSearch />
-          </button>
-        </div>
+        <form onSubmit={(e) => searchData(e, inputData)}>
+          <div className="flex gap-2 w-96">
+            <input type="text" id="input-search" value={inputData} onChange={inputOnChangeHandler} placeholder="Search..." className="input input-sm input-bordered input-primary w-full max-w-xs text-black font-Poppins" />
+            <button id="btn-search" title="Search" className="btn btn-sm btn-primary text-2xl text-white">
+              <MdSearch />
+            </button>
+          </div>
+        </form>
         <button id="btn-add" onClick={() => setShowModal(true)} className="btn btn-sm btn-primary modal-button text-white font-Roboto">
           Add Product
         </button>
