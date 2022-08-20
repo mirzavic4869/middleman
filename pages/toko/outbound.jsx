@@ -3,6 +3,7 @@ import Navbar from "../../components/Navbar";
 import { OutBound } from "../../components/CartCard";
 import { useRouter } from "next/dist/client/router";
 import { getCookie } from "cookies-next";
+import Link from "next/link";
 
 function Outbound() {
 	const token = getCookie("token");
@@ -26,7 +27,6 @@ function Outbound() {
 			},
 		};
 
-
 		fetch("https://postme.site/inoutbounds", requestOptions)
 			.then((response) => response.json())
 			.then((result) => {
@@ -47,7 +47,6 @@ function Outbound() {
 			.finally(() => setLoading(false));
 	};
 
-
 	const handleQty = (data, type) => {
 		let temp = datas.slice();
 		type === "increment" ? data.amount++ : data.amount--;
@@ -59,7 +58,6 @@ function Outbound() {
 		}
 		setDatas(temp);
 	};
-
 
 	const addData = async (e, key, qty, unit) => {
 		e.preventDefault();
@@ -77,7 +75,6 @@ function Outbound() {
 			body: datas.items,
 		};
 
-
 		fetch("https://postme.site/users/inventory", requestOptions)
 			.then((response) => response.json())
 			.then((result) => {
@@ -89,7 +86,6 @@ function Outbound() {
 				fetchData();
 			});
 	};
-
 
 	const deleteData = async (e, idProduct) => {
 		e.preventDefault();
@@ -163,7 +159,6 @@ function Outbound() {
 			</div>
 		</div>
 	);
-
 }
 
 export default Outbound;
