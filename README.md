@@ -1,9 +1,11 @@
 # MIDDLEMAN Web App
 
+<div align="center"> 
 ![favicon](https://user-images.githubusercontent.com/74031078/185746037-3f7e881e-9379-4b75-99d3-23f084dd4638.png)
 ![logo](https://user-images.githubusercontent.com/74031078/185727860-a8649639-52f9-4ab6-bd9f-3776993d481f.png)
+</div>
 
-####You need to re-stock product? MIDDLEMAN is solutions
+#### You need to re-stock product? MIDDLEMAN is solutions
 
 ## 🛠 Tools:
 <div align="center">
