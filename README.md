@@ -1,4 +1,3 @@
-@REM ## MIDDLEMAN Web App
 
 <div align="center">
   <img src="https://user-images.githubusercontent.com/74031078/185746037-3f7e881e-9379-4b75-99d3-23f084dd4638.png" width="500em"/>
