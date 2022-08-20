@@ -1,7 +1,7 @@
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/74031078/185746037-3f7e881e-9379-4b75-99d3-23f084dd4638.png" width="500em"/>
-  <img src="https://user-images.githubusercontent.com/74031078/185727860-a8649639-52f9-4ab6-bd9f-3776993d481f.png" width="600em"/>
+  <img src="https://user-images.githubusercontent.com/74031078/185746037-3f7e881e-9379-4b75-99d3-23f084dd4638.png" width="300em"/>
+  <img src="https://user-images.githubusercontent.com/74031078/185727860-a8649639-52f9-4ab6-bd9f-3776993d481f.png" width="650em"/>
 </div>
 
 ### You need to re-stock product? MIDDLEMAN is solutions
@@ -39,7 +39,7 @@
 ### Our website support the difference devices
 
 
-#### For example take a look at the photo
+#### For example, look at the photo
 ![example web](https://user-images.githubusercontent.com/74031078/185755804-2dd78ca5-c0f0-49b8-af75-c42a9a18dfdd.png)
 
 ## Author
@@ -49,23 +49,27 @@
 
 ## Features
 Admin
-- Login & Register
-- Add, Create, Delete, Edit, Read Product
-- Incoming Order Product
-- Accept & Done Payment
-- Inbound
-- History Order
-- Search Product
+- Login
+- CRUD Product + Search
+- CRUD Inbounds
+- Read Incoming
+- Read All Order
+- Read Detail Order
+- Confirm Order
+- Done Order
+- Create Inventory
+- Read Inventory (History Stock In)
+- Read Detail Inventory
 
 User
 - Login & Register
 - CRUD Profile
-- Add Product to Cart From Admin Product
+- CRUD UserProduct + Search
 - CRUD Cart
 - Order Create + Payment
+- Read Order
+- Read Detail Order
 - CRUD Outbound 
-- Search Product
-- History Order & Detail Order
-- CRUD UserProduct
-- Outbound
-- History Product Out
+- Create inventory (From Stock In)
+- Read Inventory (History Stock In)
+- Read detail inventory
