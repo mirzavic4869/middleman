@@ -15,6 +15,7 @@ function MyProduct() {
   const [showModal, setShowModal] = useState(false);
   const [value, setValue] = useState("");
   const [inputData, setInputData] = useState("");
+  const [emptyPage, setEmptyPage] = useState("Please add your product");
 
   useEffect(() => {
     if (!token) {
@@ -167,8 +168,9 @@ function MyProduct() {
       .then((result) => {
         const { code, data } = result;
         if (code === 200) {
-          if (data === null) {
+          if (data.length === 0) {
             setDatas(null);
+            setEmptyPage("Data not found");
           } else {
             setDatas(data.reverse());
           }
@@ -218,7 +220,7 @@ function MyProduct() {
           </div>
         )
       ) : (
-        <div className="text-center">Please add your products</div>
+        <div className="text-center">{emptyPage}</div>
       )}
 
       {/* Modal */}
