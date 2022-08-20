@@ -1,8 +1,9 @@
 # MIDDLEMAN Web App
 
-<div align="center">
-  <img src="https://user-images.githubusercontent.com/74031078/185727860-a8649639-52f9-4ab6-bd9f-3776993d481f.png" width="500em"/>
-</div>
+![favicon](https://user-images.githubusercontent.com/74031078/185746037-3f7e881e-9379-4b75-99d3-23f084dd4638.png)
+![logo](https://user-images.githubusercontent.com/74031078/185727860-a8649639-52f9-4ab6-bd9f-3776993d481f.png)
+
+####You need to re-stock product? MIDDLEMAN is solutions
 
 ## 🛠 Tools:
 <div align="center">
@@ -27,9 +28,12 @@
   <a href="https://www.figma.com/" target="_blank" rel="noreferrer"> 
     <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="figma" width="60" height="60"/> 
   </a>
+  <a href="https://vercel.com/" target="_blank" rel="noreferrer"> 
+    <img src="https://cdn.worldvectorlogo.com/logos/vercel.svg" alt="vercel" width="60" height="60"/> 
+  </a>
 </div>
 
-## Our desain in Figma
+## Our desain in Figma:
 
 <div align="center">
   <img src="https://user-images.githubusercontent.com/74031078/185745448-f6e66f7c-6c88-41da-b5a9-a70248b0034b.jpeg"/>
