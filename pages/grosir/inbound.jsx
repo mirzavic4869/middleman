@@ -38,8 +38,8 @@ function Inbound() {
       .then((result) => {
         const { code, data } = result;
         if (code === 200) {
-          if (data === null) {
-            setDatas(null);
+          if (data.length === 0) {
+            setDatas([]);
           } else {
             data.forEach((element) => {
               element.amount = 1;
@@ -117,7 +117,7 @@ function Inbound() {
           History Product In
         </button>
       </div>
-      {datas ? (
+      {datas.length !== 0 ? (
         loading ? (
           <div className="text-center">Loading...</div>
         ) : (
