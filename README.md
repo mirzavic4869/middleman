@@ -1,15 +1,10 @@
 # MIDDLEMAN Web App
 
-![logo](https://user-images.githubusercontent.com/74031078/185727860-a8649639-52f9-4ab6-bd9f-3776993d481f.png)
-
-## 🛠 Languages and Tools:
-
-<h3 align="left">Hi there, name is Yoga S Devanada, nice to meet ya</h3>
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/74031078/185727860-a8649639-52f9-4ab6-bd9f-3776993d481f.png" width="200em"/>
+![logo](https://user-images.githubusercontent.com/74031078/185727860-a8649639-52f9-4ab6-bd9f-3776993d481f.png)
 </div>
 
-<h3 align="left">:hammer_and_wrench: Languages and Tools:</h3>
+## 🛠 Languages and Tools:
 <div align="center"> 
   <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> 
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> 
@@ -24,8 +19,7 @@
     <img src="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg" alt="nextjs" width="40" height="40"/> 
   </a> 
   <a href="https://nodejs.org" target="_blank" rel="noreferrer"> 
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/> 
-  </a>  src="https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg" alt="php" width="40" height="40"/> 
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/>
   </a> 
   <a href="https://postman.com" target="_blank" rel="noreferrer"> 
     <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> 
