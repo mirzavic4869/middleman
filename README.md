@@ -29,5 +29,8 @@
   </a> 
   <a href="https://daisyui.com/" target="_blank" rel="noreferrer"> 
     <img src="https://raw.githubusercontent.com/saadeghi/files/main/daisyui/logo-4.svg" alt="daisyUI" width="40" height="40"/> 
-  </a> 
+  </a>
+  <a href="https://momentjs.com/" target="_blank" rel="noreferrer"> 
+    <img src="https://cdn.worldvectorlogo.com/logos/momentjs.svg" alt="memont" width="40" height="40"/> 
+  </a>
 </div>
