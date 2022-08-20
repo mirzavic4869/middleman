@@ -23,32 +23,30 @@ function HistoryProductOut() {
 		fetchData();
 	}, []);
 
+	const fetchData = async () => {
+		setLoading(true);
+		const requestOptions = {
+			method: "GET",
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		};
 
-  const fetchData = async () => {
-    setLoading(true);
-    const requestOptions = {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    fetch("https://virtserver.swaggerhub.com/vaniliacahya/capstone/1.0.0/users/inventory", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        const { code, data } = result;
-        if (code === 200) {
-          if (data === null) {
-            setDatas(null);
-          } else {
-            setDatas(data.reverse());
-          }
-        }
-      })
-      .catch((error) => alert(error.toString()))
-      .finally(() => setLoading(false));
-  };
-
+		fetch("https://postme.site/users/inventory", requestOptions)
+			.then((response) => response.json())
+			.then((result) => {
+				const { code, data } = result;
+				if (code === 200) {
+					if (data === null) {
+						setDatas(null);
+					} else {
+						setDatas(data.reverse());
+					}
+				}
+			})
+			.catch((error) => alert(error.toString()))
+			.finally(() => setLoading(false));
+	};
 
 	return (
 		<>
