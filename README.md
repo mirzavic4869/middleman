@@ -1,4 +1,4 @@
-## MIDDLEMAN Web App
+@REM ## MIDDLEMAN Web App
 
 <div align="center">
   <img src="https://user-images.githubusercontent.com/74031078/185746037-3f7e881e-9379-4b75-99d3-23f084dd4638.png" width="500em"/>
@@ -7,7 +7,7 @@
 
 ### You need to re-stock product? MIDDLEMAN is solutions
 
-## 🛠 Languages and Tools:
+## TECHNOLOGIES/TOOLS WE USED FOR THIS PROJECT
 <div align="center">
   <a href="https://nextjs.org/" target="_blank" rel="noreferrer"> 
     <img src="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg" alt="nextjs" width="60" height="60"/> 
@@ -43,7 +43,30 @@
 #### For example take a look at the photo
 ![example web](https://user-images.githubusercontent.com/74031078/185755804-2dd78ca5-c0f0-49b8-af75-c42a9a18dfdd.png)
 
-## 🤝 Author
+## Author
 [![GitHub Hilmi](https://img.shields.io/badge/-Afrizal-white?style=flat&logo=github&logoColor=black)](https://github.com/4friizal)
 [![GitHub Hilmi](https://img.shields.io/badge/-ShodiqFarhan-white?style=flat&logo=github&logoColor=black)](https://github.com/shodiqfarhan)
 [![GitHub Hilmi](https://img.shields.io/badge/-MirzamAvicena-white?style=flat&logo=github&logoColor=black)](https://github.com/mirzavic4869)
+
+## Features
+Admin
+- Login & Register
+- Add, Create, Delete, Edit, Read Product
+- Incoming Order Product
+- Accept & Done Payment
+- Inbound
+- History Order
+- Search Product
+
+User
+- Login & Register
+- CRUD Profile
+- Add Product to Cart From Admin Product
+- CRUD Cart
+- Order Create + Payment
+- CRUD Outbound 
+- Search Product
+- History Order & Detail Order
+- CRUD UserProduct
+- Outbound
+- History Product Out
