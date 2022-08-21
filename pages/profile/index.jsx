@@ -53,7 +53,6 @@ const Profile = ({ data }) => {
     const body = {
       name: objSubmit.name,
       email: objSubmit.email,
-      password: objSubmit.password,
       phone: objSubmit.phone,
       address: objSubmit.address,
     };
