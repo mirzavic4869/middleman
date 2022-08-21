@@ -184,7 +184,7 @@ const Profile = ({ data }) => {
           </h3>
           <section>
             <p className="text-black font-Roboto font-medium">
-              Are you sure you want to delete?
+              Are you sure you want to delete this account?
             </p>
             <div className="modal-action font-Roboto">
               <label
