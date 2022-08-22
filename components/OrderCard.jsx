@@ -24,9 +24,8 @@ function DetailOrder(props) {
   return (
     <div className="w-auto h-auto bg-white rounded-[20px] shadow-md font-Poppins font-semibold p-3 text-black">
       <p>{props.name}</p>
-      <p>
-        Sub Total : {formatCurrency(props.price)} x {props.qty} = {formatCurrency(props.price * props.qty)}
-      </p>
+      <p>QTY : {props.qty}</p>
+      <p>Sub Total : {formatCurrency(props.subtotal)}</p>
     </div>
   );
 }

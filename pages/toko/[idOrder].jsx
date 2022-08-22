@@ -30,7 +30,7 @@ function Detail_order() {
       },
     };
 
-    fetch(`https://postme.site/orders/${idOrder}`, requestOptions)
+    fetch(`https://postme.site/orders/users/${idOrder}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         const { code, data } = result;
@@ -58,7 +58,7 @@ function Detail_order() {
       ) : (
         <div className="p-5 gap-4 grid grid-flow-row auto-rows-max grid-cols-1 mx-auto">
           {items.map((data) => (
-            <DetailOrder key={data.product_id} name={data.product_name} price={data.price} qty={data.qty} />
+            <DetailOrder key={data.product_id} name={data.product_name} subtotal={data.subtotal} qty={data.qty} />
           ))}
         </div>
       )}

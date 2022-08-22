@@ -12,17 +12,17 @@ function Detail() {
   const [loading, setLoading] = useState([]);
   const token = getCookie("token");
   const router = useRouter();
+  const { idOrder } = router.query;
 
   useEffect(() => {
     if (!token) {
       router.push("/auth/welcome");
     }
-    fetchData();
+    fetchData(idOrder);
   }, []);
 
-  const fetchData = async () => {
+  const fetchData = async (idOrder) => {
     setLoading(true);
-    const { idOrder } = router.query;
     const requestOptions = {
       method: "GET",
       headers: {
@@ -30,22 +30,60 @@ function Detail() {
       },
     };
 
-    fetch(`https://postme.site/orders/${idOrder}`, requestOptions)
+    fetch(`https://postme.site/orders/users/${idOrder}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         const { code, data } = result;
         if (code === 200) {
           setItems(data.items);
-        }
-        if (code === 200) {
           setTotal(data.grand_total);
-        }
-        if (code === 200) {
-          setId(data.order_id);
+          setId(data.id_order);
         }
       })
       .catch((error) => alert(error.toString()))
       .finally(() => setLoading(false));
+  };
+
+  const confirmOrder = async (e, idOrder) => {
+    e.preventDefault();
+    const requestOptions = {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    fetch(`https://postme.site/orders/confirm/${idOrder}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        const { message } = result;
+        alert(message);
+      })
+      .catch((error) => alert(error.toString()))
+      .finally(() => {
+        fetchData();
+      });
+  };
+
+  const doneOrder = async (e, idOrder) => {
+    e.preventDefault();
+    const requestOptions = {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    fetch(`https://postme.site/orders/done/${idOrder}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        const { message } = result;
+        alert("success done order");
+      })
+      .catch((error) => alert(error.toString()))
+      .finally(() => {
+        fetchData();
+      });
   };
 
   return (
@@ -62,7 +100,7 @@ function Detail() {
       ) : (
         <div className="p-5 gap-2 grid grid-flow-row auto-rows-max grid-cols-1 mx-auto">
           {items.map((data) => (
-            <DetailOrder key={data.product_id} name={data.product_name} price={data.price} qty={data.qty} />
+            <DetailOrder key={data.product_id} name={data.product_name} subtotal={data.subtotal} qty={data.qty} />
           ))}
         </div>
       )}
@@ -73,8 +111,13 @@ function Detail() {
           <p className="md:ml-28">{formatCurrency(total)}</p>
         </div>
         <div className="flex m-2 justify-center gap-2">
-          <button className="btn btn-primary text-white rounded-[10px]">Accept</button>
-          <button className="btn btn-primary text-white rounded-[10px]">Done</button>
+          <button id="btn-confirm" onClick={(e) => confirmOrder(e, idOrder)} className="btn btn-primary text-white rounded-[10px]">
+            Accept
+          </button>
+
+          <button id="btn-done" onClick={(e) => doneOrder(e, idOrder)} className="btn btn-primary text-white rounded-[10px]">
+            Done
+          </button>
         </div>
       </div>
     </div>
