@@ -18,10 +18,10 @@ function Detail() {
     if (!token) {
       router.push("/auth/welcome");
     }
-    fetchData();
+    fetchData(idOrder);
   }, []);
 
-  const fetchData = async () => {
+  const fetchData = async (idOrder) => {
     setLoading(true);
     const requestOptions = {
       method: "GET",
@@ -35,7 +35,6 @@ function Detail() {
       .then((result) => {
         const { code, data } = result;
         if (code === 200) {
-          console.log(data);
           setItems(data.items);
           setTotal(data.grand_total);
           setId(data.id_order);
@@ -115,6 +114,7 @@ function Detail() {
           <button id="btn-confirm" onClick={(e) => confirmOrder(e, idOrder)} className="btn btn-primary text-white rounded-[10px]">
             Accept
           </button>
+
           <button id="btn-done" onClick={(e) => doneOrder(e, idOrder)} className="btn btn-primary text-white rounded-[10px]">
             Done
           </button>
