@@ -44,7 +44,8 @@ const Profile = ({ data }) => {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [objSubmit, setObjSubmit] = useState(data);
+  const [dataUser, setDataUser] = useState(data);
+  const [objSubmit, setObjSubmit] = useState(dataUser);
 
   // update user
   const handleSubmit = async (e) => {
@@ -69,7 +70,12 @@ const Profile = ({ data }) => {
     fetch(`https://postme.site/users`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        const { message } = result;
+        const { message, code } = result;
+        if (code !== 200) {
+          setObjSubmit(dataUser);
+        } else {
+          setDataUser(objSubmit);
+        }
         alert(message);
       })
       .catch((error) => {
@@ -132,19 +138,19 @@ const Profile = ({ data }) => {
               <tbody className="font-Poppins">
                 <tr>
                   <td className="md:text-xl">Shop Name</td>
-                  <td className="text-right md:text-xl">{objSubmit.name}</td>
+                  <td className="text-right md:text-xl">{dataUser.name}</td>
                 </tr>
                 <tr>
                   <td className="md:text-xl">Email</td>
-                  <td className="text-right md:text-xl">{objSubmit.email}</td>
+                  <td className="text-right md:text-xl">{dataUser.email}</td>
                 </tr>
                 <tr>
                   <td className="md:text-xl">Phone Number</td>
-                  <td className="text-right md:text-xl">{objSubmit.phone}</td>
+                  <td className="text-right md:text-xl">{dataUser.phone}</td>
                 </tr>
                 <tr>
                   <td className="md:text-xl">Address</td>
-                  <td className="text-right md:text-xl">{objSubmit.address}</td>
+                  <td className="text-right md:text-xl">{dataUser.address}</td>
                 </tr>
               </tbody>
             </table>
@@ -244,11 +250,11 @@ const Profile = ({ data }) => {
               id="btn-cancel"
               onClick={() => {
                 setShowModal(false);
-                setObjSubmit(data);
+                setObjSubmit(dataUser);
               }}
               className={
                 loading
-                  ? "btn btn-sm btn-secondary w-full text-white shadow-lg font-Roboto mt-2 btn-square loading rounded-[20px] md:h-10"
+                  ? "hidden"
                   : "btn btn-sm btn-secondary w-full text-white shadow-lg font-Roboto mt-2 rounded-[20px] md:h-10"
               }
             >
