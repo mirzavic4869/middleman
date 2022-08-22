@@ -10,8 +10,6 @@
 
 Middleman is a project for helping each store for buying some products for stock on distributor via online. In real case, many store that still doing manual for listing stock product, add / reduce for in/out stock product, take a notes for stock of their products. So therefore, Middleman is developed here trying for handle that behaviour user which changing from manual to all stock activity in online.
 
-### You need to re-stock product? MIDDLEMAN is solutions
-
 ## TECHNOLOGIES/TOOLS WE USED FOR THIS PROJECT
 <div align="center">
   <a href="https://nextjs.org/" target="_blank" rel="noreferrer"> 
