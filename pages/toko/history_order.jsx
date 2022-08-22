@@ -37,7 +37,7 @@ function History_order({ data }) {
         {data ? (
           <div className="p-5 gap-4 grid grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {data.map((value) => (
-              <HistoryOrder key={value.id} id={value.id} date={value.date} status={value.status} total={formatCurrency(value.grand_total)} />
+              <HistoryOrder key={value.order_id} id={value.order_id} date={value.date} status={value.status} total={formatCurrency(value.grand_total)} />
             ))}
           </div>
         ) : (
