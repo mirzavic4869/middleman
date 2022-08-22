@@ -98,7 +98,6 @@ export default function Home({ data }) {
   return (
     <div className="bg-base-100 min-h-screen">
       <Navbar />
-
       <div>
         <h1 className="text-black font-Roboto font-semibold text-[30px] m-3 text-center md:text-[44px] lg:text-[44px] lg:text-left ">Dashboard</h1>
         <form onSubmit={(e) => searchData(e, inputData)}>
@@ -118,7 +117,7 @@ export default function Home({ data }) {
             ))}
           </div>
         ) : (
-          <div className="text-center">Data not found</div>
+          <div className="flex  justify-center items-center text-lg md:text-3xl font-Roboto font-bold text-slate-700/20">Data not found</div>
         )}
       </div>
     </div>

@@ -196,19 +196,20 @@ function MyProduct() {
       <div className="m-4">
         <h1 className="text-black font-Roboto font-semibold text-4xl">My Product</h1>
       </div>
-      <div className="flex justify-between gap-2 m-4">
-        <form onSubmit={(e) => searchData(e, inputData)}>
+      <form onSubmit={(e) => searchData(e, inputData)}>
+        <div className="flex justify-between gap-2 m-4">
           <div className="flex gap-2 w-96">
             <input type="text" id="input-search" value={inputData} onChange={inputOnChangeHandler} placeholder="Search..." className="input input-sm input-bordered input-primary w-full max-w-xs text-black font-Poppins" />
             <button id="btn-search" title="Search" className="btn btn-sm btn-primary text-2xl text-white">
               <MdSearch />
             </button>
           </div>
-        </form>
-        <button id="btn-add" onClick={() => setShowModal(true)} className="btn btn-sm btn-primary modal-button text-white font-Roboto">
-          Add Product
-        </button>
-      </div>
+
+          <button id="btn-add" onClick={() => setShowModal(true)} className="btn btn-sm btn-primary modal-button text-white font-Roboto">
+            Add Product
+          </button>
+        </div>
+      </form>
       {datas ? (
         loading ? (
           <div className="text-center">Loading...</div>
@@ -220,7 +221,7 @@ function MyProduct() {
           </div>
         )
       ) : (
-        <div className="text-center">{emptyPage}</div>
+        <div className="flex  justify-center items-center text-lg md:text-3xl font-Roboto font-bold text-slate-700/20">{emptyPage}</div>
       )}
 
       {/* Modal */}
@@ -234,7 +235,7 @@ function MyProduct() {
             </span>
           </label>
           <form onSubmit={(e) => addData(e)}>
-            <input type="file" id="input-image" onChange={(e) => handleChange(e.target.files[0], "product_image")} accept="image/png, image/jpeg" className="w-full text-black font-Poppins mb-2" />
+            <input type="file" id="input-image" onChange={(e) => handleChange(e.target.files[0], "product_image")} accept="image/png, image/jpeg" className="w-full text-black font-Poppins mb-2" required />
             <input
               type="text"
               id="input-name"
@@ -242,6 +243,7 @@ function MyProduct() {
               onChange={(e) => handleChange(e.target.value, "product_name")}
               placeholder="Product Name*"
               className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
+              required
             />
             <input type="text" id="input-unit" defaultValue={value} onChange={(e) => handleChange(e.target.value, "unit")} placeholder="Unit*" className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2" />
             <div className="flex gap-2">
@@ -251,15 +253,19 @@ function MyProduct() {
                 defaultValue={value}
                 onChange={(e) => handleChange(e.target.value, "stock")}
                 placeholder="Stock*"
+                min={1}
                 className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
+                required
               />
               <input
                 type="number"
                 id="input-price"
                 defaultValue={value}
+                min={500}
                 onChange={(e) => handleChange(e.target.value, "price")}
                 placeholder="Price*"
                 className="input input-sm input-bordered input-primary w-full text-black font-Poppins my-2"
+                required
               />
             </div>
             <div className="modal-action font-Roboto">

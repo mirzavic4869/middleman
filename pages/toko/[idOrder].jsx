@@ -30,7 +30,7 @@ function Detail_order() {
       },
     };
 
-    fetch(`https://virtserver.swaggerhub.com/vaniliacahya/capstone/1.0.0/orders/${idOrder}`, requestOptions)
+    fetch(`https://postme.site/orders/${idOrder}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         const { code, data } = result;
