@@ -47,6 +47,10 @@ Middleman is a project for helping each store for buying some products for stock
 
 ## Our desain in Figma:
 ![photo1660997264](https://user-images.githubusercontent.com/74031078/185745448-f6e66f7c-6c88-41da-b5a9-a70248b0034b.jpeg)
+Detail desgin
+- [Prototype](https://www.figma.com/file/r2wHY8rg53xwhhGKEtmpeK/Prototype?node-id=118%3A11)
+
+
 ### Our website support the difference devices
 
 
