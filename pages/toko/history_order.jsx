@@ -20,11 +20,11 @@ export async function getServerSideProps({ req, res }) {
       Authorization: `Bearer ${token}`,
     },
   };
-  const response = await fetch(`https://virtserver.swaggerhub.com/vaniliacahya/capstone/1.0.0/orders/users`, requestOptions);
+  const response = await fetch(`https://postme.site/orders/users`, requestOptions);
   const data = await response.json();
 
   return {
-    props: { code: data.code, data: data.data.reverse(), message: data.message, token },
+    props: { code: data.code, data: data.data ? data.data.reverse() : null, message: data.message, token },
   };
 }
 
@@ -37,11 +37,11 @@ function History_order({ data }) {
         {data ? (
           <div className="p-5 gap-4 grid grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {data.map((value) => (
-              <HistoryOrder key={value.order_id} id={value.order_id} date={value.date} status={value.status} total={formatCurrency(value.grand_total)} />
+              <HistoryOrder key={value.id} id={value.id} date={value.date} status={value.status} total={formatCurrency(value.grand_total)} />
             ))}
           </div>
         ) : (
-          <div className="text-center">Data not found</div>
+          <div className="flex  justify-center items-center text-lg md:text-3xl font-Roboto font-bold text-slate-700/20">Empty data</div>
         )}
       </div>
     </div>
