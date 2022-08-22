@@ -66,6 +66,27 @@ function Detail() {
       });
   };
 
+  const doneOrder = async (e, idOrder) => {
+    e.preventDefault();
+    const requestOptions = {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    fetch(`https://postme.site/orders/done/${idOrder}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        const { message } = result;
+        alert("success done order");
+      })
+      .catch((error) => alert(error.toString()))
+      .finally(() => {
+        fetchData();
+      });
+  };
+
   return (
     <div className="bg-base-100 min-h-screen">
       <Navbar />
@@ -94,7 +115,9 @@ function Detail() {
           <button id="btn-confirm" onClick={(e) => confirmOrder(e, idOrder)} className="btn btn-primary text-white rounded-[10px]">
             Accept
           </button>
-          <button className="btn btn-primary text-white rounded-[10px]">Done</button>
+          <button id="btn-done" onClick={(e) => doneOrder(e, idOrder)} className="btn btn-primary text-white rounded-[10px]">
+            Done
+          </button>
         </div>
       </div>
     </div>

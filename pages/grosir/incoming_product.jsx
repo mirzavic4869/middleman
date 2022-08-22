@@ -34,7 +34,6 @@ export async function getServerSideProps({ req, res }) {
 }
 
 function Incoming_product({ data }) {
-  console.log(data);
   return (
     <div className="bg-base-100 min-h-screen">
       <Navbar />
@@ -42,7 +41,7 @@ function Incoming_product({ data }) {
         <h1 className="text-black font-Roboto font-semibold text-[30px] p-9 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20">Incoming Order Product</h1>
         {data ? (
           <div className="mx-auto md:mx-16">
-            <table className="w-full table-fluid">
+            <table className="w-full table-fluid font-Poppins">
               <thead>
                 <tr className="bg-[#EEEEEE] text-xs md:text-lg lg:text-lg font-bold text-black text-center">
                   <td className="py-2">ID</td>
