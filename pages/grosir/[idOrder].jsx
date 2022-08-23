@@ -119,7 +119,7 @@ function Detail() {
           <p className="md:ml-28">{formatCurrency(total)}</p>
         </div>
         <div className="m-3 lg:m-0 flex justify-center gap-2 font-Roboto">
-          {status !== "delivered" ? (
+          {status !== "delivered" && status !== "pending" && status !== "canceled" ? (
             status === "waiting confirmation" ? (
               <button id="btn-confirm" onClick={(e) => confirmOrder(e, idOrder)} className={`btn btn-primary ${loading ? "loading opacity-40" : null} text-white rounded-[10px]`}>
                 Accept

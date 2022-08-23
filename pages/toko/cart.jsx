@@ -153,7 +153,7 @@ function Cart() {
           />
         ))}
       </div>
-      {total.grand_total === 0 ? (
+      {datas.length === 0 ? (
         <div className="flex  justify-center items-center text-lg md:text-3xl font-Roboto font-bold text-slate-700/20">Add your cart</div>
       ) : (
         <div className="w-auto h-auto bg-white rounded-[20px] shadow-md m-5 flex justify-between items-center font-Poppins font-semibold p-3 text-black text-lg">
