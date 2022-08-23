@@ -51,7 +51,7 @@ function Inventory() {
       .then((result) => {
         const { code, data } = result;
         if (code === 200) {
-          if (data.lenght === 0) {
+          if (data.length === 0) {
             setDatas(null);
             setEmptyPage("Please add your product");
           } else {
@@ -238,7 +238,7 @@ function Inventory() {
           </div>
         )
       ) : (
-        <div className="text-center">{emptyPage}</div>
+        <div className="flex  justify-center items-center text-lg md:text-3xl font-Roboto font-bold text-slate-700/20">{emptyPage}</div>
       )}
 
       {/* Modal */}

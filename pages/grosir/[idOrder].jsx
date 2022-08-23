@@ -8,6 +8,7 @@ import { formatCurrency } from "../inventory";
 function Detail() {
   const [total, setTotal] = useState([]);
   const [id, setId] = useState([]);
+  const [status, setStatus] = useState([]);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState([]);
   const token = getCookie("token");
@@ -19,9 +20,9 @@ function Detail() {
       router.push("/auth/welcome");
     }
     fetchData(idOrder);
-  }, []);
+  }, [idOrder]);
 
-  const fetchData = async (idOrder) => {
+  const fetchData = async (id_order) => {
     setLoading(true);
     const requestOptions = {
       method: "GET",
@@ -30,21 +31,24 @@ function Detail() {
       },
     };
 
-    fetch(`https://postme.site/orders/users/${idOrder}`, requestOptions)
+    fetch(`https://postme.site/orders/users/${id_order}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         const { code, data } = result;
         if (code === 200) {
+          console.log(data);
           setItems(data.items);
           setTotal(data.grand_total);
           setId(data.id_order);
+          setStatus(data.status);
         }
       })
       .catch((error) => alert(error.toString()))
       .finally(() => setLoading(false));
   };
 
-  const confirmOrder = async (e, idOrder) => {
+  const confirmOrder = async (e, id_order) => {
+    setLoading(true);
     e.preventDefault();
     const requestOptions = {
       method: "PUT",
@@ -53,7 +57,7 @@ function Detail() {
       },
     };
 
-    fetch(`https://postme.site/orders/confirm/${idOrder}`, requestOptions)
+    fetch(`https://postme.site/orders/confirm/${id_order}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         const { message } = result;
@@ -61,11 +65,14 @@ function Detail() {
       })
       .catch((error) => alert(error.toString()))
       .finally(() => {
-        fetchData();
+        setStatus("on process");
+        setLoading(false);
+        fetchData(idOrder);
       });
   };
 
-  const doneOrder = async (e, idOrder) => {
+  const doneOrder = async (e, id_order) => {
+    setLoading(true);
     e.preventDefault();
     const requestOptions = {
       method: "PUT",
@@ -74,15 +81,16 @@ function Detail() {
       },
     };
 
-    fetch(`https://postme.site/orders/done/${idOrder}`, requestOptions)
+    fetch(`https://postme.site/orders/done/${id_order}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        const { message } = result;
         alert("success done order");
       })
       .catch((error) => alert(error.toString()))
       .finally(() => {
-        fetchData();
+        setStatus("delivered");
+        setLoading(false);
+        fetchData(idOrder);
       });
   };
 
@@ -105,19 +113,23 @@ function Detail() {
         </div>
       )}
 
-      <div className="p-5 md:flex-1 lg:flex">
-        <div className="basis-4/5 m-2 w-auto h-auto bg-white rounded-[10px] shadow-md font-Poppins font-semibold p-3 text-black flex justify-between ">
+      <div className="p-3 m-2 md:flex-1 lg:flex gap-2">
+        <div className="w-full h-auto bg-white rounded-[10px] shadow-md font-Poppins font-semibold p-3 text-black flex justify-between ">
           <p>Total Price</p>
           <p className="md:ml-28">{formatCurrency(total)}</p>
         </div>
-        <div className="flex m-2 justify-center gap-2">
-          <button id="btn-confirm" onClick={(e) => confirmOrder(e, idOrder)} className="btn btn-primary text-white rounded-[10px]">
-            Accept
-          </button>
-
-          <button id="btn-done" onClick={(e) => doneOrder(e, idOrder)} className="btn btn-primary text-white rounded-[10px]">
-            Done
-          </button>
+        <div className="m-3 lg:m-0 flex justify-center gap-2 font-Roboto">
+          {status !== "delivered" ? (
+            status === "waiting confirmation" ? (
+              <button id="btn-confirm" onClick={(e) => confirmOrder(e, idOrder)} className={`btn btn-primary ${loading ? "loading opacity-40" : null} text-white rounded-[10px]`}>
+                Accept
+              </button>
+            ) : (
+              <button id="btn-done" onClick={(e) => doneOrder(e, idOrder)} className="btn btn-primary text-white rounded-[10px]">
+                Done
+              </button>
+            )
+          ) : null}
         </div>
       </div>
     </div>

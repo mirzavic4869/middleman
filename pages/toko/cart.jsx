@@ -40,6 +40,7 @@ function Cart() {
       .then((result) => {
         const { code, data } = result;
         if (code === 200) {
+          console.log(data);
           setDatas(data.items.reverse());
           setPayment(data);
           setTotal(data);
@@ -133,9 +134,7 @@ function Cart() {
     <div className="bg-base-100 min-h-screen">
       <Navbar />
       <div>
-        <h1 className="font-Roboto font-semibold text-[30px] p-9 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20 text-black">
-          My Cart
-        </h1>
+        <h1 className="font-Roboto font-semibold text-[30px] p-9 text-center md:text-[44px] lg:text-[44px] lg:text-left lg:ml-20 text-black">My Cart</h1>
       </div>
       <div className="mx-5 gap-5 grid grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center">
         {datas.map((data) => (
@@ -154,26 +153,15 @@ function Cart() {
           />
         ))}
       </div>
-
       {total.grand_total === 0 ? (
-        <div className="flex  justify-center items-center text-lg md:text-3xl font-Roboto font-bold text-slate-700/20">
-          Add your cart
-        </div>
+        <div className="flex  justify-center items-center text-lg md:text-3xl font-Roboto font-bold text-slate-700/20">Add your cart</div>
       ) : (
         <div className="w-auto h-auto bg-white rounded-[20px] shadow-md m-5 flex justify-between items-center font-Poppins font-semibold p-3 text-black text-lg">
           <p>Total Price {formatCurrency(total.grand_total)}</p>
           {loading ? (
-            <button
-              id="to-payment"
-              className="py-2 px-8 btn btn-square loading btn-primary opacity-40 text-white rounded-[10px]"
-              onClick={() => handlePayment()}
-            ></button>
+            <button id="to-payment" className="py-2 px-8 btn btn-square loading btn-primary opacity-40 text-white rounded-[10px]" onClick={() => handlePayment()}></button>
           ) : (
-            <button
-              id="to-payment"
-              className="py-2 px-8 btn btn-primary text-white rounded-[10px]"
-              onClick={() => handlePayment()}
-            >
+            <button id="to-payment" className="py-2 px-8 btn btn-primary text-white rounded-[10px]" onClick={() => handlePayment()}>
               Next
             </button>
           )}
