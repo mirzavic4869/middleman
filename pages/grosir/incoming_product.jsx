@@ -3,7 +3,6 @@ import Navbar from "../../components/Navbar";
 import { IncomingOrder } from "../../components/OrderAdmin";
 
 import { getCookie } from "cookies-next";
-import { formatDate } from "../history-product-out";
 
 export async function getServerSideProps({ req, res }) {
   const token = getCookie("token", { req, res });

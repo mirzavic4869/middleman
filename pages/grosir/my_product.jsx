@@ -204,7 +204,6 @@ function MyProduct() {
               <MdSearch />
             </button>
           </div>
-
           <button id="btn-add" onClick={() => setShowModal(true)} className="btn btn-sm btn-primary modal-button text-white font-Roboto">
             Add Product
           </button>
@@ -221,7 +220,7 @@ function MyProduct() {
           </div>
         )
       ) : (
-        <div className="flex  justify-center items-center text-lg md:text-3xl font-Roboto font-bold text-slate-700/20">{emptyPage}</div>
+        <div className="flex justify-center items-center text-lg md:text-3xl font-Roboto font-bold text-slate-700/20">{emptyPage}</div>
       )}
 
       {/* Modal */}
