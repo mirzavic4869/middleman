@@ -10,7 +10,7 @@ function MyCart(props) {
       </figure>
       <div className="card-body font-Poppins">
         <h1 className="card-title">{props.name}</h1>
-        <p>{`${props.qty} ${props.unit}`}</p>
+        <p>Unit: {props.unit}</p>
         <p>{formatCurrency(props.price)}</p>
         <p>Amount</p>
         <div className="flex">
