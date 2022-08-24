@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { MdAdd } from "react-icons/md";
 import { formatCurrency } from "../pages/inventory";
 
-function CardProduct({ data, fnEditData, fnDeleteData, fnAddProductOut, fnHandleChange }) {
+function CardProduct({ data, fnEditData, fnDeleteData, fnAddProductOut, fnHandleChange, role }) {
   const [showModal, setShowModal] = useState({ title: "edit", view: false });
 
   const handleSubmit = async (e, idProduct) => {
@@ -27,7 +27,7 @@ function CardProduct({ data, fnEditData, fnDeleteData, fnAddProductOut, fnHandle
         <div className="card-body">
           <div className="font-Poppins ">
             <h2 className="card-title text-base">{data.product_name}</h2>
-            <h3 className="text-base">Unit: {data.unit}</h3>
+            <h3 className="text-base">Unit: {data.unit === "" ? "pcs" : data.unit}</h3>
             <h3 className="text-base">Stock: {data.stock}</h3>
             <p className="text-base">Price: {formatCurrency(data.price)}</p>
           </div>
@@ -42,7 +42,12 @@ function CardProduct({ data, fnEditData, fnDeleteData, fnAddProductOut, fnHandle
         </div>
         <div className="relative">
           <div className="absolute top-0 right-0">
-            <button id="btn-add-product-out" onClick={(e) => fnAddProductOut(e, data.id, data.stock)} title="Add to Product Out" className="p-2 modal-button text-white bg-primary rounded-bl-2xl hover:bg-green-700">
+            <button
+              id="btn-add-product-out"
+              onClick={(e) => fnAddProductOut(e, data.id, data.stock)}
+              title={`${role === "admin" ? "Add product stock" : "Add to product out"}`}
+              className="p-2 modal-button text-white bg-primary rounded-bl-2xl hover:bg-green-700"
+            >
               <MdAdd size={20} />
             </button>
           </div>

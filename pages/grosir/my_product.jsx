@@ -215,7 +215,7 @@ function MyProduct() {
         ) : (
           <div className="grid grid-cols-1 gap-2 m-2 md:grid-cols-2 lg:grid-cols-3">
             {datas.map((value) => (
-              <CardProduct key={value.id} data={value} fnEditData={editData} fnDeleteData={deleteData} fnHandleChange={handleChange} fnAddProductOut={addProductOut} />
+              <CardProduct key={value.id} data={value} fnEditData={editData} fnDeleteData={deleteData} fnHandleChange={handleChange} fnAddProductOut={addProductOut} role={role} />
             ))}
           </div>
         )
