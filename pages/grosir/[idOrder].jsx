@@ -31,7 +31,12 @@ function Detail() {
 			},
 		};
 
-		fetch(`https://postme.site/orders/users/${id_order}`, requestOptions)
+
+		fetch(
+			`https://virtserver.swaggerhub.com/vaniliacahya/capstone/1.0.0/orders/users/${id_order}`,
+			requestOptions
+		)
+
 			.then((response) => response.json())
 			.then((result) => {
 				const { code, data } = result;
@@ -57,7 +62,13 @@ function Detail() {
 			},
 		};
 
-		fetch(`https://postme.site/orders/confirm/${id_order}`, requestOptions)
+
+
+		fetch(
+			`https://virtserver.swaggerhub.com/vaniliacahya/capstone/1.0.0/orders/confirm/${id_order}`,
+			requestOptions
+		)
+
 			.then((response) => response.json())
 			.then((result) => {
 				const { message } = result;
