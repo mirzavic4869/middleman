@@ -22,10 +22,12 @@ export async function getServerSideProps({ req, res }) {
 			Authorization: `Bearer ${token}`,
 		},
 	};
+
 	const response = await fetch(
 		"https://virtserver.swaggerhub.com/vaniliacahya/capstone/1.0.0/users",
 		requestOptions
 	);
+
 	const data = await response.json();
 	if (response.status === 200) {
 		return {
@@ -70,10 +72,12 @@ const Profile = ({ data }) => {
 			body: JSON.stringify(body),
 		};
 
+
 		fetch(
 			`https://virtserver.swaggerhub.com/vaniliacahya/capstone/1.0.0/users`,
 			requestOptions
 		)
+
 			.then((response) => response.json())
 			.then((result) => {
 				const { message, code } = result;
